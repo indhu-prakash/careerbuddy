@@ -1,14 +1,14 @@
 # CareerBuddy
 
-A Next.js 15 full-stack app (UI and API routes in one deployment), using Supabase for Postgres, Auth and Storage, and hosted on Vercel. See [PLAN.md](PLAN.md) and [ARCHITECTURE.md](ARCHITECTURE.md).
+A Next.js 15 full-stack app (UI and API routes in one deployment), using Supabase for Postgres, Auth and Storage, and hosted on Vercel. CareerBuddy is an AI-powered career guidance platform that helps you upskill, identify skill gaps, and navigate toward your desired role. See [PLAN.md](PLAN.md) and [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## 1. Create the Supabase project
 
 1. Create a project at [supabase.com](https://supabase.com) (free tier) and save the database password.
 2. Copy `.env.example` to `.env` and fill it in:
    - **Project Settings → Database → Connection string:**
-     - *Transaction pooler* (port 6543) → `DATABASE_URL`
-     - *Session pooler* or *Direct* (port 5432) → `DIRECT_URL`
+     - _Transaction pooler_ (port 6543) → `DATABASE_URL`
+     - _Session pooler_ or _Direct_ (port 5432) → `DIRECT_URL`
    - **Project Settings → API Keys:**
      - Project URL → `NEXT_PUBLIC_SUPABASE_URL`
      - Publishable key → `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
@@ -32,6 +32,7 @@ npm run dev
 ```
 
 Check that everything is connected:
+
 - `http://localhost:3000/api/health` should return `"db": "connected"`.
 - Sign in at `/login`, then open `/api/v1/me`.
 
@@ -46,6 +47,7 @@ When you change `prisma/schema.prisma`, run `npm run db:migrate -- --name <chang
 5. Add the production `/auth/callback` URL to Supabase's redirect URLs (step 1.3).
 
 Free-tier notes:
+
 - Supabase Free pauses a project after 7 days of inactivity. Open it the day before a demo.
 - Vercel Hobby is for non-commercial use, and functions can run for up to 300 s.
 
@@ -58,11 +60,11 @@ Free-tier notes:
 
 ## Scripts
 
-| Script | What it does |
-|---|---|
-| `npm run dev` | Local dev server |
-| `npm test` | Vitest unit tests |
-| `npm run db:deploy` | Apply migrations |
-| `npm run db:migrate` | Create a new migration (dev) |
-| `npm run db:studio` | Prisma Studio |
+| Script                   | What it does                        |
+| ------------------------ | ----------------------------------- |
+| `npm run dev`            | Local dev server                    |
+| `npm test`               | Vitest unit tests                   |
+| `npm run db:deploy`      | Apply migrations                    |
+| `npm run db:migrate`     | Create a new migration (dev)        |
+| `npm run db:studio`      | Prisma Studio                       |
 | `npm run supabase:setup` | Create or update the storage bucket |
