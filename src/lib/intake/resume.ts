@@ -48,7 +48,7 @@ export async function ingestResume(input: { userId: string; text: string; file?:
     system: SYSTEM,
     prompt: buildPrompt(text),
     schema: ResumeProfileSchema,
-    maxTokens: 8000,
+    maxTokens: 16000,
   });
   const profile = verifyProfile(text, data);
 

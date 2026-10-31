@@ -56,7 +56,7 @@ export async function ingestJobDescriptions(
       system: SYSTEM,
       prompt: buildPrompt(toExtract.map((jd, i) => ({ index: i + 1, text: jd.text }))),
       schema: JdExtractionSchema,
-      maxTokens: 10000,
+      maxTokens: 16000,
     });
 
     const saved = await db.$transaction(

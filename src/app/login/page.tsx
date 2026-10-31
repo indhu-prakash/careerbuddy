@@ -20,8 +20,24 @@ async function sendMagicLink(formData: FormData) {
     email,
     options: { emailRedirectTo: `${origin}/auth/callback` },
   });
-  redirect(error ? "/login?error=send_failed" : "/login?sent=1");
+  if (!error) redirect("/login?sent=1");
+
+  console.error("[login] magic link", error.status, error.code, error.message);
+  // Supabase's built-in mailer allows only a few emails per hour per project.
+  if (error.status === 429 || error.code === "over_email_send_rate_limit") redirect("/login?error=rate_limited");
+  // Built-in mailer only delivers to project team members until custom SMTP is configured.
+  if (error.code === "email_address_not_authorized") redirect("/login?error=not_authorized");
+  redirect("/login?error=send_failed");
 }
+
+const ERROR_MESSAGES: Record<string, string> = {
+  missing_email: "Enter your email address.",
+  callback_failed: "That sign-in link is invalid or has expired. Request a new one.",
+  rate_limited:
+    "Too many sign-in emails were sent recently. Please wait up to an hour, then request one new link.",
+  not_authorized: "We can't send sign-in emails to this address yet. Contact the site owner.",
+  send_failed: "We couldn't send the link. Try again in a minute.",
+};
 
 export default async function LoginPage({
   searchParams,
@@ -57,11 +73,7 @@ export default async function LoginPage({
         )}
         {error && (
           <Alert tone="danger" className="mt-4">
-            {error === "missing_email"
-              ? "Enter your email address."
-              : error === "callback_failed"
-                ? "That sign-in link is invalid or has expired. Request a new one."
-                : "We couldn't send the link. Try again in a minute."}
+            {Object.hasOwn(ERROR_MESSAGES, error) ? ERROR_MESSAGES[error] : ERROR_MESSAGES.send_failed}
           </Alert>
         )}
       </Card>
