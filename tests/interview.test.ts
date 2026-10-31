@@ -38,3 +38,17 @@ describe("audioFormat", () => {
     expect(audioFormat("")).toBeNull();
   });
 });
+
+describe("scoreAnswer criterion matching", () => {
+  it("matches criteria the model renamed cosmetically", async () => {
+    const { scoreAnswer } = await import("@/lib/scoring/interview");
+    const rubric = [{ criterion: "Correctness" }, { criterion: "Depth" }, { criterion: "STAR structure" }];
+    const r = scoreAnswer(rubric, [
+      { criterion: "1. Correctness", score: 5, comment: "" },
+      { criterion: "depth:", score: 3, comment: "" },
+      { criterion: "STAR Structure (situation, task, action, result)", score: 4, comment: "" },
+    ]);
+    expect(r.criteria.map((c) => c.score)).toEqual([5, 3, 4]);
+    expect(r.overallScore).toBe(75);
+  });
+});

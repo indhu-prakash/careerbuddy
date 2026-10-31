@@ -10,10 +10,16 @@ export type ScoredAnswer = {
 };
 
 export function scoreAnswer(rubric: { criterion: string }[], llmScores: CriterionScore[]): ScoredAnswer {
-  const byName = new Map(llmScores.map((s) => [s.criterion.trim().toLowerCase(), s]));
+  // Tolerate cosmetic renames ("1. Correctness", "correctness:", "Correctness (accuracy)").
+  const key = (s: string) => s.toLowerCase().replace(/^\s*\d+[.)]\s*/, "").replace(/\(.*?\)/g, "").replace(/[^a-z0-9]+/g, "");
+  const byName = new Map(llmScores.map((s) => [key(s.criterion), s]));
+  const find = (criterion: string) => {
+    const k = key(criterion);
+    return byName.get(k) ?? llmScores.find((s) => key(s.criterion).startsWith(k));
+  };
 
   const criteria = rubric.map(({ criterion }) => {
-    const s = byName.get(criterion.trim().toLowerCase());
+    const s = find(criterion);
     // A criterion the model didn't score counts as the minimum, not as missing.
     if (!s) return { criterion, score: 1, comment: "Not assessed." };
     return { criterion, score: Math.min(5, Math.max(1, Math.round(s.score))), comment: s.comment };

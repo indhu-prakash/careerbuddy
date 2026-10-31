@@ -17,7 +17,8 @@
     "seed:check-links": "tsx scripts/check-resource-links.ts",
     "supabase:setup": "tsx scripts/setup-storage.ts",
     "analyze": "tsx --conditions=react-server scripts/analyze.ts",
-    "report": "python scripts/report/build_report.py"
+    "report": "python scripts/report/build_report.py",
+    "docs:db": "tsx scripts/er-diagram.ts"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.1",
