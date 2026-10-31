@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CareerBuddy: High-Level Design (HLD)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}]})"></script>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict", flowchart: { curve: "basis" } });
+</script>
+<style>
+  :root {
+    --bg: #ffffff; --fg: #1d2330; --muted: #5d6676; --line: #e3e7ee; --soft: #f6f8fb;
+    --accent: #2f5bd3; --accent-soft: #eaf0ff; --ok: #1f8a4c; --warn: #b26a00; --bad: #b42335;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: Inter, system-ui, sans-serif; color: var(--fg); background: var(--bg); line-height: 1.6; font-size: 15.5px; }
+  .layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); max-width: 1280px; margin: 0 auto; }
+  nav.toc { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 32px 20px; border-right: 1px solid var(--line); font-size: 13.5px; }
+  nav.toc h4 { margin: 0 0 12px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  nav.toc a { display: block; padding: 4px 8px; color: var(--fg); text-decoration: none; border-radius: 6px; }
+  nav.toc a:hover { background: var(--soft); color: var(--accent); }
+  nav.toc a.sub { padding-left: 20px; color: var(--muted); }
+  main { padding: 40px 56px 96px; max-width: 980px; }
+  h1 { font-size: 30px; margin: 0 0 6px; letter-spacing: -.01em; }
+  h2 { font-size: 22px; margin: 56px 0 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+  h3 { font-size: 17px; margin: 30px 0 10px; }
+  code { font-family: "JetBrains Mono", monospace; font-size: 13px; background: var(--soft); padding: 1px 5px; border-radius: 4px; }
+  a { color: var(--accent); }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--muted); font-size: 13.5px; margin: 10px 0 24px; }
+  .badge { display: inline-block; font-size: 11.5px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+  .badge.ok { background: #e5f6ec; color: var(--ok); } .badge.warn { background: #fff3df; color: var(--warn); } .badge.bad { background: #fde8eb; color: var(--bad); }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; font-size: 14px; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  th { background: var(--soft); font-weight: 600; font-size: 13px; }
+  .callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: 12px 16px; border-radius: 6px; margin: 16px 0; }
+  .callout.warn { border-color: var(--warn); background: #fff6e8; }
+  .callout b:first-child { display: block; margin-bottom: 4px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 18px 0; }
+  .card { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; background: #fff; }
+  .card .k { font-size: 22px; font-weight: 700; }
+  .card .l { font-size: 12.5px; color: var(--muted); }
+  pre.mermaid { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px; text-align: center; overflow-x: auto; }
+  .math { overflow-x: auto; }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } nav.toc { display: none; } main { padding: 24px; } }
+  @media print { nav.toc { display: none; } .layout { grid-template-columns: 1fr; } main { max-width: none; } }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="toc">
+  <h4>HLD contents</h4>
+  <a href="#summary">1. Summary and scope</a>
+  <a href="#principles">2. Design principles</a>
+  <a href="#context">3. System context</a>
+  <a href="#deploy">4. Containers and deployment</a>
+  <a href="#modules">5. Functional modules</a>
+  <a class="sub" href="#layers">5.1 Code layers</a>
+  <a href="#flows">6. Key flows</a>
+  <a class="sub" href="#flow-analyze">6.1 Intake and gap map</a>
+  <a class="sub" href="#flow-plan">6.2 Plan and projects</a>
+  <a class="sub" href="#flow-interview">6.3 Mock interview</a>
+  <a class="sub" href="#flow-replan">6.4 Progress and replan</a>
+  <a class="sub" href="#flow-apps">6.5 Application tracker</a>
+  <a href="#data">7. Data architecture</a>
+  <a href="#ai">8. AI architecture</a>
+  <a class="sub" href="#ai-budget">8.3 Request budget</a>
+  <a class="sub" href="#ai-trust">8.4 Hallucination controls</a>
+  <a href="#security">9. Security and privacy</a>
+  <a href="#nfr">10. Non-functional requirements</a>
+  <a href="#ops">11. Environments and operations</a>
+  <a href="#decisions">12. Decisions and trade-offs</a>
+  <a href="#limits">13. Known limitations and roadmap</a>
+  <a href="LLD.html">→ Low-Level Design</a>
+</nav>
+
+<main>
+<h1>CareerBuddy: High-Level Design</h1>
+<div class="meta">
+  <span><b>Version</b> 2.0 (as built)</span>
+  <span><b>Date</b> 2026-10-31</span>
+  <span><b>Status</b> <span class="badge ok">Implemented: F1–F7</span></span>
+  <span><b>Companion</b> <a href="LLD.html">LLD.html</a></span>
+  <span><b>Related</b> <a href="ARCHITECTURE.md">ARCHITECTURE.md</a> (option evaluation), <a href="PLAN.md">PLAN.md</a>, <a href="feature-plan/README.md">feature-plan/</a></span>
+</div>
+
+<div class="callout">
+  <b>About this document</b>
+  This HLD describes the system as it is implemented in this repository. ARCHITECTURE.md records the options we evaluated and why we chose them. Where the build differs from that evaluation, for example the LLM provider or synchronous AI calls instead of a job queue, this document follows the code and states the reason in §12.
+</div>
+
+<!-- ============================================================ -->
+<h2 id="summary">1. Summary and scope</h2>
+<p><b>CareerBuddy</b> helps students and working professionals move into a new role. A user uploads a resume and pastes real job descriptions (JDs) for the role they want. CareerBuddy then:</p>
+<ul>
+  <li>shows a skill-gap map backed by evidence;</li>
+  <li>builds a week-by-week learning plan that fits the user's available hours;</li>
+  <li>suggests portfolio projects that close several gaps at once;</li>
+  <li>runs mock interviews scored against a rubric;</li>
+  <li>adjusts the plan as progress comes in;</li>
+  <li>tracks job applications and reports which kinds of application get responses.</li>
+</ul>
+
+<table>
+  <tr><th>#</th><th>Module (UI name)</th><th>What the user gets</th><th>Status</th></tr>
+  <tr><td>F1</td><td>Profile Builder <code>/onboarding</code></td><td>Resume (PDF, DOCX or text) parsed into a profile and a skill inventory the user can edit; target role and time budget</td><td><span class="badge ok">Built</span></td></tr>
+  <tr><td>F2</td><td>Gap Map <code>/analyze</code>, <code>/gap-map</code></td><td>Match score and matched/partial/missing skills from 1–5 JDs, with JD quotes, charts, Excel export and print to PDF</td><td><span class="badge ok">Built</span></td></tr>
+  <tr><td>F3</td><td>Learning Path <code>/plan</code></td><td>Week-by-week plan built from the user's hours per week, with curated resources and weekly checkpoints</td><td><span class="badge ok">Built</span></td></tr>
+  <tr><td>F4</td><td>Project Lab <code>/projects</code></td><td>2–4 portfolio projects chosen to cover the top gaps; their milestones are scheduled into the plan</td><td><span class="badge ok">Built</span></td></tr>
+  <tr><td>F5</td><td>Interview Coach <code>/interview</code></td><td>Generated mock interviews (7 kinds), rubric scoring, follow-up questions, session report; voice answers via speech-to-text</td><td><span class="badge ok">Built</span> <span class="badge warn">voice not yet verified live</span></td></tr>
+  <tr><td>F6</td><td>Progress Tracker <code>/progress</code>, <code>/dashboard</code></td><td>Task check-off, hours, self-ratings, readiness, streaks; replan proposals the user accepts or discards</td><td><span class="badge ok">Built</span></td></tr>
+  <tr><td>F7</td><td>Job Tracker <code>/applications</code></td><td>Application board and table, stage history, response rates per segment, optional AI advice</td><td><span class="badge ok">Stage 1 built</span></td></tr>
+</table>
+
+<div class="cards">
+  <div class="card"><div class="k">1</div><div class="l">deployable (Next.js on Vercel)</div></div>
+  <div class="card"><div class="k">26</div><div class="l">Postgres tables, RLS on every one</div></div>
+  <div class="card"><div class="k">50</div><div class="l">HTTP handlers under <code>/api</code> and <code>/auth</code></div></div>
+  <div class="card"><div class="k">9</div><div class="l">AI tasks, all through one service</div></div>
+  <div class="card"><div class="k">13 / 119</div><div class="l">seeded role tracks / skills</div></div>
+  <div class="card"><div class="k">150</div><div class="l">unit tests passing (21 files)</div></div>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="principles">2. Design principles</h2>
+<table>
+  <tr><th>Principle</th><th>How the build applies it</th></tr>
+  <tr><td><b>The LLM extracts and writes; code decides</b></td><td>Gap scores, priorities, the week schedule, which projects are chosen, interview scores, replan triggers, skill levels and application statistics are pure TypeScript functions in <code>src/lib/scoring/</code> with unit tests. The LLM turns documents into structured data and writes prose: week goals, questions, feedback.</td></tr>
+  <tr><td><b>Evidence or it didn't happen</b></td><td>Extracted skills and requirements carry a verbatim quote, and the server checks the quote really is in the source. A JD requirement is kept only if its quote, or the skill name, appears in the JD. A resume skill whose quote fails is downgraded to "mentioned".</td></tr>
+  <tr><td><b>Extract once, reuse</b></td><td>Resumes and JDs are hashed, so a document seen before is never sent to the LLM again. Every AI result is cached per user by input hash in <code>ai_calls</code>.</td></tr>
+  <tr><td><b>Degrade, don't fail</b></td><td>When the LLM is unavailable, plan week text falls back to templates and the interview summary falls back to a narrative built from the computed numbers. Everything deterministic keeps working.</td></tr>
+  <tr><td><b>One gateway for AI</b></td><td>Every LLM call goes through <code>runAiTask()</code>, which handles caching, the per-user budget, the model fallback chain, schema validation and logging.</td></tr>
+  <tr><td><b>Simple first</b></td><td>Modular monolith, one repo, one deployable, one database. No microservices, queues, vector database or agent framework.</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="context">3. System context</h2>
+<pre class="mermaid">
+flowchart LR
+  U(["Job seeker (browser / mobile web)"])
+  DEV(["Developer (CLI)"])
+  subgraph SYS["CareerBuddy"]
+    APP["Next.js application on Vercel"]
+    CRON["Vercel Cron"]
+    CLI["CLI scripts: analyze, seed, report"]
+  end
+  SA["Supabase Auth (magic link)"]
+  PG[("Supabase Postgres")]
+  ST[("Supabase Storage: private resumes bucket")]
+  OR["OpenRouter: chat completions"]
+  STT["OpenRouter: audio transcriptions"]
+
+  U -- "HTTPS pages + /api/v1 JSON" --> APP
+  U -- "magic link sign-in" --> SA
+  APP -- "verify session (getClaims)" --> SA
+  APP -- "Prisma (pooled)" --> PG
+  APP -- "store resume files" --> ST
+  APP -- "structured JSON generation" --> OR
+  APP -- "voice answers" --> STT
+  CRON -- "daily / weekly, Bearer CRON_SECRET" --> APP
+  DEV --> CLI
+  CLI --> PG
+  CLI --> OR
+</pre>
+
+<table>
+  <tr><th>External system</th><th>Used for</th><th>If it fails</th></tr>
+  <tr><td>Supabase Auth</td><td>Magic-link sign-in, session JWTs</td><td>No new sign-ins; existing sessions keep working until they expire</td></tr>
+  <tr><td>Supabase Postgres</td><td>All application data</td><td><code>/api/health</code> returns 503; pages show errors</td></tr>
+  <tr><td>Supabase Storage</td><td>Original resume files (best effort)</td><td>Upload still succeeds; only the stored copy is skipped</td></tr>
+  <tr><td>OpenRouter (LLM)</td><td>9 AI tasks</td><td>The task returns <code>ai_busy</code> (503) or a 502; plan and summary text fall back to templates</td></tr>
+  <tr><td>OpenRouter (speech-to-text)</td><td>Voice interview answers</td><td>The user types the answer instead</td></tr>
+  <tr><td>Vercel Cron</td><td>Ghosting stale applications; weekly plan review</td><td>Applications ghost late; the same checks still run when pages load</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="deploy">4. Containers and deployment</h2>
+<pre class="mermaid">
+flowchart TB
+  subgraph Browser
+    UI["React 19 UI: App Router pages, client components, Recharts"]
+  end
+  subgraph Vercel["Vercel (Node runtime, maxDuration up to 300 s)"]
+    MW["middleware.ts: refresh Supabase session cookie"]
+    PAGES["Server-rendered pages: redirect to /login if no session"]
+    API["Route handlers /api/v1/*: withUser, Zod, error mapping"]
+    LIB["src/lib: module services, scoring, AI gateway"]
+    JOBS["/api/cron/*: ghost-applications daily, weekly-review Mondays"]
+  end
+  subgraph Supabase
+    AUTH["Auth"]
+    DB[("Postgres: 26 tables, RLS on, no policies")]
+    OBJ[("Storage")]
+  end
+  OR["OpenRouter"]
+  UI --> MW --> PAGES
+  MW --> API
+  PAGES --> LIB
+  API --> LIB
+  JOBS --> LIB
+  LIB --> DB
+  LIB --> OBJ
+  LIB --> OR
+  MW --> AUTH
+</pre>
+
+<table>
+  <tr><th>Container</th><th>Technology</th><th>Responsibility</th></tr>
+  <tr><td>Web UI</td><td>Next.js 15.5 App Router, React 19, Tailwind CSS 4, Recharts; light/dark theme</td><td>15 pages: landing, login, onboarding, dashboard, analyze, gap map, plan, projects, interview (3), progress, applications</td></tr>
+  <tr><td>API</td><td>Route handlers under <code>/api/v1</code></td><td>Auth, request validation, one service call, mapping errors to JSON</td></tr>
+  <tr><td>Application core</td><td>TypeScript in <code>src/lib</code></td><td>Module services, pure scoring functions, AI gateway, Prisma access</td></tr>
+  <tr><td>Scheduled jobs</td><td>Vercel Cron → <code>/api/cron/*</code></td><td>Ghost stale applications daily at 02:30 UTC; Monday 03:00 UTC: mark missed tasks and evaluate replan triggers</td></tr>
+  <tr><td>Database</td><td>Supabase Postgres 15 via Prisma 7 + <code>@prisma/adapter-pg</code></td><td>Relational data plus JSONB for LLM-generated documents</td></tr>
+  <tr><td>Object storage</td><td>Supabase Storage, bucket <code>resumes</code></td><td>Private files under <code>{userId}/{resumeId}/</code></td></tr>
+  <tr><td>CLI</td><td><code>tsx</code> scripts; Python report builder</td><td>Seeding the taxonomy, link checks, offline gap analysis to Excel and PDF</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="modules">5. Functional modules</h2>
+<pre class="mermaid">
+flowchart LR
+  F1["F1 Profile: resume, user_skills, target role"] -->|"levels + evidence"| F2
+  TAX["Skill taxonomy + role tracks (seeded)"] --> F2
+  F2["F2 Gap map: JDs, requirements, gap_items"] -->|"ranked gaps"| F3["F3 Learning plan"]
+  F2 --> F4["F4 Projects"]
+  F2 --> F5["F5 Interviews"]
+  F4 -->|"milestones become tasks"| F3
+  F3 -->|"task, hours, assessment events"| F6["F6 Progress"]
+  F5 -->|"interview scores"| F6
+  F6 -->|"recomputed skill levels"| F1
+  F6 -->|"replan draft"| F3
+  F2 -->|"match score at apply time"| F7["F7 Applications"]
+</pre>
+
+<table>
+  <tr><th>Module</th><th>Code</th><th>LLM writes</th><th>Code decides</th></tr>
+  <tr><td>F1 Profile</td><td><code>lib/intake</code>, <code>lib/skills</code></td><td>Resume → profile + skills with quotes (<code>resume.extract</code>)</td><td>Hash reuse, quote check, skill resolution to the taxonomy, draft levels, user edits</td></tr>
+  <tr><td>F2 Gap map</td><td><code>lib/analysis</code>, <code>scoring/gap-map.ts</code></td><td>JD → requirements with level and quote (<code>jd.extract</code>, all new JDs in one call)</td><td>Demand, required level, have, gap, category, effort, priority, match score, role-track prior, recommendations</td></tr>
+  <tr><td>F3 Plan</td><td><code>lib/plan</code>, <code>scoring/schedule.ts</code></td><td>Week goal, objectives, exercises, checkpoint (<code>plan.weeks</code>, one call for all weeks)</td><td>Ranking, prerequisites, tasks per level, capacity packing, deferrals, resources, versioning</td></tr>
+  <tr><td>F4 Projects</td><td><code>lib/projects</code>, <code>scoring/coverage.ts</code></td><td>5–6 candidate project specs (<code>projects.ideas</code>)</td><td>Tag validation, weighted set cover choosing 2–4, milestone placement into weeks</td></tr>
+  <tr><td>F5 Interviews</td><td><code>lib/interview</code>, <code>scoring/interview.ts</code></td><td>Question text, per-criterion scores and feedback, summary (<code>interview.questions</code>, <code>.score</code>, <code>.summary</code>)</td><td>Question types and focus skills, rubric, overall score, follow-up policy, report statistics</td></tr>
+  <tr><td>F6 Progress</td><td><code>lib/progress</code>, <code>scoring/progress.ts</code>, <code>replan.ts</code>, <code>dashboard.ts</code></td><td>Week text for a replan draft (reuses <code>plan.weeks</code>)</td><td>Skill-level recompute, triggers, diff, readiness, streak, missed tasks</td></tr>
+  <tr><td>F7 Applications</td><td><code>lib/applications</code>, <code>scoring/applications.ts</code></td><td>Optional 1–3 targeting suggestions (<code>applications.advice</code>)</td><td>Outcomes, segment rates with Beta smoothing, sample-size gates, auto-ghosting</td></tr>
+</table>
+
+<h3 id="layers">5.1 Code layers</h3>
+<pre class="mermaid">
+flowchart TB
+  P["Pages (src/app) and route handlers (src/app/api)"]
+  F["Feature UI (src/features/module/components)"]
+  S["Module services (src/lib/intake, analysis, plan, projects, interview, progress, applications)"]
+  D["Pure domain logic (src/lib/scoring)"]
+  A["AI gateway (src/lib/ai: runAiTask, client, prompts, transcribe)"]
+  I["Infrastructure (db.ts, storage.ts, auth.ts, supabase/)"]
+  P --> F
+  P --> S
+  S --> D
+  S --> A
+  S --> I
+  A --> I
+</pre>
+<p>Dependencies point downward only. <code>src/lib/scoring</code> imports nothing from Next.js, Prisma or the AI layer, so the same functions run in the API, in cron jobs, in the CLI and in tests.</p>
+
+<!-- ============================================================ -->
+<h2 id="flows">6. Key flows</h2>
+
+<h3 id="flow-analyze">6.1 Intake and gap map (F1 → F2)</h3>
+<pre class="mermaid">
+sequenceDiagram
+  autonumber
+  participant UI as Browser
+  participant API as POST /api/v1/analyze
+  participant IN as intake + analysis
+  participant AI as runAiTask
+  participant DB as Postgres
+  UI->>API: multipart: resume (or saved one), 1-5 JDs, target role
+  API->>IN: extract text (pdf-parse / mammoth), sha256
+  IN->>DB: resume with same hash already parsed?
+  alt new resume
+    IN->>AI: resume.extract
+    IN->>IN: verify quotes, resolve skills
+    IN->>DB: resume, draft user_skills
+  end
+  IN->>DB: JDs with same hash already parsed?
+  IN->>AI: jd.extract (all new JDs, one call)
+  IN->>IN: keep requirements whose quote or name is in the JD
+  IN->>DB: job_descriptions, job_requirements
+  IN->>DB: load user_skills, related edges, role-track prior if fewer than 3 JDs
+  IN->>IN: scoreGapMap (no LLM)
+  IN->>DB: gap_analyses, gap_items, gap_analysis_jobs
+  API-->>UI: 200 GapAnalysisView
+</pre>
+<p>The request is synchronous (<code>maxDuration</code> 300 s) and costs 0–2 LLM calls. If the user supplies fewer than 3 JDs and the target role matches a seeded role track, the track's skills fill in demand, weighted \(w = (3-n)/3\). This avoids a one-JD gap map that misses obvious fundamentals.</p>
+
+<h3 id="flow-plan">6.2 Learning plan and projects (F3, F4)</h3>
+<pre class="mermaid">
+flowchart LR
+  G["Ranked gap items"] --> S["scheduleLearning: prerequisites, tasks per level, capacity = 68% of hours"]
+  S --> W["Week skeleton + deferred skills"]
+  W --> R["Attach curated resources and topics (taxonomy)"]
+  R --> T["plan.weeks: 1 LLM call writes text for all weeks"]
+  T --> V["learning_plan version N+1 (active); previous superseded"]
+  V --> P["projects.ideas: 5-6 candidates"]
+  P --> C["Weighted set cover picks 2-4"]
+  C --> M["Milestones placed into reserved 20% project time"]
+</pre>
+<p>Code decides what is learned in which week. The LLM only writes text for each week, and it cannot change skills, hours or tasks. If a skill doesn't fit in the time available, it is deferred and shown to the user; the plan is not compressed into something unrealistic.</p>
+
+<h3 id="flow-interview">6.3 Mock interview (F5)</h3>
+<pre class="mermaid">
+stateDiagram-v2
+  [*] --> in_progress: POST /interviews (1 LLM call writes 3-8 questions)
+  in_progress --> in_progress: POST answers (1 LLM call each, optional follow-up)
+  in_progress --> completed: POST complete (1 summary call, template fallback)
+  in_progress --> abandoned: complete with no scored answers
+  completed --> [*]
+  abandoned --> [*]
+</pre>
+<p>Code chooses each question's type and focus skill, cycling through the session kind and the user's open gaps. The LLM scores each rubric criterion from 1 to 5, and code computes the overall score. A criterion scoring 2 or lower triggers a follow-up question, at most 2 per session. Voice answers are transcribed first, and the user can edit the text before submitting. Each interview score becomes "assessed" evidence for the skill.</p>
+
+<h3 id="flow-replan">6.4 Progress and replan (F6)</h3>
+<pre class="mermaid">
+flowchart LR
+  E["Task done, hours, self-rating, assessment, interview score"] --> PE["progress_events (append-only)"]
+  PE --> L["Recompute skill level: evidence-weighted, 60-day half-life"]
+  PE --> T{"Triggers over last 2 ended weeks"}
+  T -- "behind / ahead / mastered / weak" --> D["Draft plan version (1 LLM call for text) + diff"]
+  D --> A{"User"}
+  A -- accept --> V["Draft active; old version superseded; projects refit"]
+  A -- discard --> X["Draft deleted"]
+</pre>
+
+<h3 id="flow-apps">6.5 Application tracker (F7)</h3>
+<p>Each application records its company, role, segment fields, source, whether the resume was tailored, and the match score frozen at the time of applying. Every stage change is an event. Statistics are computed in code. For each segment value (role family, seniority, source, industry, company size, tailored, match band), the response rate is smoothed toward the overall rate so that small samples don't mislead:</p>
+<div class="math">\[ \tilde r = \frac{r + k\,p}{n + k},\qquad k = 5,\; p = \text{overall response rate} \]</div>
+<p>A segment is reported only when \(n \ge 5\). AI advice is opt-in. The model sees only the computed segment numbers, is told to quote sample sizes and to describe associations, not causes. A daily cron marks applications as <code>ghosted</code> after 21 days with no activity.</p>
+
+<!-- ============================================================ -->
+<h2 id="data">7. Data architecture</h2>
+<ul>
+  <li><b>One Postgres database</b>, accessed only from the server through Prisma. RLS is enabled with no policies on all 26 tables, which closes Supabase's public Data API.</li>
+  <li><b>Ownership:</b> every user-owned table has <code>userId</code> with <code>ON DELETE CASCADE</code> from <code>users</code>, and <code>users.id</code> is the Supabase auth id. Deleting the account removes all of the user's data.</li>
+  <li><b>Relational</b> for anything that is filtered or aggregated: user_skills, job_requirements, gap_items, plan_tasks, interview_evaluations, progress_events, application_events, ai_calls.</li>
+  <li><b>JSONB</b>, validated with Zod, for LLM documents that are always read whole: parsed resume, week content, project spec, rubric and criteria.</li>
+  <li><b>Versioning instead of mutation:</b> learning plans have <code>version</code>, <code>parentId</code>, <code>status</code> (draft, active, superseded) and <code>changeSummary</code>.</li>
+  <li><b>Append-only event log:</b> <code>progress_events</code> (8 kinds) drives skill levels, streaks, hours charts and replan triggers.</li>
+  <li><b>Shared curated taxonomy:</b> 119 skills with aliases, 1,129 tiered topics, prerequisite and related edges, and 121 link-checked resources. There are 13 role tracks with skills per tier, required level, core or recommended, and choice groups. All of it is seeded from <code>prisma/seed/data/*.json</code>.</li>
+</ul>
+<table>
+  <tr><th>Area</th><th>Tables</th></tr>
+  <tr><td>Identity and profile</td><td>users, resumes, user_skills, target_roles</td></tr>
+  <tr><td>Taxonomy (shared)</td><td>skills, skill_topics, skill_edges, learning_resources, role_tracks, role_track_skills</td></tr>
+  <tr><td>Market evidence and gaps</td><td>job_descriptions, job_requirements, gap_analyses, gap_analysis_jobs, gap_items</td></tr>
+  <tr><td>Plan and projects</td><td>learning_plans, plan_weeks, plan_tasks, portfolio_projects</td></tr>
+  <tr><td>Interviews</td><td>interview_sessions, interview_questions, interview_evaluations</td></tr>
+  <tr><td>Progress</td><td>progress_events</td></tr>
+  <tr><td>Applications</td><td>applications, application_events</td></tr>
+  <tr><td>AI telemetry and cache</td><td>ai_calls</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="ai">8. AI architecture</h2>
+<h3>8.1 A workflow, not an agent</h3>
+<p>Code runs every step and assembles all the context before calling the model. The model has no tools. It fills a JSON schema, and the result is validated before it is used. There is no LangChain, LangGraph or agent loop.</p>
+<pre class="mermaid">
+flowchart LR
+  M["Module service"] -->|"runAiTask(task, promptVersion, schema)"| C{"Cache: same user + task + sha256(input)?"}
+  C -- hit --> OUT["Validated result (free)"]
+  C -- miss --> B{"Daily budget: under AI_DAILY_REQUEST_LIMIT?"}
+  B -- no --> E429["429 ai_daily_limit"]
+  B -- yes --> P1["Primary model: strict json_schema"]
+  P1 -- "429/5xx: retry 3 s, 8 s" --> P1
+  P1 -- "failed / invalid" --> P2["Fallback model: json_object + schema in prompt"]
+  P1 -- ok --> V["finish_reason, JSON parse, Zod"]
+  P2 --> V
+  V --> LOG["ai_calls row: outcome, tokens, cost, latency, result"]
+  LOG --> OUT
+</pre>
+
+<h3>8.2 Models</h3>
+<table>
+  <tr><th>Role</th><th>Model (env override)</th><th>Mode</th></tr>
+  <tr><td>Primary LLM</td><td><code>nvidia/nemotron-3.5-super-vl:free</code> (<code>AI_MODEL_PRIMARY</code>)</td><td>Strict JSON schema, enforced by the provider</td></tr>
+  <tr><td>Fallback LLM</td><td><code>google/gemma-4-31b-it:free</code> (<code>AI_MODEL_FALLBACK</code>)</td><td>JSON mode, with the schema in the system prompt and checked by Zod</td></tr>
+  <tr><td>Speech-to-text</td><td><code>mistralai/voxtral-mini-transcribe</code> → <code>openai/whisper-large-v3</code></td><td>Paid (~$0.003/min); audio is never stored</td></tr>
+</table>
+<div class="callout warn"><b>Free models are for development and demos only</b>Free OpenRouter models may log prompts. Before real users upload real resumes, the routing must switch to a paid model that doesn't train on inputs. That is an environment variable change, not a code change.</div>
+
+<h3 id="ai-budget">8.3 Request budget</h3>
+<p>OpenRouter's free tier allows about 50 requests a day per account, or 1,000 after buying credits. Each user is limited to <code>AI_DAILY_REQUEST_LIMIT</code> calls per UTC day (default 20). Cache hits are free.</p>
+<table>
+  <tr><th>Operation</th><th>LLM calls</th></tr>
+  <tr><td>Resume intake (new resume)</td><td>1 (0 if the same resume was parsed before)</td></tr>
+  <tr><td>Gap analysis with new JDs</td><td>1 for all new JDs (0 if every JD was seen before)</td></tr>
+  <tr><td>Learning plan, any length</td><td>1</td></tr>
+  <tr><td>Project suggestions</td><td>1</td></tr>
+  <tr><td>Interview session, 5 questions</td><td>7 (questions + 5 answers + summary), up to 9 with 2 follow-ups</td></tr>
+  <tr><td>Replan proposal</td><td>1 (accepting makes no call)</td></tr>
+  <tr><td>Application advice (opt-in)</td><td>1</td></tr>
+  <tr><td><b>Full first journey</b></td><td><b>≈ 12–14</b>, within one user's daily limit</td></tr>
+</table>
+
+<h3 id="ai-trust">8.4 Hallucination controls</h3>
+<table>
+  <tr><th>Control</th><th>Where</th></tr>
+  <tr><td>Schema-constrained output (strict on primary) plus a Zod check on every response; truncated output is rejected</td><td>All tasks</td></tr>
+  <tr><td>Verbatim quote verification against the source text</td><td>Resume skills, JD requirements</td></tr>
+  <tr><td>Closed vocabulary: project skill tags must resolve to the taxonomy or to the user's gap list, otherwise they are dropped</td><td>F4</td></tr>
+  <tr><td>The LLM never controls structure: skills, hours, tasks, question types, scores and statistics are computed in code</td><td>F2–F7</td></tr>
+  <tr><td>Missing rubric criteria score 1, so the model can't inflate a score by skipping a criterion</td><td>F5</td></tr>
+  <tr><td>Evidence-weighted skill levels, capped at 2 without demonstrated or assessed evidence</td><td>F6</td></tr>
+  <tr><td>Advice prompt receives only computed numbers, must quote sample sizes and use association-only wording</td><td>F7</td></tr>
+  <tr><td>User confirms extracted skills and accepts every plan revision</td><td>UI</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="security">9. Security and privacy</h2>
+<table>
+  <tr><th>Concern</th><th>Control (as built)</th></tr>
+  <tr><td>Authentication</td><td>Supabase magic link with PKCE. Middleware refreshes the session cookie on every request. <code>withUser()</code> verifies JWT claims (<code>getClaims</code>) on every API call; pages redirect to <code>/login</code>.</td></tr>
+  <tr><td>Isolation between users</td><td>The user id comes only from the verified session. Every query is scoped by <code>userId</code>. Another user's id returns 404. RLS with no policies blocks the Data API.</td></tr>
+  <tr><td>Files</td><td>Private bucket with paths under <code>{userId}/</code>; ownership is checked and path traversal rejected; download links are signed and last 60 s; uploads are capped at 4 MB per request; text-only parsing of PDF and DOCX.</td></tr>
+  <tr><td>Prompt injection</td><td>Documents are wrapped in tags and declared as data; output is constrained by a schema; the model has no tools; context is built per user.</td></tr>
+  <tr><td>Secrets</td><td>OpenRouter, database and Supabase secret keys are server-only (<code>import "server-only"</code>). Cron routes require <code>Bearer CRON_SECRET</code> and refuse requests when it is unset.</td></tr>
+  <tr><td>Cost abuse</td><td>Per-user daily AI limit; Zod length caps (answers ≤ 10,000 chars, JD text ≤ 30,000 chars)</td></tr>
+  <tr><td>Privacy</td><td><code>DELETE /api/v1/me</code> removes the user's files, then the user row (which cascades), then the auth user. Audio is never stored. Free models are used with demo data only.</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="nfr">10. Non-functional requirements</h2>
+<table>
+  <tr><th>Attribute</th><th>Target / behaviour</th></tr>
+  <tr><td>Latency, non-AI</td><td>Single indexed queries per request; Prisma pool of 3 per instance</td></tr>
+  <tr><td>Latency, AI</td><td>Free models take about 30–60 s per call. Routes allow up to 300 s and the UI shows progress states. A paid model is the lever if this needs to be faster.</td></tr>
+  <tr><td>Correctness</td><td>All AI output is schema-valid or the call fails with a typed error; 150 unit tests cover the scoring, scheduling and service logic</td></tr>
+  <tr><td>Availability</td><td>Best effort on free tiers. When the LLM is down, the deterministic features and stored data keep working.</td></tr>
+  <tr><td>Scalability</td><td>The first limit is LLM quota. Moving to Vercel Pro, Supabase Pro and paid models needs no code changes.</td></tr>
+  <tr><td>Accessibility and UX</td><td>Responsive layouts, light and dark themes, print-friendly gap map</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="ops">11. Environments and operations</h2>
+<table>
+  <tr><th>Item</th><th>Detail</th></tr>
+  <tr><td>Environments</td><td>Local (<code>npm run dev</code>) and Vercel Preview use the dev Supabase project; Production uses its own project</td></tr>
+  <tr><td>Database changes</td><td>Prisma migrations in <code>prisma/migrations</code> (5 so far); <code>npm run db:deploy</code>; taxonomy via <code>npm run db:seed</code></td></tr>
+  <tr><td>Scheduled jobs</td><td><code>vercel.json</code>: ghost-applications daily at 02:30 UTC; weekly-review Mondays at 03:00 UTC</td></tr>
+  <tr><td>Observability</td><td>Every AI call is a row in <code>ai_calls</code> (outcome, tokens, cost, latency); <code>/api/v1/ai/usage</code>; <code>/api/health</code>; Vercel logs</td></tr>
+  <tr><td>Free-tier operations</td><td>Supabase pauses after 7 idle days, so open the project before a demo. Vercel Hobby is for non-commercial use only.</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="decisions">12. Decisions and trade-offs</h2>
+<table>
+  <tr><th>#</th><th>Decision</th><th>Why</th><th>Cost</th><th>Revisit when</th></tr>
+  <tr><td>D1</td><td>Next.js modular monolith + Supabase on Vercel</td><td>One language and one deployable; database, auth and storage from one vendor; $0</td><td>No Python NLP tooling; 300 s function cap</td><td>A Python-only need appears → add a single worker</td></tr>
+  <tr><td>D2</td><td>OpenRouter free models (Nemotron → Gemma)</td><td>$0 for the hackathon; the primary model enforces a strict schema</td><td>Limited quota, no SLA, may log prompts</td><td>Before real users → paid model that doesn't train on inputs</td></tr>
+  <tr><td>D3</td><td>Synchronous AI calls instead of a job queue</td><td>Each flow makes one call (or a few), well under 300 s; no extra infrastructure</td><td>A long wait on free models; a dropped connection loses the request</td><td>Calls routinely exceed 60 s → background jobs</td></tr>
+  <tr><td>D4</td><td>One LLM call for all new JDs and one for all plan weeks</td><td>Saves quota; keeps skill names and tone consistent</td><td>One bad response affects the whole batch, though there is a template fallback</td><td>Paid tier → per-item calls if quality needs it</td></tr>
+  <tr><td>D5</td><td>Per-user cache and daily limit in Postgres (<code>ai_calls</code>)</td><td>No Redis; cache and cost telemetry come from the same table</td><td>No global cap or per-minute limit</td><td>Multi-user launch → add a global cap</td></tr>
+  <tr><td>D6</td><td>Deterministic scoring, scheduling and statistics</td><td>Explainable, testable, free</td><td>Plans are less "creative"</td><td>Never fully; the LLM stays the content layer</td></tr>
+  <tr><td>D7</td><td>Curated taxonomy and role tracks (seeded JSON) instead of embeddings</td><td>Explainable alias matching; a prior for sparse JDs; resources are never made up</td><td>Manual curation; unknown terms create uncurated skills</td><td>Unmapped terms exceed 10%</td></tr>
+  <tr><td>D8</td><td>Beta smoothing toward the overall rate for application stats</td><td>Stable ranking with small samples; simple to explain</td><td>No confidence intervals</td><td>Enough data for intervals or logistic regression</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="limits">13. Known limitations and roadmap</h2>
+<table>
+  <tr><th>Item</th><th>Status</th></tr>
+  <tr><td>Voice transcription</td><td>Built, but not yet tested end to end: OpenRouter audio requires at least $0.50 credit (HTTP 402 without it)</td></tr>
+  <tr><td>Production LLM</td><td>Free models only; switch to a paid model that doesn't train on inputs before real users</td></tr>
+  <tr><td>Global AI cap, per-minute rate limit, CSRF origin check</td><td>Not built; the per-user daily limit is the only throttle</td></tr>
+  <tr><td>Scanned PDFs (no text layer)</td><td>Rejected with <code>resume_text_too_short</code>; the user pastes the text instead</td></tr>
+  <tr><td>JD import from URL</td><td>Not built; paste or upload only</td></tr>
+  <tr><td>Seniority tracks (SDE 1, SDE 2, Module Lead, Tech Lead, Solution Architect)</td><td>Proposed; the current 13 tracks are functional roles</td></tr>
+  <tr><td>F7 stages 2–3 (logistic model, cross-user learning), board drag and drop</td><td>Not built</td></tr>
+  <tr><td>CI pipeline (GitHub Actions)</td><td>Not set up; tests, typecheck and lint run locally</td></tr>
+  <tr><td>Reminders and notifications</td><td>Not built; the weekly cron only marks tasks and evaluates triggers</td></tr>
+</table>
+
+<p style="margin-top:40px;color:var(--muted)">Continue with the <a href="LLD.html">Low-Level Design</a> for code structure, algorithms, the data model and the API specification.</p>
+</main>
+</div>
+</body>
+</html>

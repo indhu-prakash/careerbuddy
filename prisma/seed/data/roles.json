@@ -1,0 +1,2212 @@
+[
+  {
+    "slug": "frontend-engineer",
+    "title": "Frontend Engineer",
+    "family": "engineering",
+    "aliases": [
+      "frontend developer",
+      "front-end engineer",
+      "front end developer",
+      "ui engineer",
+      "ui developer",
+      "react developer",
+      "web developer",
+      "javascript developer"
+    ],
+    "description": "Builds the accessible, responsive, high-performing browser interfaces that users interact with, using HTML, CSS, JavaScript/TypeScript and a component framework.",
+    "skills": {
+      "fundamental": [
+        {
+          "skill": "html",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "css",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "javascript",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "responsive-design",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "git",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "http",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        }
+      ],
+      "intermediate": [
+        {
+          "skill": "typescript",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "react",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "frontend-framework"
+        },
+        {
+          "skill": "angular",
+          "level": 3,
+          "importance": "recommended",
+          "choiceGroup": "frontend-framework"
+        },
+        {
+          "skill": "vue",
+          "level": 3,
+          "importance": "recommended",
+          "choiceGroup": "frontend-framework"
+        },
+        {
+          "skill": "state-management",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "rest-api",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "web-accessibility",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "software-testing",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "jest",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "tailwind",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "frontend-build-tools",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "figma",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ],
+      "advanced": [
+        {
+          "skill": "nextjs",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "web-performance",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "web-security",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "playwright",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "graphql",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "ci-cd",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "design-patterns",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ]
+    }
+  },
+  {
+    "slug": "backend-engineer",
+    "title": "Backend Engineer",
+    "family": "engineering",
+    "aliases": [
+      "backend developer",
+      "back-end engineer",
+      "back end developer",
+      "server-side developer",
+      "api developer",
+      "java developer",
+      "python developer",
+      "node.js developer",
+      ".net developer",
+      "golang developer"
+    ],
+    "description": "Designs, builds and operates the server-side services, APIs and data stores that power applications, with a focus on correctness, security, scalability and reliability.",
+    "skills": {
+      "fundamental": [
+        {
+          "skill": "python",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "backend-language"
+        },
+        {
+          "skill": "java",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "backend-language"
+        },
+        {
+          "skill": "csharp",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "backend-language"
+        },
+        {
+          "skill": "go",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "backend-language"
+        },
+        {
+          "skill": "nodejs",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "backend-language"
+        },
+        {
+          "skill": "sql",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "http",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "git",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "linux",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "oop",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "dsa",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        }
+      ],
+      "intermediate": [
+        {
+          "skill": "spring-boot",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "backend-framework"
+        },
+        {
+          "skill": "aspnet-core",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "backend-framework"
+        },
+        {
+          "skill": "django",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "backend-framework"
+        },
+        {
+          "skill": "fastapi",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "backend-framework"
+        },
+        {
+          "skill": "express",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "backend-framework"
+        },
+        {
+          "skill": "rest-api",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "postgresql",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "data-modeling",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "auth",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "software-testing",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "docker",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "redis",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "mongodb",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "postman",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "bash",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ],
+      "advanced": [
+        {
+          "skill": "system-design",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "web-security",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "microservices",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "aws",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "cloud-provider"
+        },
+        {
+          "skill": "azure",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "cloud-provider"
+        },
+        {
+          "skill": "gcp",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "cloud-provider"
+        },
+        {
+          "skill": "ci-cd",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "observability",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "kubernetes",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "kafka",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "design-patterns",
+          "level": 3,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "graphql",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ]
+    }
+  },
+  {
+    "slug": "full-stack-engineer",
+    "title": "Full-Stack Engineer",
+    "family": "engineering",
+    "aliases": [
+      "full stack developer",
+      "full-stack developer",
+      "fullstack engineer",
+      "mern stack developer",
+      "web application developer",
+      "software engineer (full stack)"
+    ],
+    "description": "Delivers complete web features end to end, from the browser UI through APIs and databases to deployment.",
+    "skills": {
+      "fundamental": [
+        {
+          "skill": "html",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "css",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "javascript",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "responsive-design",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "http",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "sql",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "git",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        }
+      ],
+      "intermediate": [
+        {
+          "skill": "typescript",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "react",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "frontend-framework"
+        },
+        {
+          "skill": "angular",
+          "level": 3,
+          "importance": "recommended",
+          "choiceGroup": "frontend-framework"
+        },
+        {
+          "skill": "vue",
+          "level": 3,
+          "importance": "recommended",
+          "choiceGroup": "frontend-framework"
+        },
+        {
+          "skill": "nodejs",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "backend-language"
+        },
+        {
+          "skill": "python",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": "backend-language"
+        },
+        {
+          "skill": "java",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": "backend-language"
+        },
+        {
+          "skill": "csharp",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": "backend-language"
+        },
+        {
+          "skill": "express",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "backend-framework"
+        },
+        {
+          "skill": "django",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": "backend-framework"
+        },
+        {
+          "skill": "fastapi",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": "backend-framework"
+        },
+        {
+          "skill": "spring-boot",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": "backend-framework"
+        },
+        {
+          "skill": "aspnet-core",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": "backend-framework"
+        },
+        {
+          "skill": "rest-api",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "postgresql",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "mongodb",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "state-management",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "auth",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "software-testing",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "jest",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "tailwind",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ],
+      "advanced": [
+        {
+          "skill": "nextjs",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "data-modeling",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "docker",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "ci-cd",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "web-security",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "system-design",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "aws",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "cloud-provider"
+        },
+        {
+          "skill": "azure",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "cloud-provider"
+        },
+        {
+          "skill": "gcp",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "cloud-provider"
+        },
+        {
+          "skill": "github-actions",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "web-performance",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "graphql",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "redis",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "playwright",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "observability",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ]
+    }
+  },
+  {
+    "slug": "mobile-developer",
+    "title": "Mobile Developer",
+    "family": "engineering",
+    "aliases": [
+      "mobile engineer",
+      "mobile app developer",
+      "android developer",
+      "android engineer",
+      "ios developer",
+      "ios engineer",
+      "flutter developer",
+      "react native developer",
+      "cross-platform mobile developer"
+    ],
+    "description": "Builds, tests and ships native (Android/iOS) or cross-platform (Flutter/React Native) mobile apps that are responsive, reliable and integrated with backend services.",
+    "skills": {
+      "fundamental": [
+        {
+          "skill": "kotlin",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "mobile-language"
+        },
+        {
+          "skill": "swift",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "mobile-language"
+        },
+        {
+          "skill": "dart",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "mobile-language"
+        },
+        {
+          "skill": "typescript",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "mobile-language"
+        },
+        {
+          "skill": "oop",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "git",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "http",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "dsa",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        }
+      ],
+      "intermediate": [
+        {
+          "skill": "jetpack-compose",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "mobile-ui-framework"
+        },
+        {
+          "skill": "swiftui",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "mobile-ui-framework"
+        },
+        {
+          "skill": "flutter",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "mobile-ui-framework"
+        },
+        {
+          "skill": "react-native",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "mobile-ui-framework"
+        },
+        {
+          "skill": "mobile-architecture",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "state-management",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "rest-api",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "design-patterns",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "auth",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "software-testing",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "figma",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ],
+      "advanced": [
+        {
+          "skill": "mobile-release",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "ci-cd",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "observability",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "github-actions",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "graphql",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "web-security",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ]
+    }
+  },
+  {
+    "slug": "devops-engineer",
+    "title": "DevOps / Cloud Engineer",
+    "family": "engineering",
+    "aliases": [
+      "devops engineer",
+      "cloud engineer",
+      "platform engineer",
+      "site reliability engineer",
+      "infrastructure engineer",
+      "cloud devops engineer",
+      "build and release engineer"
+    ],
+    "description": "Automates how software is built, tested, deployed and run on cloud infrastructure, using CI/CD, containers, infrastructure as code and monitoring.",
+    "skills": {
+      "fundamental": [
+        {
+          "skill": "linux",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "bash",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "git",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "networking",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "python",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "communication",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ],
+      "intermediate": [
+        {
+          "skill": "docker",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "ci-cd",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "github-actions",
+          "level": 3,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "aws",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "cloud"
+        },
+        {
+          "skill": "azure",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "cloud"
+        },
+        {
+          "skill": "gcp",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "cloud"
+        },
+        {
+          "skill": "terraform",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "observability",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "prometheus",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "grafana",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ],
+      "advanced": [
+        {
+          "skill": "kubernetes",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "iam",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "sre",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "system-design",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "security-fundamentals",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ]
+    }
+  },
+  {
+    "slug": "qa-automation-engineer",
+    "title": "QA Automation Engineer (SDET)",
+    "family": "quality",
+    "aliases": [
+      "sdet",
+      "software development engineer in test",
+      "qa automation engineer",
+      "test automation engineer",
+      "automation tester",
+      "qa engineer",
+      "software engineer in test"
+    ],
+    "description": "Designs, codes and maintains automated UI, API and performance test suites that run in CI to catch defects before release.",
+    "skills": {
+      "fundamental": [
+        {
+          "skill": "software-testing",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "javascript",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "programming-language"
+        },
+        {
+          "skill": "python",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "programming-language"
+        },
+        {
+          "skill": "java",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "programming-language"
+        },
+        {
+          "skill": "git",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "http",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "sql",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "agile",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "communication",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        }
+      ],
+      "intermediate": [
+        {
+          "skill": "test-automation",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "playwright",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "ui-automation"
+        },
+        {
+          "skill": "selenium",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "ui-automation"
+        },
+        {
+          "skill": "jest",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "test-runner"
+        },
+        {
+          "skill": "pytest",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "test-runner"
+        },
+        {
+          "skill": "junit",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "test-runner"
+        },
+        {
+          "skill": "postman",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "ci-cd",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "github-actions",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ],
+      "advanced": [
+        {
+          "skill": "performance-testing",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "docker",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "linux",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "web-accessibility",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "web-security",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ]
+    }
+  },
+  {
+    "slug": "cybersecurity-analyst",
+    "title": "Cybersecurity Analyst (SOC / Security Analyst)",
+    "family": "security",
+    "aliases": [
+      "soc analyst",
+      "security analyst",
+      "cybersecurity analyst",
+      "information security analyst",
+      "cyber defense analyst",
+      "security operations analyst",
+      "incident response analyst"
+    ],
+    "description": "Monitors security tools and logs to detect, triage, investigate and escalate threats, and helps contain incidents and reduce risk.",
+    "skills": {
+      "fundamental": [
+        {
+          "skill": "security-fundamentals",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "networking",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "windows",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "linux",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "communication",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        }
+      ],
+      "intermediate": [
+        {
+          "skill": "siem",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "incident-response",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "mitre-attack",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "network-security",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "iam",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "python",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": "scripting"
+        },
+        {
+          "skill": "bash",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": "scripting"
+        }
+      ],
+      "advanced": [
+        {
+          "skill": "vulnerability-management",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "web-security",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "azure",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": "cloud"
+        },
+        {
+          "skill": "aws",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": "cloud"
+        },
+        {
+          "skill": "gcp",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": "cloud"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "data-analyst",
+    "title": "Data Analyst",
+    "family": "data",
+    "aliases": [
+      "data analyst",
+      "business intelligence analyst",
+      "bi analyst",
+      "reporting analyst",
+      "business data analyst",
+      "product analyst",
+      "analytics analyst"
+    ],
+    "description": "Cleans, queries and analyzes business data and turns it into dashboards, reports and recommendations for stakeholders.",
+    "skills": {
+      "fundamental": [
+        {
+          "skill": "excel",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "sql",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "statistics",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "data-visualization",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "communication",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        }
+      ],
+      "intermediate": [
+        {
+          "skill": "power-bi",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "bi-tool"
+        },
+        {
+          "skill": "tableau",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "bi-tool"
+        },
+        {
+          "skill": "python",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "pandas",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "data-modeling",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "data-quality",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        }
+      ],
+      "advanced": [
+        {
+          "skill": "ab-testing",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "product-analytics",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "git",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "dbt",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ]
+    }
+  },
+  {
+    "slug": "data-engineer",
+    "title": "Data Engineer",
+    "family": "data",
+    "aliases": [
+      "data engineer",
+      "big data engineer",
+      "etl developer",
+      "analytics engineer",
+      "data platform engineer",
+      "data pipeline engineer",
+      "cloud data engineer"
+    ],
+    "description": "Designs, builds and operates reliable batch and streaming pipelines, warehouses and lakehouses that deliver clean data to analytics and ML teams.",
+    "skills": {
+      "fundamental": [
+        {
+          "skill": "sql",
+          "level": 4,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "python",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "linux",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "bash",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "git",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "postgresql",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ],
+      "intermediate": [
+        {
+          "skill": "data-modeling",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "data-warehousing",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "etl",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "snowflake",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "dbt",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "airflow",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "aws",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "cloud"
+        },
+        {
+          "skill": "azure",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "cloud"
+        },
+        {
+          "skill": "gcp",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "cloud"
+        }
+      ],
+      "advanced": [
+        {
+          "skill": "spark",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "kafka",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "data-quality",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "docker",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "ci-cd",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "terraform",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "communication",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ]
+    }
+  },
+  {
+    "slug": "data-scientist",
+    "title": "Data Scientist",
+    "family": "data",
+    "aliases": [
+      "data scientist",
+      "applied scientist",
+      "machine learning scientist",
+      "decision scientist",
+      "quantitative analyst",
+      "product data scientist",
+      "statistician"
+    ],
+    "description": "Applies statistics, experimentation and machine learning to business data to build predictive models and explain data-driven decisions.",
+    "skills": {
+      "fundamental": [
+        {
+          "skill": "python",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "sql",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "statistics",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "ml-math",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "pandas",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "numpy",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        }
+      ],
+      "intermediate": [
+        {
+          "skill": "machine-learning",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "scikit-learn",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "data-visualization",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "ab-testing",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "communication",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "git",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        }
+      ],
+      "advanced": [
+        {
+          "skill": "deep-learning",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "pytorch",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": "dl-framework"
+        },
+        {
+          "skill": "tensorflow",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": "dl-framework"
+        },
+        {
+          "skill": "nlp",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "mlops",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "spark",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "docker",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "aws",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": "cloud"
+        },
+        {
+          "skill": "azure",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": "cloud"
+        },
+        {
+          "skill": "gcp",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": "cloud"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "ml-engineer",
+    "title": "Machine Learning Engineer",
+    "family": "ai",
+    "aliases": [
+      "machine learning engineer",
+      "ml engineer",
+      "mle",
+      "applied ml engineer",
+      "mlops engineer"
+    ],
+    "description": "Builds, trains, deploys and monitors machine learning models in production systems, turning data and prototypes into reliable ML services and pipelines.",
+    "skills": {
+      "fundamental": [
+        {
+          "skill": "python",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "sql",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "git",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "linux",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "statistics",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "ml-math",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "numpy",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "pandas",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "dsa",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        }
+      ],
+      "intermediate": [
+        {
+          "skill": "machine-learning",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "scikit-learn",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "deep-learning",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "pytorch",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": "dl-framework"
+        },
+        {
+          "skill": "tensorflow",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": "dl-framework"
+        },
+        {
+          "skill": "docker",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "fastapi",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "software-testing",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ],
+      "advanced": [
+        {
+          "skill": "mlops",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "aws",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "cloud"
+        },
+        {
+          "skill": "gcp",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "cloud"
+        },
+        {
+          "skill": "azure",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "cloud"
+        },
+        {
+          "skill": "kubernetes",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "observability",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "system-design",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "nlp",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "llm-engineering",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ]
+    }
+  },
+  {
+    "slug": "ai-engineer",
+    "title": "AI Engineer (LLM / Generative AI Applications)",
+    "family": "ai",
+    "aliases": [
+      "ai engineer",
+      "llm engineer",
+      "generative ai engineer",
+      "genai engineer",
+      "applied ai engineer",
+      "ai application engineer",
+      "ai software engineer"
+    ],
+    "description": "Builds production applications on top of pre-trained foundation models, using prompting, retrieval, tool-using agents and evaluations to ship reliable, cost-aware AI features.",
+    "skills": {
+      "fundamental": [
+        {
+          "skill": "python",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "typescript",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "git",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "http",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "rest-api",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "sql",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "linux",
+          "level": 1,
+          "importance": "core",
+          "choiceGroup": null
+        }
+      ],
+      "intermediate": [
+        {
+          "skill": "llm-engineering",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "rag",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "fastapi",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "docker",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "software-testing",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "postgresql",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "nlp",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "machine-learning",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ],
+      "advanced": [
+        {
+          "skill": "ai-agents",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "llm-evaluation",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "observability",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "aws",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "cloud"
+        },
+        {
+          "skill": "azure",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "cloud"
+        },
+        {
+          "skill": "gcp",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": "cloud"
+        },
+        {
+          "skill": "web-security",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "system-design",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "pytorch",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "kubernetes",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ]
+    }
+  },
+  {
+    "slug": "product-manager",
+    "title": "Product Manager (Software Products)",
+    "family": "product",
+    "aliases": [
+      "product manager",
+      "pm",
+      "technical product manager",
+      "associate product manager",
+      "product owner",
+      "ai product manager",
+      "digital product manager"
+    ],
+    "description": "Decides what a software product should do and why by finding user problems, setting strategy and priorities, and leading cross-functional teams to ship and measure outcomes.",
+    "skills": {
+      "fundamental": [
+        {
+          "skill": "communication",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "requirements-writing",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "agile",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "excel",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "ux-design",
+          "level": 1,
+          "importance": "core",
+          "choiceGroup": null
+        }
+      ],
+      "intermediate": [
+        {
+          "skill": "product-discovery",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "prioritization",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "stakeholder-management",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "product-analytics",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "sql",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "data-visualization",
+          "level": 2,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "figma",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ],
+      "advanced": [
+        {
+          "skill": "product-strategy",
+          "level": 3,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "ab-testing",
+          "level": 2,
+          "importance": "core",
+          "choiceGroup": null
+        },
+        {
+          "skill": "llm-engineering",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": null
+        },
+        {
+          "skill": "system-design",
+          "level": 1,
+          "importance": "recommended",
+          "choiceGroup": null
+        }
+      ]
+    }
+  }
+]

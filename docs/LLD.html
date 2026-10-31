@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CareerBuddy: Low-Level Design (LLD)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/lib/highlight.min.js" onload="hljs.highlightAll()"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],ignoredTags:['script','noscript','style','textarea','pre','code']})"></script>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict" });
+</script>
+<style>
+  :root {
+    --bg: #ffffff; --fg: #1d2330; --muted: #5d6676; --line: #e3e7ee; --soft: #f6f8fb;
+    --accent: #2f5bd3; --accent-soft: #eaf0ff; --ok: #1f8a4c; --warn: #b26a00; --bad: #b42335;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: Inter, system-ui, sans-serif; color: var(--fg); background: var(--bg); line-height: 1.6; font-size: 15.5px; }
+  .layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); max-width: 1280px; margin: 0 auto; }
+  nav.toc { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 32px 20px; border-right: 1px solid var(--line); font-size: 13.5px; }
+  nav.toc h4 { margin: 0 0 12px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  nav.toc a { display: block; padding: 4px 8px; color: var(--fg); text-decoration: none; border-radius: 6px; }
+  nav.toc a:hover { background: var(--soft); color: var(--accent); }
+  nav.toc a.sub { padding-left: 20px; color: var(--muted); }
+  main { padding: 40px 56px 96px; max-width: 980px; }
+  h1 { font-size: 30px; margin: 0 0 6px; letter-spacing: -.01em; }
+  h2 { font-size: 22px; margin: 56px 0 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+  h3 { font-size: 17px; margin: 30px 0 10px; }
+  h4 { font-size: 15px; margin: 22px 0 8px; }
+  code { font-family: "JetBrains Mono", monospace; font-size: 13px; background: var(--soft); padding: 1px 5px; border-radius: 4px; }
+  pre code.hljs, pre code { display: block; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--line); background: #fbfcfe; font-size: 12.8px; line-height: 1.55; overflow-x: auto; }
+  pre { margin: 12px 0 20px; }
+  a { color: var(--accent); }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--muted); font-size: 13.5px; margin: 10px 0 24px; }
+  .badge { display: inline-block; font-size: 11.5px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+  .badge.ok { background: #e5f6ec; color: var(--ok); } .badge.warn { background: #fff3df; color: var(--warn); } .badge.bad { background: #fde8eb; color: var(--bad); }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; font-size: 14px; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  th { background: var(--soft); font-weight: 600; font-size: 13px; }
+  td code { white-space: nowrap; }
+  .callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: 12px 16px; border-radius: 6px; margin: 16px 0; }
+  .callout.warn { border-color: var(--warn); background: #fff6e8; }
+  .callout b:first-child { display: block; margin-bottom: 4px; }
+  pre.mermaid { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px; text-align: center; overflow-x: auto; }
+  .math { overflow-x: auto; }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } nav.toc { display: none; } main { padding: 24px; } }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="toc">
+  <h4>LLD contents</h4>
+  <a href="#layout">1. Code layout</a>
+  <a href="#cross">2. Cross-cutting design</a>
+  <a class="sub" href="#route">2.1 Route handler pipeline</a>
+  <a class="sub" href="#errors">2.2 Errors</a>
+  <a class="sub" href="#repo">2.3 Repositories</a>
+  <a class="sub" href="#config">2.4 Configuration</a>
+  <a href="#ai">3. AI subsystem</a>
+  <a class="sub" href="#ai-types">3.1 Types and routing</a>
+  <a class="sub" href="#ai-run">3.2 AiService.run</a>
+  <a class="sub" href="#ai-provider">3.3 OpenRouter provider</a>
+  <a class="sub" href="#ai-validators">3.4 Validators</a>
+  <a class="sub" href="#ai-schemas">3.5 Schema rules</a>
+  <a href="#jobs">4. Async AI jobs</a>
+  <a href="#modules">5. Module designs</a>
+  <a class="sub" href="#m-profile">5.1 Profile / intake</a>
+  <a class="sub" href="#m-jobs">5.2 Jobs</a>
+  <a class="sub" href="#m-gap">5.3 Gap scoring</a>
+  <a class="sub" href="#m-roadmap">5.4 Roadmap scheduler</a>
+  <a class="sub" href="#m-projects">5.5 Projects</a>
+  <a class="sub" href="#m-interview">5.6 Interview</a>
+  <a class="sub" href="#m-progress">5.7 Progress and replan</a>
+  <a class="sub" href="#m-apps">5.8 Applications</a>
+  <a class="sub" href="#m-report">5.9 Report CLI</a>
+  <a href="#data">6. Data model changes</a>
+  <a href="#api">7. API specification</a>
+  <a href="#tests">8. Test design</a>
+  <a href="#sequence">9. Build sequence</a>
+  <a href="HLD.html">← High-Level Design</a>
+</nav>
+
+<main>
+<h1>CareerBuddy: Low-Level Design</h1>
+<div class="meta">
+  <span><b>Version</b> 1.0</span>
+  <span><b>Date</b> 2026-10-31</span>
+  <span><b>Status</b> <span class="badge warn">Draft for review</span></span>
+  <span><b>Parent</b> <a href="HLD.html">HLD.html</a></span>
+</div>
+
+<div class="callout">
+  <b>Conventions</b>
+  Paths are relative to the repo root. <span class="badge ok">exists</span> means the file is in the P0 scaffold today; <span class="badge">new</span> means it is designed here. Code samples are design-level: signatures and logic are binding, exact wording is not.
+</div>
+
+<!-- ============================================================ -->
+<h2 id="layout">1. Code layout</h2>
+<p>The existing <code>src/lib</code> root is kept (HLD decision D6). New folders are added beside it.</p>
+<pre><code class="language-plaintext">src/
+├─ app/
+│  ├─ (auth)/login, auth/callback, auth/signout       exists
+│  ├─ (app)/onboarding|gap|roadmap|projects|interview|progress|applications|settings   new
+│  └─ api/
+│     ├─ health/route.ts                               exists
+│     └─ v1/**/route.ts                                me exists; rest new (thin controllers)
+├─ contracts/                    new   Zod request/response DTOs shared by UI and API
+│  ├─ common.ts  profile.ts  jobs.ts  gap.ts  roadmap.ts  interview.ts  progress.ts  applications.ts
+├─ features/&lt;module&gt;/           new   feature components + TanStack Query hooks
+├─ components/ui/                new   shadcn primitives, ProvenanceBadge, ScoreBar, EmptyState
+├─ lib/
+│  ├─ http/                      new   withRoute(), AppError, problem+json mapping, rateLimit()
+│  ├─ modules/&lt;module&gt;/         new   service.ts (use cases), repository.ts (Prisma, userId-scoped)
+│  │   profile  jobs  gap  roadmap  projects  interview  progress  applications  jobs-queue
+│  ├─ scoring/                   pure: gap.ts (exists), rubric.ts, readiness.ts, stats.ts
+│  ├─ planning/                  new   pure: scheduler.ts, replan.ts, diff.ts
+│  ├─ ai/
+│  │   client.ts                 exists  generateStructured() = OpenRouter provider internals
+│  │   service.ts                new     AiService.run(): budget, cache, repair, validate, log
+│  │   routing.ts                new     the only file that knows model IDs
+│  │   prompts/&lt;task&gt;.ts        gap-analysis.ts exists; one file per task, PROMPT_VERSION each
+│  │   validators/               new     verifyQuote, idWhitelist, ranges
+│  ├─ files/                     new     magic bytes, pdf/docx to text, normalise, sha256
+│  ├─ auth.ts  db.ts  storage.ts  supabase/   exists
+│  └─ config.ts                  new     Zod-validated env, fails fast
+├─ middleware.ts                 exists
+└─ generated/prisma/             generated
+scripts/  analyze.ts, report/build_report.py, setup-storage.ts   exist
+tests/    unit + integration (fake LLM provider)                  gap.test.ts, storage.test.ts exist</code></pre>
+
+<!-- ============================================================ -->
+<h2 id="cross">2. Cross-cutting design</h2>
+
+<h3 id="route">2.1 Route handler pipeline</h3>
+<p>Every <code>/api/v1</code> handler is built with one wrapper so that auth, validation, error mapping and tracing behave the same everywhere.</p>
+<pre><code class="language-ts">// src/lib/http/route.ts
+export function withRoute&lt;B extends z.ZodType | undefined, R&gt;(
+  opts: { body?: B; query?: z.ZodType; ai?: boolean },               // ai: apply the AI rate limit
+  handler: (ctx: { user: User; body: InferOrVoid&lt;B&gt;; params: Record&lt;string, string&gt;; traceId: string }) =&gt; Promise&lt;R | Response&gt;,
+) {
+  return async (req: Request, { params }: { params: Promise&lt;Record&lt;string, string&gt;&gt; }) =&gt; {
+    const traceId = crypto.randomUUID();
+    try {
+      assertSameOrigin(req);                       // CSRF: mutations must carry our Origin
+      const user = await requireUser();            // exists in src/lib/auth.ts
+      if (opts.ai) await rateLimit(user.id);       // 10 AI requests/min per user (ai_calls count)
+      const body = opts.body ? opts.body.parse(await req.json()) : undefined;
+      const result = await handler({ user, body, params: await params, traceId });
+      return result instanceof Response ? result : Response.json(result);
+    } catch (err) {
+      return toProblemResponse(err, traceId);     // §2.2
+    }
+  };
+}
+
+// src/app/api/v1/target-roles/[id]/jds/route.ts
+export const POST = withRoute({ body: AddJdRequest }, ({ user, body, params }) =&gt;
+  jobsService.addJobDescription(user.id, params.id, body));</code></pre>
+
+<h3 id="errors">2.2 Errors</h3>
+<p>Services throw <code>AppError(code, status, safeMessage, details?)</code>. <code>toProblemResponse</code> maps it to RFC 9457 <code>application/problem+json</code> with <code>traceId</code>. <code>ZodError</code> becomes <code>VALIDATION_FAILED</code>; Prisma connection errors become <code>DB_UNAVAILABLE</code>; anything else becomes <code>INTERNAL</code> with no stack trace.</p>
+<table>
+  <tr><th>Code</th><th>HTTP</th><th>Raised when</th></tr>
+  <tr><td><code>UNAUTHORIZED</code></td><td>401</td><td>No valid session (<code>UnauthorizedError</code> from <code>requireUser</code>)</td></tr>
+  <tr><td><code>NOT_FOUND</code></td><td>404</td><td>Record missing <b>or owned by someone else</b></td></tr>
+  <tr><td><code>VALIDATION_FAILED</code></td><td>422</td><td>Request body or query fails Zod</td></tr>
+  <tr><td><code>FILE_TOO_LARGE</code></td><td>413</td><td>Upload &gt; 5 MB, or DOCX expands &gt; 20 MB</td></tr>
+  <tr><td><code>UNSUPPORTED_FILE</code></td><td>415</td><td>Magic bytes are not PDF or DOCX</td></tr>
+  <tr><td><code>RESUME_TEXT_TOO_SHORT</code></td><td>422</td><td>Extracted text &lt; 300 chars (scanned PDF); UI offers paste-text</td></tr>
+  <tr><td><code>CONFLICT</code></td><td>409</td><td>Starting a job while the same job is running, or editing a superseded plan</td></tr>
+  <tr><td><code>RATE_LIMITED</code></td><td>429</td><td>&gt; 10 AI requests a minute for this user</td></tr>
+  <tr><td><code>AI_QUOTA_EXHAUSTED</code></td><td>429</td><td>Global or per-user daily request cap reached; includes <code>resetAt</code></td></tr>
+  <tr><td><code>AI_UNAVAILABLE</code></td><td>503</td><td>All models failed after retries, repair and fallback</td></tr>
+  <tr><td><code>DB_UNAVAILABLE</code></td><td>503</td><td>Prisma cannot connect</td></tr>
+  <tr><td><code>INTERNAL</code></td><td>500</td><td>Anything unexpected</td></tr>
+</table>
+
+<h3 id="repo">2.3 Repositories and ownership</h3>
+<p>A repository is the only code that touches Prisma for its module. Every method takes <code>userId</code> first and puts it in the <code>where</code> clause; "find by id" returns <code>null</code> for foreign rows, which the service turns into <code>NOT_FOUND</code>.</p>
+<pre><code class="language-ts">// src/lib/modules/jobs/repository.ts
+export const jobsRepo = {
+  findRole: (userId: string, roleId: string) =&gt;
+    db.targetRole.findFirst({ where: { id: roleId, userId } }),
+
+  insertJd: (userId: string, roleId: string, data: NewJd) =&gt;
+    db.jobDescription.upsert({                        // dedupe on (targetRoleId, contentHash)
+      where: { targetRoleId_contentHash: { targetRoleId: roleId, contentHash: data.contentHash } },
+      create: { ...data, userId, targetRoleId: roleId },
+      update: {},
+    }),
+};</code></pre>
+<p>A test (§8) calls every endpoint as user B with user A's IDs and expects 404.</p>
+
+<h3 id="config">2.4 Configuration</h3>
+<pre><code class="language-ts">// src/lib/config.ts  (imported by db.ts, ai/client.ts, storage.ts; throws at first use if invalid)
+export const config = z.object({
+  DATABASE_URL: z.string().url(),
+  DIRECT_URL: z.string().url().optional(),             // migrations only
+  NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
+  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: z.string().min(1),
+  SUPABASE_SECRET_KEY: z.string().min(1),
+  OPENROUTER_API_KEY: z.string().min(1),
+  AI_MODEL_PRIMARY: z.string().default("nvidia/nemotron-3.5-super-vl:free"),
+  AI_MODEL_FALLBACK: z.string().default("google/gemma-4-31b-it:free"),
+  AI_DAILY_REQUEST_CAP: z.coerce.number().int().default(45),       // provider cap is 50/day
+  AI_USER_DAILY_REQUEST_CAP: z.coerce.number().int().default(20),
+  AI_USER_RPM: z.coerce.number().int().default(10),
+}).parse(process.env);</code></pre>
+
+<!-- ============================================================ -->
+<h2 id="ai">3. AI subsystem</h2>
+
+<h3 id="ai-types">3.1 Types and routing</h3>
+<pre class="mermaid">
+classDiagram
+  class AiService {
+    +run(task, input, ctx) Promise~AiResult~
+    -checkBudget(userId)
+    -lookupCache(hash)
+    -logCall(row)
+  }
+  class TaskDefinition {
+    +task AiTask
+    +promptVersion string
+    +schema ZodType
+    +build(input) Prompt
+    +validate(output, input) Issue[]
+  }
+  class TaskRoute {
+    +chain ModelRef[]
+    +maxTokens number
+    +effort low_medium_high
+    +repair boolean
+  }
+  class LlmProvider {
+    &lt;&lt;interface&gt;&gt;
+    +generate(req) Promise~ProviderResult~
+  }
+  class OpenRouterProvider {
+    +generate(req)
+  }
+  class FakeProvider {
+    +fixtures Map
+    +generate(req)
+  }
+  AiService --> TaskDefinition : prompts/
+  AiService --> TaskRoute : routing.ts
+  AiService --> LlmProvider
+  LlmProvider <|.. OpenRouterProvider
+  LlmProvider <|.. FakeProvider
+</pre>
+
+<pre><code class="language-ts">// src/lib/ai/routing.ts
+export type AiTask =
+  | "intake.extract" | "jd.extract" | "roadmap.content" | "projects.generate"
+  | "interview.plan" | "interview.evaluate" | "checkpoint.quiz" | "roadmap.revise";
+
+type ModelRef = { model: string; strictSchema: boolean };
+const PRIMARY: ModelRef  = { model: config.AI_MODEL_PRIMARY,  strictSchema: true  };
+const FALLBACK: ModelRef = { model: config.AI_MODEL_FALLBACK, strictSchema: false };
+
+export const ROUTES: Record&lt;AiTask, TaskRoute&gt; = {
+  "intake.extract":     { chain: [PRIMARY, FALLBACK], maxTokens: 12_000, effort: "low",    repair: true },
+  "jd.extract":         { chain: [PRIMARY, FALLBACK], maxTokens: 4_000,  effort: "low",    repair: true },
+  "roadmap.content":    { chain: [PRIMARY, FALLBACK], maxTokens: 14_000, effort: "medium", repair: true },
+  "projects.generate":  { chain: [PRIMARY, FALLBACK], maxTokens: 8_000,  effort: "medium", repair: true },
+  "interview.plan":     { chain: [PRIMARY, FALLBACK], maxTokens: 3_000,  effort: "medium", repair: false },
+  "interview.evaluate": { chain: [PRIMARY, FALLBACK], maxTokens: 3_000,  effort: "medium", repair: false },
+  "checkpoint.quiz":    { chain: [PRIMARY, FALLBACK], maxTokens: 3_000,  effort: "low",    repair: false },
+  "roadmap.revise":     { chain: [PRIMARY, FALLBACK], maxTokens: 8_000,  effort: "medium", repair: true },
+};</code></pre>
+<p>Moving to a paid, no-training provider means adding a provider class and editing this table only. Interactive tasks (<code>interview.*</code>, <code>checkpoint.quiz</code>) skip the repair attempt to keep latency down and fall straight through to the fallback model.</p>
+
+<h3 id="ai-run">3.2 AiService.run</h3>
+<pre><code class="language-ts">// src/lib/ai/service.ts
+export async function run&lt;T extends AiTask&gt;(
+  task: T, input: TaskInput&lt;T&gt;, ctx: { userId: string; signal?: AbortSignal },
+): Promise&lt;{ data: TaskOutput&lt;T&gt;; callId: string; cached: boolean }&gt; {
+  const def = TASKS[task];                                    // prompts/&lt;task&gt;.ts
+  const route = ROUTES[task];
+  const inputHash = sha256(`${task}|${def.promptVersion}|${canonicalJson(input)}`);
+
+  // 1. cache: same task + prompt version + input = same answer, 0 requests
+  const hit = await db.aiCall.findFirst({
+    where: { inputHash, outcome: { in: ["ok", "repaired", "fallback"] }, purgedAt: null },
+    orderBy: { createdAt: "desc" },
+  });
+  if (hit) { await logCall({ ...base, outcome: "cache_hit" }); return { data: def.schema.parse(hit.result), callId: hit.id, cached: true }; }
+
+  // 2. budget: counted from ai_calls rows since 00:00 UTC (provider resets daily)
+  await assertBudget(ctx.userId);                             // throws AI_QUOTA_EXHAUSTED with resetAt
+
+  // 3..7. provider chain with one repair attempt per model
+  const prompt = def.build(input);
+  let issues: string[] = [];
+  for (const [i, ref] of route.chain.entries()) {
+    for (let attempt = 0; attempt &lt;= (route.repair ? 1 : 0); attempt++) {
+      const res = await provider.generate({ ...ref, ...prompt, schema: def.schema,
+        repairNotes: attempt ? issues : undefined, maxTokens: route.maxTokens, effort: route.effort, signal: ctx.signal });
+      await logCall({ ...base, model: ref.model, requests: res.requests, latencyMs: res.latencyMs,
+        tokens: res.usage, outcome: res.ok ? "pending" : res.reason });
+      if (!res.ok) { issues = [res.error]; if (res.reason === "invalid") continue; break; }
+
+      issues = def.validate(res.data, input);                // §3.4: quotes, ID whitelist, ranges
+      if (issues.length === 0 || def.tolerant) {             // tolerant: drop bad items instead of failing
+        const outcome = i &gt; 0 ? "fallback" : attempt &gt; 0 ? "repaired" : "ok";
+        const callId = await finaliseCall(outcome, res.data);
+        return { data: res.data, callId, cached: false };
+      }
+    }
+  }
+  throw new AppError("AI_UNAVAILABLE", 503, "The AI service could not produce a valid result. Please retry.");
+}</code></pre>
+<p>Every HTTP request to OpenRouter (including retries inside the provider) adds to the <code>requests</code> column, so the budget check counts real usage: <code>SUM(requests) WHERE created_at &gt;= today_utc</code>.</p>
+
+<h3 id="ai-provider">3.3 OpenRouter provider</h3>
+<p>The existing <code>generateStructured()</code> in <code>src/lib/ai/client.ts</code> already implements the per-model call: strict <code>json_schema</code> for the primary, <code>json_object</code> with the schema embedded for the fallback, 429/5xx retries (3 s, 8 s), <code>finish_reason === "length"</code> rejection, fence stripping and Zod parsing. Its public signature stays as it is (the CLI uses it). The provider is a thin layer over the same internals that:</p>
+<ul>
+  <li>calls one model per invocation (the chain moves to <code>AiService</code>), and returns a result object instead of throwing, with <code>reason: "invalid" | "truncated" | "http" | "timeout" | "refusal"</code>;</li>
+  <li>appends repair notes as a second user message: <i>"Your previous output had these problems: … Return the corrected JSON only."</i>;</li>
+  <li>reports <code>usage</code> from the response body and the number of HTTP requests made, including retries.</li>
+</ul>
+
+<h3 id="ai-validators">3.4 Validators</h3>
+<pre><code class="language-ts">// src/lib/ai/validators/quote.ts
+const norm = (s: string) =&gt; s.normalize("NFKC").toLowerCase()
+  .replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"').replace(/[\u2013\u2014]/g, "-")
+  .replace(/[•▪◦·]/g, " ").replace(/\s+/g, " ").trim();
+
+/** True when the quote appears in the source after normalising case, whitespace, quotes and bullets. */
+export function verifyQuote(source: string, quote: string): boolean {
+  const q = norm(quote);
+  return q.length &gt;= 3 &amp;&amp; norm(source).includes(q);
+}
+
+/** Share of items whose quote fails. Above 10% the task returns an issue, which triggers the repair. */
+export function quoteFailureRate&lt;T&gt;(source: string, items: T[], quoteOf: (t: T) =&gt; string): number;</code></pre>
+<table>
+  <tr><th>Validator</th><th>Used by</th><th>On failure</th></tr>
+  <tr><td><code>verifyQuote</code></td><td>intake, jd, interview.evaluate (answer quotes)</td><td>Requirement dropped; resume skill kept as <code>unverified</code>; &gt; 10% failure rate → repair</td></tr>
+  <tr><td><code>idWhitelist(ids)</code></td><td>roadmap.content (resource IDs), projects (skill IDs), interview.plan (skill IDs)</td><td>Built as <code>z.enum(ids)</code> per request, so unknown IDs fail the schema</td></tr>
+  <tr><td>Range checks</td><td>All</td><td>Encoded in the schema (<code>z.number().int().min(0).max(4)</code>)</td></tr>
+  <tr><td>Week hours</td><td>roadmap.content</td><td>Sum of task hours per week must be ≤ the scheduler's capacity + 10%</td></tr>
+</table>
+
+<h3 id="ai-schemas">3.5 Output schema rules</h3>
+<ul>
+  <li>Use <code>.nullable()</code>, not <code>.optional()</code>: strict JSON-schema mode expects every property to be required.</li>
+  <li>Closed sets are <code>z.enum</code>; strings have <code>.max()</code>; arrays have <code>.max()</code>, which caps output tokens.</li>
+  <li>Each extraction schema has an explicit "unknown" path: <code>yearsExperience: z.number().nullable()</code>, <code>insufficientContent: z.boolean()</code>.</li>
+  <li>A unit test runs <code>z.toJSONSchema()</code> on every task schema and checks it is accepted in strict mode (no unsupported keywords, all properties required).</li>
+  <li>Prompts wrap documents in tags (<code>&lt;resume&gt;</code>, <code>&lt;job_description index="n"&gt;</code>, <code>&lt;answer&gt;</code>) and state that tag content is data, not instructions.</li>
+</ul>
+
+<table>
+  <tr><th>Task</th><th>Input (what is sent)</th><th>Output schema (abridged)</th></tr>
+  <tr><td><code>intake.extract</code></td><td>Resume text, pending JD texts, canonical skill names for aliases seen</td><td><code>{ candidate{currentRole, yearsExperience|null, summary}, resumeSkills[{name, level 0–4, evidenceType, quote}], jds[{index, title|null, company|null, insufficientContent, requirements[{name, kind must|nice, levelHint 0–4|null, quote}]}] }</code></td></tr>
+  <tr><td><code>jd.extract</code></td><td>One JD text + existing vocabulary</td><td>One <code>jds[]</code> entry</td></tr>
+  <tr><td><code>roadmap.content</code></td><td>Role, user summary (no contact details), week skeletons, allowed resource IDs per skill</td><td><code>weeks[{weekNo, goal, objectives[], tasks[{skillId, kind, title, estHours, resourceId|null}], checkpoint}]</code></td></tr>
+  <tr><td><code>projects.generate</code></td><td>Role, seniority, 3 gap clusters with skill IDs</td><td><code>projects[{tier, title, problem, skillIds[], milestones[], talkingPoints}]</code> ×3</td></tr>
+  <tr><td><code>interview.plan</code></td><td>Role, kind, top gaps (IDs), question mix from code</td><td><code>questions[{seq, type, skillId|null, question, rubricHints[]}]</code></td></tr>
+  <tr><td><code>interview.evaluate</code></td><td>Rubric, question, answer, one-line summaries of earlier turns</td><td><code>{criteria{name: {score 0–5|null, why}}, answerQuotes[], missingConcepts[], improvements[], idealOutline[], followUp|null}</code></td></tr>
+  <tr><td><code>checkpoint.quiz</code></td><td>Week skills and objectives</td><td><code>questions[{skillId, prompt, options[4], correctIndex}]</code> ×5</td></tr>
+  <tr><td><code>roadmap.revise</code></td><td>Trigger facts, affected week skeletons</td><td>Same as <code>roadmap.content</code> for affected weeks + <code>explanation</code></td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="jobs">4. Async AI jobs</h2>
+<p>Intake and roadmap generation can take more than 30 seconds, so the endpoint answers <code>202 {jobId}</code> and the work continues in <code>after()</code> (stable in Next.js 15.1+; route files set <code>export const maxDuration = 300</code>).</p>
+<pre class="mermaid">
+stateDiagram-v2
+  [*] --> queued: POST creates ai_jobs row
+  queued --> running: after() starts, updatedAt heartbeat
+  running --> ready: all steps done
+  running --> failed: error or AI_UNAVAILABLE
+  running --> failed: heartbeat older than 6 min (checked lazily on poll)
+  failed --> queued: POST .../retry (idempotent, redoes missing parts only)
+  ready --> [*]
+</pre>
+<pre><code class="language-ts">// src/lib/modules/jobs-queue/service.ts
+export async function startJob(userId: string, kind: JobKind, refId: string, work: (j: JobHandle) =&gt; Promise&lt;void&gt;) {
+  const running = await db.aiJob.findFirst({ where: { userId, kind, refId, status: { in: ["queued", "running"] } } });
+  if (running) return running;                                     // idempotent: same job id back
+  const job = await db.aiJob.create({ data: { userId, kind, refId, status: "queued" } });
+  after(async () =&gt; {
+    const handle = jobHandle(job.id);                              // progress(n,total), heartbeat
+    try { await handle.start(); await work(handle); await handle.done(); }
+    catch (e) { await handle.fail(safeMessage(e)); }
+  });
+  return job;
+}</code></pre>
+<p>Polling: <code>GET /api/v1/jobs/{id}</code> returns <code>{status, progress, total, refId, error?}</code>. The UI polls every 2 s with TanStack Query and stops on <code>ready</code> or <code>failed</code>.</p>
+
+<!-- ============================================================ -->
+<h2 id="modules">5. Module designs</h2>
+
+<h3 id="m-profile">5.1 Profile / intake (F1)</h3>
+<table>
+  <tr><th>Service method</th><th>Behaviour</th></tr>
+  <tr><td><code>createUploadUrl(userId, {fileName, size, mime})</code></td><td>Validate size ≤ 5 MB and MIME; insert <code>resumes(status=uploaded)</code>; return <code>createResumeUploadUrl()</code> (exists)</td></tr>
+  <tr><td><code>pasteResume(userId, text)</code></td><td>Same as upload but text-only; skips storage</td></tr>
+  <tr><td><code>process(userId, resumeId)</code></td><td>Starts job <code>intake</code>: download → <code>files.toText()</code> → length check → sha256 → <code>ai.run("intake.extract")</code> with the role's pending JDs → map names via alias table → write <code>skill_levels</code> drafts (<code>confirmedByUser=false</code>) and JD requirements (§5.2)</td></tr>
+  <tr><td><code>listSkills(userId)</code> / <code>patchSkills(userId, patches)</code></td><td>User confirms, edits level, deletes or adds a skill. User-added skills get <code>evidenceType=self_reported</code></td></tr>
+  <tr><td><code>recordAssessedLevel(userId, skillId, level, source)</code></td><td>Called by progress/interview. Sets <code>evidenceType=assessed</code>; level moves by at most ±1 per assessment</td></tr>
+</table>
+<p><b>File processing</b> (<code>src/lib/files</code>): magic bytes <code>%PDF-</code> or ZIP <code>PK\x03\x04</code> containing <code>word/document.xml</code>; DOCX uncompressed ≤ 20 MB and ≤ 200 entries; PDF ≤ 10 pages; parsing with a 10 s timeout; text normalised (NFKC, collapsed whitespace); accepted length 300–60,000 chars.</p>
+<p><b>Level caps by evidence type</b> (pure rule in <code>src/lib/scoring/levels.ts</code>):</p>
+<table>
+  <tr><th>Evidence type</th><th>Meaning</th><th>Max level from this evidence</th></tr>
+  <tr><td><code>mentioned</code></td><td>Listed in a skills section only</td><td>1</td></tr>
+  <tr><td><code>self_reported</code></td><td>Added or edited by the user</td><td>2</td></tr>
+  <tr><td><code>demonstrated</code></td><td>Used in a described role or project</td><td>3</td></tr>
+  <tr><td><code>assessed</code></td><td>Checkpoint or interview scores</td><td>4</td></tr>
+</table>
+<p><b>Alias mapping:</b> normalise with <code>normalizeSkillTerm()</code> (<code>src/lib/skills/normalize.ts</code>: NFKC, lowercase, collapse whitespace; punctuation kept so C#, C++ and .NET stay distinct), then look up <code>skills.name</code> and the GIN-indexed <code>aliases</code>. Unknown names create a skill row with <code>category=null, curated=false</code>; the UI shows an "unmapped" chip so the user can merge it into an existing skill.</p>
+
+<h3 id="m-jobs">5.2 Jobs (F2)</h3>
+<ul>
+  <li><code>addJobDescription(userId, roleId, {text, company?, title?, url?})</code>: cap 30k chars; <code>contentHash = sha256(normalised text)</code>; duplicate returns the existing row (0 requests). If the resume is already processed, start a <code>jd.extract</code> job; otherwise the JD waits for the combined intake call.</li>
+  <li>Each extracted requirement becomes a <code>job_requirements</code> row <code>{jdId, userId, skillId, kind, levelHint, quote}</code>. Requirements whose quote fails verification are not stored.</li>
+  <li>A JD with <code>insufficientContent=true</code> or no verified requirements gets <code>status=needs_detail</code> and is excluded from demand.</li>
+  <li>URLs are stored for reference only. Import from Greenhouse/Lever public APIs is a stretch goal; other sites are never scraped.</li>
+</ul>
+
+<h3 id="m-gap">5.3 Gap scoring (F2)</h3>
+<p>Extends <code>src/lib/scoring/gap.ts</code> with a level-based scorer, <code>scoreGapAnalysis()</code>. The existing <code>scoreGaps()</code> stays for the CLI until it moves to levels. For canonical skill \(s\) over \(N\) usable JDs, where \(w_j(s) = 1\) if JD \(j\) requires \(s\), \(0.5\) if it is nice to have, and \(0\) if absent:</p>
+<div class="math">\[
+\text{demand}(s) = \frac{1}{N}\sum_{j} w_j(s) \qquad
+\text{req}(s) = \operatorname{median}_j(\text{levelHint}_j(s)) \;\; (\text{default } 2) \qquad
+\text{cur}(s) = \text{skill\_levels.level} \;\; (0 \text{ if absent})
+\]</div>
+<div class="math">\[
+\text{gap}(s) = \frac{\max(0,\ \text{req}-\text{cur})}{4} \qquad
+\text{priority}(s) = \text{demand}(s)\cdot\text{gap}(s)\cdot\bigl(1 + 0.5\cdot\text{isFoundation}(s)\bigr)
+\]</div>
+<div class="math">\[
+\text{match} = \frac{\sum_s \text{demand}(s)\cdot\min(\text{cur},\text{req})/\text{req}}{\sum_s \text{demand}(s)}
+\]</div>
+<table>
+  <tr><th>Derived field</th><th>Rule</th></tr>
+  <tr><td><code>status</code></td><td><code>matched</code> if cur ≥ req; <code>partial</code> if 0 &lt; cur &lt; req; <code>missing</code> if cur = 0</td></tr>
+  <tr><td><code>gapBand</code></td><td>Low ≤ 0.25 &lt; Medium ≤ 0.5 &lt; High</td></tr>
+  <tr><td><code>category</code></td><td><code>must_have</code> if required in ≥ 50% of JDs; else <code>advanced</code> if req ≥ 3; else <code>domain</code> if the skill's category is domain; else <code>good_to_have</code></td></tr>
+  <tr><td><code>isFoundation</code></td><td>The skill is a prerequisite (<code>skill_edges.kind=prereq</code>) of another skill with gap &gt; 0.25</td></tr>
+  <tr><td><code>transferable</code></td><td>Related skills (<code>kind=related</code>) where cur ≥ 2, shown as an Estimate with a 30% ramp-up reduction</td></tr>
+  <tr><td><code>evidence</code></td><td>JD quotes per requirement + resume quote, so every cell links to its source</td></tr>
+  <tr><td><code>lowEvidence</code></td><td>True when N &lt; 3; UI shows "add at least 3 JDs for reliable priorities"</td></tr>
+</table>
+<p>The result is stored in <code>gap_analyses</code> with <code>version = previous + 1</code> and <code>inputHash = sha256(skill levels + requirement ids)</code>; an unchanged input returns the latest version instead of a new one.</p>
+
+<h3 id="m-roadmap">5.4 Roadmap scheduler (F3)</h3>
+<pre><code class="language-ts">// src/lib/planning/scheduler.ts  (pure)
+const HOURS_PER_LEVEL: Record&lt;SkillCategory, number&gt; = {
+  language: 10, framework: 8, cloud: 6, tool: 5, concept: 6, domain: 5, soft: 3,
+};
+
+export function schedule(input: {
+  gaps: GapItem[]; edges: SkillEdge[]; categories: Map&lt;string, SkillCategory&gt;;
+  hoursPerWeek: number; durationWeeks: number;
+}): { weeks: WeekSkeleton[]; notCovered: { skillId: string; hours: number }[]; suggestedWeeks: number } {
+  // 1. units: one per gap skill, hours = levels to close x rate, -30% if a related skill is at level 2+
+  const units = input.gaps.filter(g =&gt; g.gap &gt; 0).map(g =&gt; ({
+    skillId: g.skillId, priority: g.priority,
+    hours: (g.req - g.cur) * HOURS_PER_LEVEL[input.categories.get(g.skillId) ?? "concept"] * (g.transferable.length ? 0.7 : 1),
+  }));
+  // 2. order: topological sort on prereq edges; ties broken by priority desc (Kahn's algorithm)
+  const ordered = topoSort(units, input.edges, (a, b) =&gt; b.priority - a.priority);
+  // 3. capacity: 85% of stated hours, minus 1 h checkpoint; from the midpoint 25% goes to the project
+  const capacity = (w: number) =&gt; {
+    const base = input.hoursPerWeek * 0.85 - 1;
+    return w &gt;= Math.ceil(input.durationWeeks / 2) ? base * 0.75 : base;
+  };
+  // 4. pack: fill weeks in order, splitting a unit across weeks when it is larger than what is left
+  // 5. anything left after the last week goes to notCovered (lowest priority first is dropped);
+  //    suggestedWeeks = weeks needed to fit everything at the same pace
+}</code></pre>
+<p>Units are never compressed to fit. Rejection rule: if &lt; 50% of must-have hours fit, the plan is still created but the UI leads with the "not covered" list and the suggested horizon.</p>
+<p><b>Service</b> <code>roadmapService.generate(userId, {gapAnalysisId, durationWeeks ∈ {4,8,12,16}, hoursPerWeek 2–40})</code>: run the scheduler, insert <code>learning_plans(status=generating)</code>, <code>plan_weeks(status=pending)</code> and placeholder tasks in one transaction, then start job <code>roadmap</code>: <code>roadmap.content</code> per chunk of ≤ 8 weeks, then <code>projects.generate</code>. On success, mark the plan <code>active</code> and the previous active plan <code>superseded</code> in one transaction. On failure, weeks without content stay <code>pending</code>; <code>POST /roadmaps/{id}/retry</code> regenerates only those.</p>
+
+<h3 id="m-projects">5.5 Projects (F4)</h3>
+<ul>
+  <li><b>Clusters (code):</b> take the top 8 gaps by priority. Beginner tier = the 2–3 highest-priority must-have gaps with the lowest req; Intermediate = next 3 with a prereq link to beginner skills where possible; Advanced = the remaining high-priority gaps plus any advanced-category gap.</li>
+  <li><b>LLM:</b> one <code>projects.generate</code> request writes all three specs; skill IDs are whitelisted.</li>
+  <li><b>Coverage check (code):</b> every top-5 gap must appear in a plan task or a project's <code>skillIds</code>; otherwise a task for it is added to the earliest week with spare capacity, or it is listed in "not covered".</li>
+  <li>Starting a project turns its milestones into <code>plan_tasks(kind=project_milestone)</code> in the reserved project capacity.</li>
+</ul>
+
+<h3 id="m-interview">5.6 Interview (F5)</h3>
+<table>
+  <tr><th>Element</th><th>Design</th></tr>
+  <tr><td>Session kinds</td><td><code>technical</code>, <code>behavioral</code>, <code>mixed</code>; length 3–8 questions (default 5)</td></tr>
+  <tr><td>Question mix (code)</td><td>Technical: (length − 2) on top gaps, 1 scenario, 1 behavioural. Behavioural: all STAR prompts. Mixed: half and half.</td></tr>
+  <tr><td>Rubric (code, versioned <code>rubric@1</code>)</td><td>Technical accuracy 25 · Problem solving 20 · Depth 20 · Communication 15 · Implementation 10 · Design trade-offs 10. Behavioural replaces the last three with STAR structure 25, Impact 15.</td></tr>
+  <tr><td>Short answers</td><td>Empty → 422. Under 5 words → all criteria 0, no LLM request.</td></tr>
+  <tr><td>Follow-up policy (code)</td><td>Ask the LLM-drafted follow-up if technical accuracy, depth or problem solving ≤ 2, or the answer is under 25 words. At most one per question; it does not count towards the length.</td></tr>
+  <tr><td>Answer quotes</td><td>Each criterion's justification must cite a quote that passes <code>verifyQuote(answer, quote)</code>; scores whose quotes fail are capped at 2.</td></tr>
+  <tr><td>Report (code)</td><td>Weighted score per question and session, criterion averages, recurring weaknesses (criterion ≤ 2 in ≥ 2 questions), comparison with the previous session. No LLM request.</td></tr>
+  <tr><td>Side effects</td><td>Per-skill technical accuracy feeds <code>recordAssessedLevel</code> (§5.1) and a <code>progress_logs</code> entry.</td></tr>
+</table>
+<p>Weighted score over the applicable criteria \(A\) (criteria returned as <code>null</code> are dropped and the weights renormalised):</p>
+<div class="math">\[ \text{score} = 20 \cdot \frac{\sum_{c \in A} w_c\, s_c}{\sum_{c \in A} w_c}, \qquad s_c \in [0,5],\ \text{score} \in [0,100] \]</div>
+
+<h3 id="m-progress">5.7 Progress and replan (F6)</h3>
+<p>Rules in <code>src/lib/planning/replan.ts</code> are pure: <code>evaluateRules(state) → Trigger[]</code>. They run when a week ends (on the first request after the boundary) or when the user asks. <b>MVP implements the first rule end to end</b>; the others are written and tested but ship behind a flag.</p>
+<table>
+  <tr><th>Rule</th><th>Trigger</th><th>Revision</th></tr>
+  <tr><td><b>Struggling skill</b> <span class="badge ok">MVP</span></td><td>Last 2 checkpoint scores for the skill &lt; 60%</td><td>Insert a fundamentals unit for that skill next week; shift later units</td></tr>
+  <tr><td>Strong skill</td><td>First checkpoint ≥ 85% and an interview technical-accuracy ≥ 4 on that skill</td><td>Cut that skill's remaining hours by 30%</td></tr>
+  <tr><td>Falling behind</td><td>Logged hours &lt; 75% of planned for 2 consecutive weeks</td><td>Re-pack at observed pace; offer "extend by N weeks" or "drop X"</td></tr>
+  <tr><td>Ahead</td><td>&gt; 120% for 2 weeks</td><td>Offer to pull the next units forward</td></tr>
+</table>
+<p>A trigger creates a <code>plan_revisions(status=proposed)</code> row with the new skeleton, a diff (<code>planning/diff.ts</code>: added, removed, moved tasks per week) and a reason built from the trigger's numbers. Accepting it: <code>roadmap.revise</code> writes content for the affected weeks, then a new <code>learning_plans</code> row with <code>version+1, parentId, reason</code> is created. Done tasks are copied unchanged.</p>
+<p><b>Readiness index</b> (<code>scoring/readiness.ts</code>), each component in [0, 1] and shown separately in the UI:</p>
+<div class="math">\[ R = 100\,(0.4\,C + 0.3\,I + 0.2\,P + 0.1\,M) \]</div>
+<p>\(C\) = match score using current levels, \(I\) = EWMA (\(\alpha = 0.5\)) of the last 5 session scores / 100, \(P\) = done task hours / planned hours to date, \(M\) = done project milestones / total.</p>
+
+<h3 id="m-apps">5.8 Applications (F7)</h3>
+<ul>
+  <li><b>Status pipeline:</b> <code>saved → applied → screening → interviewing → offer</code>, or <code>rejected | ghosted | withdrawn</code> from any active stage. Each change writes an <code>application_events</code> row; <code>ghosted</code> is suggested (not set) after 21 days with no event.</li>
+  <li><code>matchScoreAtApply</code> is copied from the latest gap analysis when the application is created.</li>
+  <li><b>Stats</b> (<code>scoring/stats.ts</code>, pure): per segment value, callback rate = reached screening or later / applied; interview conversion = interviewing / screening; Wilson interval at 95% (formula in HLD §6.5).</li>
+  <li><b>Gates:</b> total &lt; 10 → counts only; segment n &lt; 5 → "not enough data"; comparison only if both n ≥ 5 and intervals don't overlap.</li>
+  <li><b>Text:</b> templates such as <i>"{segA} had {kA}/{nA} callbacks vs {kB}/{nB} for {segB}. This is an association; role and timing may explain it."</i> No LLM request.</li>
+</ul>
+
+<h3 id="m-report">5.9 Report CLI</h3>
+<p><code>scripts/analyze.ts</code> (exists) writes <code>analysis.json</code>; <code>build_report.py</code> (exists) turns it into Excel and PDF. The JSON is the contract between them: <code>{generatedAt, promptVersion, sources, candidate, matchScore, gaps[{skill, demand, have, gap, status, evidence}], jobDescriptions, recommendations}</code>. When the app adds <code>GET /gap-analyses/{id}/export</code>, it emits the same shape (with an added <code>level</code>/<code>required</code> pair), so the Python script works on app data without changes. The Python step never runs on Vercel.</p>
+
+<!-- ============================================================ -->
+<h2 id="data">6. Data model changes</h2>
+<p>Changes against <code>prisma/schema.prisma</code> as it is today. String status columns become Prisma enums so the database rejects invalid values.</p>
+<pre class="mermaid">
+erDiagram
+  users ||--o{ resumes : uploads
+  users ||--o{ skill_levels : has
+  skills ||--o{ skill_levels : canonical
+  skills ||--o{ skill_edges : "prereq / related"
+  skills ||--o{ learning_resources : "taught by"
+  users ||--o{ target_roles : pursues
+  target_roles ||--o{ job_descriptions : "evidence for"
+  job_descriptions ||--o{ job_requirements : contains
+  skills ||--o{ job_requirements : "normalised to"
+  target_roles ||--o{ gap_analyses : "assessed by"
+  gap_analyses ||--o{ learning_plans : drives
+  learning_plans ||--o{ plan_weeks : has
+  plan_weeks ||--o{ plan_tasks : has
+  learning_plans ||--o{ plan_revisions : "proposed for"
+  learning_plans ||--o{ portfolio_projects : suggests
+  users ||--o{ interview_sessions : takes
+  interview_sessions ||--o{ interview_questions : has
+  users ||--o{ applications : tracks
+  applications ||--o{ application_events : has
+  users ||--o{ ai_calls : incurs
+  users ||--o{ ai_jobs : runs
+</pre>
+
+<pre><code class="language-plaintext">// ---- New models ----------------------------------------------------------
+model JobRequirement {
+  id        String          @id @default(uuid()) @db.Uuid
+  jdId      String          @db.Uuid
+  userId    String          @db.Uuid
+  skillId   String          @db.Uuid
+  kind      RequirementKind              // must | nice
+  levelHint Int?            @db.SmallInt // 0..4, null = not stated
+  quote     String
+  @@unique([jdId, skillId])
+  @@index([userId, skillId])
+  @@map("job_requirements")
+}
+
+model SkillEdge {
+  fromSkillId String   @db.Uuid
+  toSkillId   String   @db.Uuid
+  kind        EdgeKind              // prereq (from is needed before to) | related
+  weight      Float    @default(1)
+  @@id([fromSkillId, toSkillId, kind])
+  @@map("skill_edges")
+}
+
+model LearningResource {
+  id      String  @id @default(uuid()) @db.Uuid
+  skillId String  @db.Uuid
+  title   String
+  url     String
+  kind    String                         // docs | course | video | book | exercise
+  level   Int     @db.SmallInt           // 1..4
+  curated Boolean @default(true)
+  @@index([skillId])
+  @@map("learning_resources")
+}
+
+model PlanRevision {
+  id        String         @id @default(uuid()) @db.Uuid
+  planId    String         @db.Uuid
+  userId    String         @db.Uuid
+  trigger   String                       // struggling_skill | strong_skill | behind | ahead
+  facts     Json                         // numbers that fired the rule
+  skeleton  Json                         // proposed WeekSkeleton[]
+  diff      Json
+  status    RevisionStatus @default(proposed) // proposed | accepted | dismissed
+  createdAt DateTime       @default(now()) @db.Timestamptz(6)
+  @@index([planId, status])
+  @@map("plan_revisions")
+}
+
+model ApplicationEvent {
+  id            String            @id @default(uuid()) @db.Uuid
+  applicationId String            @db.Uuid
+  userId        String            @db.Uuid
+  status        ApplicationStatus
+  note          String?
+  occurredAt    DateTime          @default(now()) @db.Timestamptz(6)
+  @@index([applicationId, occurredAt])
+  @@map("application_events")
+}
+
+model AiCall {
+  id            String    @id @default(uuid()) @db.Uuid
+  userId        String?   @db.Uuid           // null for CLI runs
+  task          String
+  promptVersion String
+  model         String?
+  inputHash     String
+  requests      Int       @default(0)        // HTTP requests made, incl. retries (budget unit)
+  inputTokens   Int?
+  outputTokens  Int?
+  latencyMs     Int?
+  outcome       AiOutcome
+  error         String?
+  result        Json?                        // validated output, for the cache; purged after 30 days
+  purgedAt      DateTime? @db.Timestamptz(6)
+  createdAt     DateTime  @default(now()) @db.Timestamptz(6)
+  @@index([createdAt])                       // global daily cap
+  @@index([userId, createdAt(sort: Desc)])   // per-user cap + rate limit
+  @@index([inputHash])
+  @@map("ai_calls")
+}
+
+model AiJob {
+  id        String    @id @default(uuid()) @db.Uuid
+  userId    String    @db.Uuid
+  kind      String                           // intake | jd | roadmap | revise
+  refId     String    @db.Uuid
+  status    JobStatus @default(queued)
+  progress  Int       @default(0)
+  total     Int       @default(0)
+  error     String?
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime  @updatedAt @db.Timestamptz(6)  // heartbeat
+  @@index([userId, kind, refId, status])
+  @@map("ai_jobs")
+}</code></pre>
+
+<table>
+  <tr><th>Existing model</th><th>Change</th><th>Data migration</th></tr>
+  <tr><td><code>User</code></td><td>+ <code>currentTitle</code>, <code>horizonWeeks Int?</code></td><td>none</td></tr>
+  <tr><td><code>Resume</code></td><td>+ <code>status ResumeStatus</code>, <code>parserVersion Int</code>, <code>isPrimary Boolean</code>; <code>rawText</code> becomes nullable (set after processing)</td><td>existing rows → <code>ready</code></td></tr>
+  <tr><td><code>JobDescription</code></td><td>+ <code>userId</code> (ownership), <code>status JdStatus</code> (pending | ready | needs_detail | failed), relation to <code>JobRequirement</code></td><td>backfill <code>userId</code> from target role</td></tr>
+  <tr><td><code>Skill</code></td><td>+ <code>slug</code> unique, <code>category SkillCategory?</code>, <code>curated Boolean</code>; GIN index on <code>aliases</code> (raw SQL in migration)</td><td>slug from name</td></tr>
+  <tr><td><code>SkillLevel</code></td><td><code>level</code> Float 0..1 → <code>Int @db.SmallInt</code> 0..4 with check constraint; + <code>evidenceType</code>, <code>evidence Json</code>, <code>confirmedByUser</code>; <code>source</code> kept</td><td><code>round(level * 4)</code></td></tr>
+  <tr><td><code>GapAnalysis</code></td><td>+ <code>userId</code>, <code>version</code>, <code>jdCount</code>, <code>inputHash</code>; <code>items</code> stays JSONB (new GapItem shape, Zod-validated)</td><td>old rows keep the v1 shape; reader accepts both</td></tr>
+  <tr><td><code>LearningPlan</code></td><td>+ <code>parentId</code>, <code>durationWeeks</code>, <code>hoursPerWeek</code>, <code>notCovered Json</code>; <code>status</code> → <code>PlanStatus</code> (generating | active | superseded | failed | done)</td><td>map strings</td></tr>
+  <tr><td><code>PlanWeek</code></td><td>+ <code>content Json?</code>, <code>status WeekStatus</code>, <code>startsOn Date</code>; <code>goal</code> nullable until content arrives</td><td>existing → <code>ready</code></td></tr>
+  <tr><td><code>PlanTask</code></td><td>+ <code>userId</code>, <code>skillId</code>, <code>resourceId</code>, <code>kind TaskKind</code>, <code>hoursSpent</code>, <code>score</code>; <code>status</code> → <code>TaskStatus</code>; index <code>(userId, status)</code></td><td>backfill <code>userId</code> via week → plan</td></tr>
+  <tr><td><code>PortfolioProject</code></td><td>+ <code>userId</code>, <code>tier</code>, <code>spec Json</code>, <code>skillIds String[]</code>, <code>repoUrl</code></td><td>backfill <code>userId</code></td></tr>
+  <tr><td><code>InterviewSession</code></td><td>+ <code>kind</code>, <code>status InterviewStatus</code>, <code>length</code>, <code>rubricVersion</code></td><td>existing → <code>completed</code></td></tr>
+  <tr><td><code>InterviewQuestion</code></td><td>+ <code>userId</code>, <code>seq</code>, <code>parentId</code> (follow-up of), <code>skillId</code>, <code>weightedScore Float?</code>, <code>evaluation Json?</code>, <code>callId</code>; unique <code>(sessionId, seq)</code></td><td>backfill <code>userId</code></td></tr>
+  <tr><td><code>ProgressLog</code></td><td>+ <code>kind</code> (task_completed | hours_logged | checkpoint_scored | interview_scored | milestone), <code>skillId</code>, <code>value Float?</code></td><td>existing → <code>hours_logged</code></td></tr>
+  <tr><td><code>Application</code></td><td><code>status</code> → <code>ApplicationStatus</code>; + <code>jdId</code>, <code>resumeId</code>, <code>referral</code>, <code>followUpAt</code>; <code>matchScore</code> renamed <code>matchScoreAtApply</code></td><td><code>response→screening</code>, <code>interview→interviewing</code></td></tr>
+</table>
+<div class="callout warn"><b>Migration notes</b>Every new table also gets <code>ENABLE ROW LEVEL SECURITY</code> in its migration, as in <code>20261031120100_supabase_security</code>. Every new <code>userId</code> column references <code>users(id) ON DELETE CASCADE</code>. Seed data lives in <code>prisma/seed/</code>.</div>
+
+<h3>6.1 Skill taxonomy and role tracks (implemented)</h3>
+<p>Migration <code>20261031130000_skill_taxonomy</code> adds <code>slug</code>, <code>description</code> and <code>curated</code> to <code>skills</code>, plus five tables: <code>skill_topics</code> (ordered topics per skill and tier), <code>skill_edges</code> (prerequisite and related graph), <code>learning_resources</code>, <code>role_tracks</code> and <code>role_track_skills</code>. All five have RLS enabled.</p>
+<table>
+  <tr><th>Item</th><th>Design</th></tr>
+  <tr><td>Source of truth</td><td><code>prisma/seed/data/skills.json</code> and <code>roles.json</code> (editable JSON). <code>prisma/seed/catalog.ts</code> validates them with Zod and checks: unique slugs, every name and alias maps to one skill, references exist, no prerequisite cycles, choice groups have ≥ 2 options.</td></tr>
+  <tr><td>Contents</td><td>119 skills, 1,129 topics (fundamental, intermediate, advanced), 121 link-checked resources, 13 role tracks. Researched from O*NET, NICE, vendor certification outlines and official docs; see <code>prisma/seed/data/SOURCES.md</code>.</td></tr>
+  <tr><td>Role tracks</td><td>Each role lists skills per tier with <code>requiredLevel</code> (1–4), <code>importance</code> (core or recommended) and an optional <code>choiceGroup</code>: skills in the same group are alternatives, e.g. aws, azure or gcp. Used as the demand prior when the user has fewer than 3 JDs, and to order the roadmap.</td></tr>
+  <tr><td>Loading</td><td><code>npm run db:seed</code> (idempotent; one transaction; updates curated rows in place and never touches <code>curated = false</code> skills). <code>--dry-run</code> validates only. <code>npm run seed:check-links</code> checks every resource URL.</td></tr>
+  <tr><td>Scheduler use</td><td>Topics for the levels a user must close become the learning units for <code>roadmap.content</code>; resource IDs from <code>learning_resources</code> form the allowed-ID whitelist.</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="api">7. API specification (<code>/api/v1</code>)</h2>
+<p>All endpoints require a session, return JSON, and return problem+json errors from §2.2. "LLM" is the number of LLM requests the call can cause.</p>
+<table>
+  <tr><th>Method and path</th><th>Request → response</th><th>Status</th><th>LLM</th></tr>
+  <tr><td><code>GET /me</code> · <code>PUT /me/profile</code></td><td><code>ProfileDTO</code></td><td>200</td><td>0</td></tr>
+  <tr><td><code>DELETE /me</code> · <code>GET /me/export</code></td><td>— · full JSON export</td><td>204 · 200</td><td>0</td></tr>
+  <tr><td><code>POST /resumes/upload-url</code></td><td><code>{fileName, size, mime}</code> → <code>{resumeId, signedUrl, token}</code></td><td>201, 413, 415</td><td>0</td></tr>
+  <tr><td><code>POST /resumes/paste</code></td><td><code>{text}</code> → <code>{resumeId}</code></td><td>201, 422</td><td>0</td></tr>
+  <tr><td><code>POST /resumes/{id}/process</code></td><td>→ <code>{jobId}</code></td><td>202, 409, 422</td><td>1</td></tr>
+  <tr><td><code>GET /resumes/{id}</code></td><td><code>ResumeDTO</code> (profile + quotes)</td><td>200, 404</td><td>0</td></tr>
+  <tr><td><code>GET /skills</code> · <code>PATCH /skills</code></td><td><code>UserSkillDTO[]</code> ↔ <code>[{skillId|name, level?, confirm?, delete?}]</code></td><td>200</td><td>0</td></tr>
+  <tr><td><code>POST /target-roles</code> · <code>GET /target-roles</code></td><td><code>{title, seniority?, notes?}</code> → <code>TargetRoleDTO</code></td><td>201 · 200</td><td>0</td></tr>
+  <tr><td><code>POST /target-roles/{id}/jds</code></td><td><code>{text, company?, title?, url?}</code> → <code>{jdId, jobId|null, duplicate}</code></td><td>201/202</td><td>0–1</td></tr>
+  <tr><td><code>GET /target-roles/{id}/jds</code> · <code>DELETE /jds/{id}</code></td><td><code>JdDTO[]</code> with requirement counts</td><td>200 · 204</td><td>0</td></tr>
+  <tr><td><code>POST /target-roles/{id}/gap-analyses</code></td><td>→ <code>GapAnalysisDTO</code> (synchronous)</td><td>201, 422 (no JDs)</td><td>0</td></tr>
+  <tr><td><code>GET /target-roles/{id}/gap-analyses/latest</code></td><td><code>GapAnalysisDTO</code></td><td>200, 404</td><td>0</td></tr>
+  <tr><td><code>GET /gap-analyses/{id}/export</code></td><td>Report JSON (§5.9)</td><td>200</td><td>0</td></tr>
+  <tr><td><code>POST /roadmaps</code></td><td><code>{gapAnalysisId, durationWeeks, hoursPerWeek}</code> → <code>{planId, jobId, notCovered[]}</code></td><td>202</td><td>2–3</td></tr>
+  <tr><td><code>GET /roadmaps/active</code> · <code>POST /roadmaps/{id}/retry</code></td><td><code>RoadmapDTO</code> · <code>{jobId}</code></td><td>200 · 202</td><td>0 · 1–2</td></tr>
+  <tr><td><code>PATCH /tasks/{id}</code></td><td><code>{status?, hoursSpent?}</code> → <code>TaskDTO</code></td><td>200, 409</td><td>0</td></tr>
+  <tr><td><code>GET /roadmaps/{id}/checkpoints/{week}</code></td><td>Quiz (generated once, cached)</td><td>200</td><td>0–1</td></tr>
+  <tr><td><code>POST /roadmaps/{id}/checkpoints/{week}</code></td><td><code>{answers: number[]}</code> → <code>{score, revision?}</code></td><td>200</td><td>0</td></tr>
+  <tr><td><code>POST /revisions/{id}/accept</code> · <code>/dismiss</code></td><td>→ <code>{planId, jobId}</code> · 204</td><td>202 · 204</td><td>1 · 0</td></tr>
+  <tr><td><code>GET /projects</code> · <code>PATCH /projects/{id}</code></td><td><code>ProjectDTO[]</code> · <code>{status?, repoUrl?}</code></td><td>200</td><td>0</td></tr>
+  <tr><td><code>POST /interviews</code></td><td><code>{targetRoleId, kind, length}</code> → <code>{sessionId, question}</code></td><td>201</td><td>1</td></tr>
+  <tr><td><code>POST /interviews/{id}/answers</code></td><td><code>{questionId, answer}</code> → <code>{evaluation, next: question|followUp|null}</code></td><td>200, 409, 422</td><td>0–1</td></tr>
+  <tr><td><code>POST /interviews/{id}/end</code> · <code>GET /interviews/{id}/report</code></td><td>→ <code>InterviewReportDTO</code></td><td>200</td><td>0</td></tr>
+  <tr><td><code>GET /progress/summary</code></td><td><code>{readiness, components, skills[], streak, interviewTrend, nextAction}</code></td><td>200</td><td>0</td></tr>
+  <tr><td><code>GET /applications</code> · <code>POST</code> · <code>PATCH /applications/{id}</code></td><td><code>ApplicationDTO</code></td><td>200/201</td><td>0</td></tr>
+  <tr><td><code>POST /applications/{id}/events</code></td><td><code>{status, note?, occurredAt?}</code></td><td>201, 422 (invalid transition)</td><td>0</td></tr>
+  <tr><td><code>GET /applications/insights</code></td><td><code>{sampleSize, funnel, segments[{key, value, n, k, rate, ci}], statements[]}</code></td><td>200</td><td>0</td></tr>
+  <tr><td><code>GET /jobs/{id}</code></td><td><code>{status, progress, total, refId, error?}</code></td><td>200, 404</td><td>0</td></tr>
+  <tr><td><code>GET /ai/usage</code></td><td><code>{todayRequests, userCap, globalRemaining, resetAt}</code></td><td>200</td><td>0</td></tr>
+  <tr><td><code>GET /api/health</code> (no auth)</td><td>exists</td><td>200, 503</td><td>0</td></tr>
+</table>
+
+<pre><code class="language-ts">// src/contracts/gap.ts (example DTO; UI and API import the same schema)
+export const GapItemDTO = z.object({
+  skillId: z.string().uuid(), skill: z.string(),
+  current: z.number().int().min(0).max(4), required: z.number().int().min(0).max(4),
+  demand: z.number().min(0).max(1), gap: z.number().min(0).max(1), priority: z.number().min(0),
+  status: z.enum(["matched", "partial", "missing"]), band: z.enum(["low", "medium", "high"]),
+  category: z.enum(["must_have", "good_to_have", "advanced", "domain"]),
+  jdCount: z.number().int(),
+  evidence: z.object({ resume: z.string().nullable(), jd: z.array(z.object({ jdId: z.string().uuid(), quote: z.string() })) }),
+  transferable: z.array(z.object({ skill: z.string(), level: z.number().int() })),
+});
+export const GapAnalysisDTO = z.object({
+  id: z.string().uuid(), version: z.number().int(), matchScore: z.number().min(0).max(1),
+  jdCount: z.number().int(), lowEvidence: z.boolean(), items: z.array(GapItemDTO), createdAt: z.string(),
+});</code></pre>
+
+<!-- ============================================================ -->
+<h2 id="tests">8. Test design</h2>
+<table>
+  <tr><th>Level</th><th>Target</th><th>Key cases</th></tr>
+  <tr><td>Unit (Vitest)</td><td><code>scoring/*</code>, <code>planning/*</code>, validators, schema strictness</td><td>Gap formulas and categories; scheduler capacity, prereq order, notCovered; rubric renormalisation; Wilson bounds; replan rules at thresholds; <code>verifyQuote</code> with curly quotes and bullets</td></tr>
+  <tr><td>Service (Vitest + FakeProvider)</td><td>Module services with fixture LLM output</td><td>Fabricated quote dropped; schema-valid but out-of-range output → repair → fallback → <code>AI_UNAVAILABLE</code>; cache hit spends 0 requests; cap reached → <code>AI_QUOTA_EXHAUSTED</code></td></tr>
+  <tr><td>Integration (local Postgres)</td><td>Repositories, migrations</td><td>Cross-user: user B gets 404 on every endpoint with A's IDs; cascade delete; JD dedupe</td></tr>
+  <tr><td>API</td><td>Route handlers via <code>withRoute</code></td><td>401 without session; problem+json shape; 202 + idempotent job IDs</td></tr>
+  <tr><td>AI golden set (manual run, counts against the daily cap)</td><td>5 resumes, 9 JDs, 20 hand-scored answers</td><td>Skill extraction F1 ≥ 0.85; quote pass rate ≥ 95%; padded vs concise answers ≤ 0.5 apart; injection answer scores ≤ 1</td></tr>
+</table>
+<p>The golden set is smaller than ARCHITECTURE.md §13.3 because each run spends free-tier requests; it grows when the paid route is enabled.</p>
+
+<!-- ============================================================ -->
+<h2 id="sequence">9. Build sequence from the current scaffold</h2>
+<table>
+  <tr><th>Step</th><th>Work</th><th>Done when</th></tr>
+  <tr><td>1</td><td><code>config.ts</code>, <code>http/</code> (withRoute, AppError, problem+json), <code>contracts/common.ts</code></td><td><code>/api/v1/me</code> uses <code>withRoute</code></td></tr>
+  <tr><td>2</td><td>Prisma migration for §6 + RLS + seed taxonomy and resources</td><td><code>prisma migrate dev</code> clean; seed loads</td></tr>
+  <tr><td>3</td><td>AI subsystem: <code>service.ts</code>, <code>routing.ts</code>, provider refactor of <code>client.ts</code>, validators, FakeProvider, <code>ai_calls</code>/<code>ai_jobs</code></td><td>Service tests pass with fixtures; CLI still works</td></tr>
+  <tr><td>4</td><td>Profile + jobs modules, <code>intake.extract</code> and <code>jd.extract</code> prompts, files/</td><td>Resume + 3 JDs → confirmed skills and requirements, 1 request</td></tr>
+  <tr><td>5</td><td><code>scoreGapAnalysis</code> + gap module + gap UI</td><td>Gap matrix with quotes on every row</td></tr>
+  <tr><td>6</td><td>Scheduler, roadmap and projects modules</td><td>8-week plan within hours; top-5 gaps covered; ≤ 3 requests</td></tr>
+  <tr><td>7</td><td>Interview module and report</td><td>5-question session → report; 6 requests</td></tr>
+  <tr><td>8</td><td>Progress, checkpoint quiz, struggling-skill replan with diff and accept</td><td>Two low checkpoints → proposal → v2 plan</td></tr>
+  <tr><td>9</td><td>Applications, stats, insights</td><td>Gates and intervals shown correctly with seeded data</td></tr>
+  <tr><td>10</td><td>Cross-user tests, demo seed, keep-alive workflow</td><td>Full journey on the deployed preview within ≈ 12 requests</td></tr>
+</table>
+
+<p style="margin-top:40px;color:var(--muted)">Back to the <a href="HLD.html">High-Level Design</a>.</p>
+</main>
+</div>
+</body>
+</html>

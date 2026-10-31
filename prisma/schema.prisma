@@ -1,0 +1,789 @@
+// CareerBuddy: data model on Supabase Postgres. See PLAN.md §5 and ARCHITECTURE.md §7.
+// Json columns are JSONB; validate them with Zod in src/lib before writing and after reading.
+// Every user-owned table carries userId so queries can always be scoped to the session user.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ───────────────────────────── Users ─────────────────────────────
+
+// id is the Supabase auth user id (auth.users.id); the row is created on first sign-in.
+model User {
+  id                String    @id @db.Uuid
+  email             String?   @unique
+  name              String?
+  currentRole       String?
+  yearsExperience   Float?
+  location          String?
+  industry          String?
+  salaryExpectation String? // free text, e.g. "₹18-24 LPA"
+  careerGoal        String?
+  hoursPerWeek      Int       @default(8)
+  targetDate        DateTime? @db.Date
+  onboardedAt       DateTime? @db.Timestamptz(6)
+  createdAt         DateTime  @default(now()) @db.Timestamptz(6)
+
+  resumes              Resume[]
+  userSkills           UserSkill[]
+  targetRoles          TargetRole[]
+  jobDescriptions      JobDescription[]
+  jobRequirements      JobRequirement[]
+  gapAnalyses          GapAnalysis[]
+  plans                LearningPlan[]
+  planTasks            PlanTask[]
+  projects             PortfolioProject[]
+  interviews           InterviewSession[]
+  interviewQuestions   InterviewQuestion[]
+  interviewEvaluations InterviewEvaluation[]
+  progressEvents       ProgressEvent[]
+  applications         Application[]
+  applicationEvents    ApplicationEvent[]
+  aiCalls              AiCall[]
+
+  @@map("users")
+}
+
+// ─────────────────── Module 1: resume & target-role intake ───────────────────
+
+enum ResumeStatus {
+  uploaded
+  parsed
+  failed
+}
+
+model Resume {
+  id          String       @id @default(uuid()) @db.Uuid
+  userId      String       @db.Uuid
+  storagePath String? // object key in the private "resumes" bucket: {userId}/{resumeId}/{file}
+  fileName    String?
+  mimeType    String?
+  sha256      String? // hash of the extracted text, for dedupe and AI result caching
+  rawText     String
+  parsed      Json? // extracted profile (role, experience, summary)
+  status      ResumeStatus @default(uploaded)
+  parseError  String?
+  isPrimary   Boolean      @default(false)
+  createdAt   DateTime     @default(now()) @db.Timestamptz(6)
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  gapAnalyses  GapAnalysis[]
+  userSkills   UserSkill[]
+  applications Application[]
+
+  @@unique([userId, sha256])
+  @@index([userId, createdAt(sort: Desc)])
+  @@map("resumes")
+}
+
+enum EvidenceType {
+  demonstrated // used in a described role or project
+  mentioned // listed without supporting experience
+  self_reported // added or edited by the user
+  assessed // measured by an interview or assessment
+}
+
+// The user's editable skills inventory. Levels: 0 none, 1 beginner, 2 intermediate,
+// 3 advanced, 4 expert. Only demonstrated or assessed evidence may justify level 3+.
+model UserSkill {
+  id              String       @id @default(uuid()) @db.Uuid
+  userId          String       @db.Uuid
+  skillId         String       @db.Uuid
+  level           Int          @db.SmallInt
+  evidenceType    EvidenceType
+  evidence        Json         @default("[]") // [{ source, refId, quote }]
+  confidence      Float?
+  confirmedByUser Boolean      @default(false)
+  sourceResumeId  String?      @db.Uuid
+  createdAt       DateTime     @default(now()) @db.Timestamptz(6)
+  updatedAt       DateTime     @updatedAt @db.Timestamptz(6)
+
+  user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  skill        Skill   @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  sourceResume Resume? @relation(fields: [sourceResumeId], references: [id], onDelete: SetNull)
+
+  @@unique([userId, skillId])
+  @@index([skillId])
+  @@index([sourceResumeId])
+  @@map("user_skills")
+}
+
+model TargetRole {
+  id                String   @id @default(uuid()) @db.Uuid
+  userId            String   @db.Uuid
+  roleTrackId       String?  @db.Uuid // matched taxonomy role, if any
+  title             String
+  seniority         String?
+  industry          String?
+  location          String?
+  salaryExpectation String?
+  hoursPerWeek      Int?
+  horizonWeeks      Int? // 4 | 8 | 12 | 16
+  notes             String?
+  isActive          Boolean  @default(true)
+  createdAt         DateTime @default(now()) @db.Timestamptz(6)
+
+  user            User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  roleTrack       RoleTrack?         @relation(fields: [roleTrackId], references: [id], onDelete: SetNull)
+  jobDescriptions JobDescription[]
+  gapAnalyses     GapAnalysis[]
+  interviews      InterviewSession[]
+
+  @@index([userId])
+  @@index([roleTrackId])
+  @@map("target_roles")
+}
+
+// ─────────────── Module 2: job descriptions & skill-gap mapping ───────────────
+
+enum JdSource {
+  pasted
+  file
+  url
+}
+
+model JobDescription {
+  id           String   @id @default(uuid()) @db.Uuid
+  userId       String   @db.Uuid
+  targetRoleId String?  @db.Uuid
+  source       JdSource @default(pasted)
+  company      String?
+  title        String?
+  url          String?
+  rawText      String
+  contentHash  String? // dedupe identical JDs per user
+  parsed       Json? // extracted skills as returned by the model
+  createdAt    DateTime @default(now()) @db.Timestamptz(6)
+
+  user         User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  targetRole   TargetRole?      @relation(fields: [targetRoleId], references: [id], onDelete: Cascade)
+  requirements JobRequirement[]
+  analyses     GapAnalysisJob[]
+  applications Application[]
+
+  @@unique([userId, contentHash])
+  @@index([targetRoleId])
+  @@map("job_descriptions")
+}
+
+enum RequirementKind {
+  must
+  nice
+}
+
+enum RequirementCategory {
+  must_have
+  good_to_have
+  advanced
+  domain
+}
+
+// One skill requirement extracted from one JD, linked to the canonical skill.
+model JobRequirement {
+  id               String               @id @default(uuid()) @db.Uuid
+  jobDescriptionId String               @db.Uuid
+  userId           String               @db.Uuid
+  skillId          String?              @db.Uuid
+  skillName        String // as extracted (canonical display name)
+  kind             RequirementKind
+  category         RequirementCategory?
+  requiredLevel    Int?                 @db.SmallInt // 1..4
+  minYears         Float?
+  evidenceQuote    String? // verbatim quote from the JD
+
+  jobDescription JobDescription @relation(fields: [jobDescriptionId], references: [id], onDelete: Cascade)
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  skill          Skill?         @relation(fields: [skillId], references: [id], onDelete: SetNull)
+
+  @@index([jobDescriptionId])
+  @@index([userId, skillId])
+  @@index([skillId])
+  @@map("job_requirements")
+}
+
+// ─────────── Shared skill taxonomy (seeded from prisma/seed) ───────────
+
+// Canonical skill taxonomy, shared by all users. Curated rows come from prisma/seed;
+// skills the LLM finds that aren't in the seed are added with curated = false.
+model Skill {
+  id          String   @id @default(uuid()) @db.Uuid
+  slug        String   @unique
+  name        String   @unique // canonical name
+  aliases     String[] @default([]) // lowercased; see src/lib/skills/normalize.ts
+  category    String? // language | framework | cloud | tool | concept | domain | soft
+  description String?
+  curated     Boolean  @default(false)
+
+  userSkills         UserSkill[]
+  jobRequirements    JobRequirement[]
+  gapItems           GapItem[]
+  planTasks          PlanTask[]
+  interviewQuestions InterviewQuestion[]
+  progressEvents     ProgressEvent[]
+  topics             SkillTopic[]
+  edgesFrom          SkillEdge[]         @relation("edgeFrom")
+  edgesTo            SkillEdge[]         @relation("edgeTo")
+  resources          LearningResource[]
+  roleSkills         RoleTrackSkill[]
+
+  @@index([aliases], type: Gin)
+  @@map("skills")
+}
+
+enum SkillTier {
+  fundamental
+  intermediate
+  advanced
+}
+
+// What to learn for a skill, in order, at each tier. Feeds roadmap week content.
+model SkillTopic {
+  id       String    @id @default(uuid()) @db.Uuid
+  skillId  String    @db.Uuid
+  tier     SkillTier
+  position Int
+  title    String
+
+  skill Skill @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@unique([skillId, tier, position])
+  @@map("skill_topics")
+}
+
+enum EdgeKind {
+  prereq // from must be learned before to
+  related // knowledge transfers between the two (stored in both directions)
+}
+
+model SkillEdge {
+  fromSkillId String   @db.Uuid
+  toSkillId   String   @db.Uuid
+  kind        EdgeKind
+  weight      Float    @default(1)
+
+  from Skill @relation("edgeFrom", fields: [fromSkillId], references: [id], onDelete: Cascade)
+  to   Skill @relation("edgeTo", fields: [toSkillId], references: [id], onDelete: Cascade)
+
+  @@id([fromSkillId, toSkillId, kind])
+  @@index([toSkillId])
+  @@map("skill_edges")
+}
+
+model LearningResource {
+  id      String    @id @default(uuid()) @db.Uuid
+  skillId String    @db.Uuid
+  title   String
+  url     String
+  kind    String // docs | tutorial | course | book | guide
+  tier    SkillTier
+  curated Boolean   @default(true)
+
+  skill     Skill      @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  planTasks PlanTask[]
+
+  @@unique([skillId, url])
+  @@map("learning_resources")
+}
+
+// Role template: the skills a role needs, grouped by learning tier. Used as a market
+// prior when the user has fewer than 3 JDs, and to order the roadmap.
+model RoleTrack {
+  id          String   @id @default(uuid()) @db.Uuid
+  slug        String   @unique
+  title       String
+  family      String // engineering | data | ai | quality | security | product
+  aliases     String[] @default([]) // job titles that map to this track, lowercased
+  description String
+
+  skills      RoleTrackSkill[]
+  targetRoles TargetRole[]
+
+  @@index([aliases], type: Gin)
+  @@map("role_tracks")
+}
+
+enum RoleSkillImportance {
+  core
+  recommended
+}
+
+model RoleTrackSkill {
+  trackId       String              @db.Uuid
+  skillId       String              @db.Uuid
+  tier          SkillTier
+  requiredLevel Int                 @db.SmallInt // 1..4, job-ready level for this role
+  importance    RoleSkillImportance @default(core)
+  choiceGroup   String? // skills sharing a group are alternatives: knowing one satisfies it
+
+  track RoleTrack @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  skill Skill     @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@id([trackId, skillId])
+  @@index([skillId])
+  @@map("role_track_skills")
+}
+
+enum GapStatus {
+  matched
+  partial
+  missing
+}
+
+// One analysis run: a resume compared against one or more JDs. Scores are computed in
+// code (src/lib/scoring/gap.ts); the LLM only extracts skills and evidence.
+model GapAnalysis {
+  id              String   @id @default(uuid()) @db.Uuid
+  userId          String   @db.Uuid
+  targetRoleId    String?  @db.Uuid
+  resumeId        String   @db.Uuid
+  matchScore      Float
+  jdCount         Int
+  candidate       Json? // { currentRole, yearsExperience, summary }
+  recommendations Json     @default("[]")
+  model           String? // model that produced the extraction
+  promptVersion   String?
+  createdAt       DateTime @default(now()) @db.Timestamptz(6)
+
+  user            User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  targetRole      TargetRole?        @relation(fields: [targetRoleId], references: [id], onDelete: Cascade)
+  resume          Resume             @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  items           GapItem[]
+  jobDescriptions GapAnalysisJob[]
+  plans           LearningPlan[]
+  projects        PortfolioProject[]
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([targetRoleId])
+  @@index([resumeId])
+  @@map("gap_analyses")
+}
+
+model GapAnalysisJob {
+  analysisId       String @db.Uuid
+  jobDescriptionId String @db.Uuid
+
+  analysis       GapAnalysis    @relation(fields: [analysisId], references: [id], onDelete: Cascade)
+  jobDescription JobDescription @relation(fields: [jobDescriptionId], references: [id], onDelete: Cascade)
+
+  @@id([analysisId, jobDescriptionId])
+  @@index([jobDescriptionId])
+  @@map("gap_analysis_jobs")
+}
+
+// One row of the skill-gap matrix.
+model GapItem {
+  id            String               @id @default(uuid()) @db.Uuid
+  analysisId    String               @db.Uuid
+  skillId       String?              @db.Uuid
+  skillName     String
+  position      Int // rank by gap, 0 = biggest
+  demand        Float // 0..1, weighted share of JDs asking for it
+  have          Float // 0 | 0.5 | 1, evidence in the resume
+  gap           Float // demand * (1 - have)
+  status        GapStatus
+  currentLevel  Int?                 @db.SmallInt
+  requiredLevel Int?                 @db.SmallInt
+  priority      Float?
+  category      RequirementCategory?
+  effortHours   Float? // estimated hours to close the gap (from catalog tier/levels)
+  fromTemplate  Boolean              @default(false) // demand comes from the role template, not JDs
+  evidence      String? // verbatim resume quote
+
+  analysis GapAnalysis @relation(fields: [analysisId], references: [id], onDelete: Cascade)
+  skill    Skill?      @relation(fields: [skillId], references: [id], onDelete: SetNull)
+
+  @@unique([analysisId, position])
+  @@index([skillId])
+  @@map("gap_items")
+}
+
+// ─────────────── Module 3 / 6: learning roadmap & adaptive replanning ───────────────
+
+enum PlanStatus {
+  draft
+  active
+  superseded
+  completed
+}
+
+// Versioned: a replan creates a new row pointing at the previous version.
+model LearningPlan {
+  id            String     @id @default(uuid()) @db.Uuid
+  userId        String     @db.Uuid
+  gapAnalysisId String     @db.Uuid
+  parentId      String?    @db.Uuid
+  version       Int        @default(1)
+  status        PlanStatus @default(active)
+  durationWeeks Int // 4 | 8 | 12 | 16
+  hoursPerWeek  Int
+  reason        String? // why this version was generated (replan trigger)
+  changeSummary Json? // what changed vs the parent version
+  startDate     DateTime   @default(now()) @db.Date
+  createdAt     DateTime   @default(now()) @db.Timestamptz(6)
+
+  user        User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  gapAnalysis GapAnalysis        @relation(fields: [gapAnalysisId], references: [id], onDelete: Cascade)
+  parent      LearningPlan?      @relation("PlanVersions", fields: [parentId], references: [id], onDelete: SetNull)
+  children    LearningPlan[]     @relation("PlanVersions")
+  weeks       PlanWeek[]
+  projects    PortfolioProject[]
+
+  @@unique([gapAnalysisId, version])
+  @@index([userId, status])
+  @@index([parentId])
+  @@map("learning_plans")
+}
+
+model PlanWeek {
+  id         String    @id @default(uuid()) @db.Uuid
+  planId     String    @db.Uuid
+  weekNumber Int
+  goal       String
+  objectives Json      @default("[]")
+  content    Json? // concepts, exercises, assignments, resources, outcomes, assessment criteria
+  checkpoint String?
+  startDate  DateTime? @db.Date
+
+  plan  LearningPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+  tasks PlanTask[]
+
+  @@unique([planId, weekNumber])
+  @@map("plan_weeks")
+}
+
+enum TaskKind {
+  learn
+  exercise
+  coding
+  assessment
+  project_milestone
+}
+
+enum TaskStatus {
+  todo
+  doing
+  done
+  skipped
+  missed
+}
+
+model PlanTask {
+  id          String     @id @default(uuid()) @db.Uuid
+  weekId      String     @db.Uuid
+  userId      String     @db.Uuid
+  skillId     String?    @db.Uuid
+  resourceId  String?    @db.Uuid // curated resource, if any
+  kind        TaskKind   @default(learn)
+  position    Int        @default(0)
+  title       String
+  resourceUrl String? // AI-suggested link when no curated resource exists
+  estHours    Float      @default(1)
+  hoursSpent  Float      @default(0)
+  status      TaskStatus @default(todo)
+  score       Float? // 0..1, for assessments
+  dueDate     DateTime?  @db.Date
+  completedAt DateTime?  @db.Timestamptz(6)
+
+  week           PlanWeek          @relation(fields: [weekId], references: [id], onDelete: Cascade)
+  user           User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  skill          Skill?            @relation(fields: [skillId], references: [id], onDelete: SetNull)
+  resource       LearningResource? @relation(fields: [resourceId], references: [id], onDelete: SetNull)
+  progressEvents ProgressEvent[]
+
+  @@index([weekId, position])
+  @@index([userId, status])
+  @@index([skillId])
+  @@index([resourceId])
+  @@map("plan_tasks")
+}
+
+// ─────────────────────── Module 4: portfolio projects ───────────────────────
+
+enum ProjectTier {
+  beginner
+  intermediate
+  advanced
+  production
+}
+
+enum ProjectStatus {
+  suggested
+  in_progress
+  done
+  dropped
+}
+
+model PortfolioProject {
+  id            String        @id @default(uuid()) @db.Uuid
+  userId        String        @db.Uuid
+  gapAnalysisId String?       @db.Uuid
+  planId        String?       @db.Uuid
+  tier          ProjectTier
+  title         String
+  description   String // problem statement
+  spec          Json? // requirements, architecture, schema, APIs, milestones, testing, deployment, deliverables
+  skills        Json          @default("[]") // skill names the project demonstrates
+  talkingPoints String?
+  status        ProjectStatus @default(suggested)
+  repoUrl       String?
+  createdAt     DateTime      @default(now()) @db.Timestamptz(6)
+
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  gapAnalysis GapAnalysis?  @relation(fields: [gapAnalysisId], references: [id], onDelete: SetNull)
+  plan        LearningPlan? @relation(fields: [planId], references: [id], onDelete: SetNull)
+
+  @@index([userId, status])
+  @@index([gapAnalysisId])
+  @@index([planId])
+  @@map("portfolio_projects")
+}
+
+// ─────────────────────── Module 5: mock interviews ───────────────────────
+
+enum InterviewKind {
+  technical
+  coding
+  system_design
+  behavioral
+  role_specific
+  scenario
+  mixed
+}
+
+enum InterviewStatus {
+  in_progress
+  completed
+  abandoned
+}
+
+enum QuestionType {
+  technical
+  coding
+  behavioral
+  system_design
+  scenario
+}
+
+model InterviewSession {
+  id              String          @id @default(uuid()) @db.Uuid
+  userId          String          @db.Uuid
+  targetRoleId    String?         @db.Uuid
+  targetRoleTitle String? // for practice without a saved target role
+  kind            InterviewKind   @default(mixed)
+  status          InterviewStatus @default(in_progress)
+  rubricVersion   String?
+  overallScore    Float?
+  summary         Json? // session report: recurring weaknesses, next steps
+  createdAt       DateTime        @default(now()) @db.Timestamptz(6)
+  completedAt     DateTime?       @db.Timestamptz(6)
+
+  user       User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  targetRole TargetRole?         @relation(fields: [targetRoleId], references: [id], onDelete: SetNull)
+  questions  InterviewQuestion[]
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([targetRoleId])
+  @@map("interview_sessions")
+}
+
+model InterviewQuestion {
+  id         String       @id @default(uuid()) @db.Uuid
+  sessionId  String       @db.Uuid
+  userId     String       @db.Uuid
+  parentId   String?      @db.Uuid // set for follow-up questions
+  skillId    String?      @db.Uuid
+  seq        Int
+  type       QuestionType
+  question   String
+  rubric     Json // [{ criterion, description, weight? }]
+  answer     String?
+  answeredAt DateTime?    @db.Timestamptz(6)
+
+  session    InterviewSession     @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  user       User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  parent     InterviewQuestion?   @relation("FollowUps", fields: [parentId], references: [id], onDelete: SetNull)
+  followUps  InterviewQuestion[]  @relation("FollowUps")
+  skill      Skill?               @relation(fields: [skillId], references: [id], onDelete: SetNull)
+  evaluation InterviewEvaluation?
+
+  @@unique([sessionId, seq])
+  @@index([userId])
+  @@index([parentId])
+  @@index([skillId])
+  @@map("interview_questions")
+}
+
+model InterviewEvaluation {
+  id              String   @id @default(uuid()) @db.Uuid
+  questionId      String   @unique @db.Uuid
+  userId          String   @db.Uuid
+  overallScore    Float // computed in code from the criterion scores
+  criteria        Json // [{ criterion, score 1-5, comment }]
+  strengths       Json     @default("[]")
+  improvements    Json     @default("[]")
+  missingConcepts Json     @default("[]")
+  modelAnswer     String?
+  model           String?
+  promptVersion   String?
+  createdAt       DateTime @default(now()) @db.Timestamptz(6)
+
+  question InterviewQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  user     User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@map("interview_evaluations")
+}
+
+// ─────────────────────── Module 6: progress tracking ───────────────────────
+
+enum ProgressKind {
+  task_completed
+  task_missed
+  hours_logged
+  assessment_scored
+  interview_scored
+  project_milestone
+  skill_level_changed
+  plan_revised
+}
+
+// Append-only activity log; dashboards and replan rules aggregate over it.
+model ProgressEvent {
+  id         String       @id @default(uuid()) @db.Uuid
+  userId     String       @db.Uuid
+  kind       ProgressKind
+  taskId     String?      @db.Uuid
+  skillId    String?      @db.Uuid
+  refId      String?      @db.Uuid // e.g. interview question or plan id
+  hours      Float?
+  value      Float? // score 0..1, or self-rating 1-5
+  note       String?
+  meta       Json?
+  occurredAt DateTime     @default(now()) @db.Timestamptz(6)
+
+  user  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  task  PlanTask? @relation(fields: [taskId], references: [id], onDelete: SetNull)
+  skill Skill?    @relation(fields: [skillId], references: [id], onDelete: SetNull)
+
+  @@index([userId, occurredAt(sort: Desc)])
+  @@index([userId, skillId, kind])
+  @@index([taskId])
+  @@index([skillId])
+  @@map("progress_events")
+}
+
+// ─────────────────────── Module 7: application tracker ───────────────────────
+
+enum ApplicationStatus {
+  saved
+  applied
+  screening
+  interviewing
+  offer
+  rejected
+  ghosted
+  withdrawn
+}
+
+enum ApplicationSource {
+  referral
+  job_board
+  company_site
+  recruiter
+  other
+}
+
+model Application {
+  id               String             @id @default(uuid()) @db.Uuid
+  userId           String             @db.Uuid
+  jobDescriptionId String?            @db.Uuid
+  resumeId         String?            @db.Uuid // resume version used
+  company          String
+  roleTitle        String
+  roleFamily       String? // e.g. "data engineering"
+  seniority        String?
+  industry         String?
+  companySize      String? // startup | mid | enterprise
+  location         String?
+  source           ApplicationSource?
+  referral         Boolean            @default(false)
+  tailored         Boolean            @default(false)
+  matchScore       Float? // gap-analysis match score at the time of applying
+  status           ApplicationStatus  @default(applied)
+  appliedAt        DateTime           @default(now()) @db.Timestamptz(6)
+  respondedAt      DateTime?          @db.Timestamptz(6)
+  followUpAt       DateTime?          @db.Date
+  notes            String?
+
+  user           User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jobDescription JobDescription?    @relation(fields: [jobDescriptionId], references: [id], onDelete: SetNull)
+  resume         Resume?            @relation(fields: [resumeId], references: [id], onDelete: SetNull)
+  events         ApplicationEvent[]
+
+  @@index([userId, status])
+  @@index([userId, appliedAt(sort: Desc)])
+  @@index([jobDescriptionId])
+  @@index([resumeId])
+  @@map("applications")
+}
+
+// Stage changes and outcomes; the stats in the insights view are computed from these.
+model ApplicationEvent {
+  id              String            @id @default(uuid()) @db.Uuid
+  applicationId   String            @db.Uuid
+  userId          String            @db.Uuid
+  stage           ApplicationStatus
+  rejectionReason String?
+  feedback        String?
+  notes           String?
+  occurredAt      DateTime          @default(now()) @db.Timestamptz(6)
+
+  application Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([applicationId, occurredAt])
+  @@index([userId])
+  @@map("application_events")
+}
+
+// ─────────────────────── AI usage, caching and budgets ───────────────────────
+
+enum AiCallOutcome {
+  ok // primary model succeeded
+  fallback // fallback model succeeded
+  cache_hit // served from a previous identical call, no model request
+  invalid // model output failed validation on every model
+  rate_limited // provider 429 on every model
+  error
+  budget_exceeded // refused before calling: user's daily limit reached
+}
+
+// One row per AI task request (src/lib/ai/service.ts). Successful results are kept so
+// identical requests are served from cache, which matters on the 50/day free tier.
+model AiCall {
+  id               String        @id @default(uuid()) @db.Uuid
+  userId           String?       @db.Uuid // null for scripts
+  task             String // e.g. "gap.extract", "interview.score"
+  promptVersion    String?
+  inputHash        String
+  model            String?
+  outcome          AiCallOutcome
+  promptTokens     Int?
+  completionTokens Int?
+  costUsd          Decimal?      @db.Decimal(12, 6)
+  latencyMs        Int?
+  error            String?
+  result           Json?
+  createdAt        DateTime      @default(now()) @db.Timestamptz(6)
+
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([task, inputHash])
+  @@map("ai_calls")
+}

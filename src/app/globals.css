@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+/*
+ * CareerBuddy design tokens. See docs/DESIGN_SYSTEM.html.
+ * Theme = `.dark` class on <html> (set before paint by the script in layout.tsx);
+ * with no saved choice it follows the OS setting. Components use the semantic
+ * colors below (bg-primary, text-muted-foreground, border-border…), never raw
+ * palette colors, so both themes stay in sync.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+
+  --background: #f7f8fc;
+  --foreground: #141a2e;
+  --card: #ffffff;
+  --muted: #eef1f8;
+  --muted-foreground: #556079;
+  --border: #dde2ee;
+  --ring: #6366f1;
+
+  /* Primary: Pivot Indigo */
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-foreground: #ffffff;
+  --primary-soft: #eef0ff;
+  --primary-soft-foreground: #3730a3;
+
+  /* Secondary: Growth Teal */
+  --secondary: #0f766e;
+  --secondary-hover: #115e59;
+  --secondary-foreground: #ffffff;
+  --secondary-soft: #e3f5f2;
+  --secondary-soft-foreground: #115e59;
+
+  /* Accent: Spark Amber (highlights only, never body text on light) */
+  --accent: #f59e0b;
+  --accent-soft: #fef3c7;
+  --accent-soft-foreground: #92400e;
+
+  --success: #15803d;
+  --success-soft: #dcfce7;
+  --warning: #b45309;
+  --warning-soft: #fef3c7;
+  --danger: #b91c1c;
+  --danger-soft: #fee2e2;
+
+  --shadow-color: 228 40% 30%;
+}
+
+.dark {
+  color-scheme: dark;
+
+  /* Deep navy, not pure black; off-white text, not pure white: less glare. */
+  --background: #0b1020;
+  --foreground: #e6e9f5;
+  --card: #121931;
+  --muted: #1a2240;
+  --muted-foreground: #9aa3bf;
+  --border: #27304f;
+  --ring: #818cf8;
+
+  --primary: #818cf8;
+  --primary-hover: #a5b4fc;
+  --primary-foreground: #0b1020;
+  --primary-soft: #1e2150;
+  --primary-soft-foreground: #c7d2fe;
+
+  --secondary: #2dd4bf;
+  --secondary-hover: #5eead4;
+  --secondary-foreground: #042f2e;
+  --secondary-soft: #0c2d33;
+  --secondary-soft-foreground: #99f6e4;
+
+  --accent: #fbbf24;
+  --accent-soft: #3a2a0a;
+  --accent-soft-foreground: #fde68a;
+
+  --success: #4ade80;
+  --success-soft: #0f2e1d;
+  --warning: #fbbf24;
+  --warning-soft: #3a2a0a;
+  --danger: #f87171;
+  --danger-soft: #3b1219;
+
+  --shadow-color: 230 60% 2%;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-soft-foreground: var(--primary-soft-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-soft: var(--secondary-soft);
+  --color-secondary-soft-foreground: var(--secondary-soft-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-foreground: var(--accent-soft-foreground);
+
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-jakarta);
+
+  --shadow-soft: 0 1px 2px hsl(var(--shadow-color) / 0.06), 0 4px 16px -4px hsl(var(--shadow-color) / 0.12);
+  --shadow-lift: 0 2px 4px hsl(var(--shadow-color) / 0.08), 0 16px 40px -12px hsl(var(--shadow-color) / 0.28);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Brand gradient text: indigo → teal. */
+.text-gradient {
+  background: linear-gradient(100deg, var(--primary) 10%, var(--secondary) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Faint grid + glow behind landing hero; tuned per theme so it never competes with text. */
+.hero-backdrop {
+  background:
+    radial-gradient(60rem 30rem at 15% -10%, color-mix(in oklab, var(--primary) 18%, transparent), transparent 70%),
+    radial-gradient(50rem 28rem at 95% 10%, color-mix(in oklab, var(--secondary) 14%, transparent), transparent 70%),
+    linear-gradient(to right, color-mix(in oklab, var(--border) 45%, transparent) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(to bottom, color-mix(in oklab, var(--border) 45%, transparent) 1px, transparent 1px) 0 0 / 48px 48px;
+  mask-image: linear-gradient(to bottom, black 55%, transparent);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

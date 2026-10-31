@@ -1,0 +1,4917 @@
+[
+  {
+    "slug": "html",
+    "name": "HTML",
+    "category": "language",
+    "aliases": [
+      "html5",
+      "semantic html"
+    ],
+    "description": "Markup language that structures web pages and their content.",
+    "prerequisites": [],
+    "related": [
+      "css"
+    ],
+    "topics": {
+      "fundamental": [
+        "Document structure and semantic tags",
+        "Text, links, lists and images",
+        "Forms and input types"
+      ],
+      "intermediate": [
+        "Landmarks and heading outline",
+        "Media, iframes and embeds",
+        "Meta tags and basic SEO"
+      ],
+      "advanced": [
+        "Native dialog, details and popover",
+        "Custom elements and templates",
+        "Resource hints and loading attributes"
+      ]
+    },
+    "resources": [
+      {
+        "title": "MDN: Structuring content with HTML",
+        "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "css",
+    "name": "CSS",
+    "category": "language",
+    "aliases": [
+      "css3",
+      "flexbox",
+      "css grid",
+      "sass",
+      "scss"
+    ],
+    "description": "Stylesheet language for layout, typography and visual design of web pages.",
+    "prerequisites": [
+      "html"
+    ],
+    "related": [
+      "tailwind"
+    ],
+    "topics": {
+      "fundamental": [
+        "Selectors, cascade and specificity",
+        "Box model and units",
+        "Colors, typography and backgrounds"
+      ],
+      "intermediate": [
+        "Flexbox layouts",
+        "CSS Grid layouts",
+        "Custom properties and theming",
+        "Transitions and animations"
+      ],
+      "advanced": [
+        "Container queries and :has()",
+        "Cascade layers and scalable architecture",
+        "Rendering cost and paint optimization"
+      ]
+    },
+    "resources": [
+      {
+        "title": "MDN: CSS styling basics",
+        "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "javascript",
+    "name": "JavaScript",
+    "category": "language",
+    "aliases": [
+      "js",
+      "ecmascript",
+      "es6",
+      "es2015",
+      "vanilla js"
+    ],
+    "description": "The programming language of the web, used in browsers and on servers via Node.js.",
+    "prerequisites": [],
+    "related": [
+      "typescript"
+    ],
+    "topics": {
+      "fundamental": [
+        "Variables, types and operators",
+        "Functions, scope and closures",
+        "Arrays, objects and iteration",
+        "DOM selection and events"
+      ],
+      "intermediate": [
+        "Promises and async/await",
+        "ES modules and bundling basics",
+        "Fetch API and JSON",
+        "Prototypes and classes"
+      ],
+      "advanced": [
+        "Event loop and task queues",
+        "Memory leaks and garbage collection",
+        "Web workers and streams"
+      ]
+    },
+    "resources": [
+      {
+        "title": "MDN JavaScript Guide",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+        "kind": "guide",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "typescript",
+    "name": "TypeScript",
+    "category": "language",
+    "aliases": [
+      "ts"
+    ],
+    "description": "Typed superset of JavaScript that compiles to plain JavaScript.",
+    "prerequisites": [
+      "javascript"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Basic types and annotations",
+        "Interfaces and type aliases",
+        "Union and literal types"
+      ],
+      "intermediate": [
+        "Generics in functions and types",
+        "Narrowing and type guards",
+        "tsconfig and strict mode"
+      ],
+      "advanced": [
+        "Conditional and mapped types",
+        "Utility types and inference",
+        "Typing libraries and declaration files"
+      ]
+    },
+    "resources": [
+      {
+        "title": "The TypeScript Handbook",
+        "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "python",
+    "name": "Python",
+    "category": "language",
+    "aliases": [
+      "py",
+      "python3",
+      "python 3"
+    ],
+    "description": "General-purpose language widely used for backend, data, automation and machine learning.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Syntax, types and control flow",
+        "Lists, dicts, sets and tuples",
+        "Functions and modules"
+      ],
+      "intermediate": [
+        "Classes and dataclasses",
+        "Virtual environments and packaging",
+        "Type hints and exceptions",
+        "File and JSON handling"
+      ],
+      "advanced": [
+        "Asyncio and concurrency",
+        "Decorators, generators and context managers",
+        "Profiling and performance tuning"
+      ]
+    },
+    "resources": [
+      {
+        "title": "The Python Tutorial",
+        "url": "https://docs.python.org/3/tutorial/",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "java",
+    "name": "Java",
+    "category": "language",
+    "aliases": [
+      "core java",
+      "java se",
+      "jdk",
+      "jvm"
+    ],
+    "description": "Object-oriented JVM language common in enterprise backends and Android.",
+    "prerequisites": [],
+    "related": [
+      "kotlin",
+      "csharp"
+    ],
+    "topics": {
+      "fundamental": [
+        "Syntax, types and control flow",
+        "Classes, objects and packages",
+        "Strings and arrays"
+      ],
+      "intermediate": [
+        "Collections framework and generics",
+        "Exceptions and I/O",
+        "Lambdas and streams API",
+        "Maven or Gradle builds"
+      ],
+      "advanced": [
+        "Concurrency and virtual threads",
+        "JVM memory and garbage collection",
+        "Records, sealed types and modern features"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Learn Java (dev.java)",
+        "url": "https://dev.java/learn/",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "csharp",
+    "name": "C#",
+    "category": "language",
+    "aliases": [
+      "c sharp",
+      "csharp",
+      ".net",
+      "dotnet"
+    ],
+    "description": "Microsoft's object-oriented language for the .NET platform.",
+    "prerequisites": [],
+    "related": [
+      "java"
+    ],
+    "topics": {
+      "fundamental": [
+        "Syntax, types and control flow",
+        "Classes, structs and namespaces",
+        "dotnet CLI and project setup"
+      ],
+      "intermediate": [
+        "Collections and LINQ",
+        "Async/await and tasks",
+        "Interfaces, generics and exceptions"
+      ],
+      "advanced": [
+        "Memory, Span and performance",
+        "Dependency injection patterns",
+        "Records, pattern matching and nullability"
+      ]
+    },
+    "resources": [
+      {
+        "title": "C# documentation (Microsoft Learn)",
+        "url": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "go",
+    "name": "Go",
+    "category": "language",
+    "aliases": [
+      "golang"
+    ],
+    "description": "Compiled, statically typed language designed for simple, concurrent network services.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Packages, variables and types",
+        "Slices, maps and structs",
+        "Functions and error values"
+      ],
+      "intermediate": [
+        "Methods and interfaces",
+        "Goroutines and channels",
+        "Modules and testing tooling"
+      ],
+      "advanced": [
+        "Context and cancellation",
+        "Generics and package design",
+        "Profiling with pprof"
+      ]
+    },
+    "resources": [
+      {
+        "title": "A Tour of Go",
+        "url": "https://go.dev/tour/",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "kotlin",
+    "name": "Kotlin",
+    "category": "language",
+    "aliases": [
+      "kotlin/jvm"
+    ],
+    "description": "Modern JVM language and the preferred language for Android development.",
+    "prerequisites": [],
+    "related": [
+      "swift"
+    ],
+    "topics": {
+      "fundamental": [
+        "Variables, types and null safety",
+        "Functions and lambdas",
+        "Classes and data classes"
+      ],
+      "intermediate": [
+        "Collections and scope functions",
+        "Sealed classes and when",
+        "Coroutines basics"
+      ],
+      "advanced": [
+        "Flow and structured concurrency",
+        "Extension and inline functions",
+        "Kotlin Multiplatform shared code"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Kotlin: Get started",
+        "url": "https://kotlinlang.org/docs/getting-started.html",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "swift",
+    "name": "Swift",
+    "category": "language",
+    "aliases": [
+      "swift 5"
+    ],
+    "description": "Apple's language for iOS, iPadOS and macOS apps.",
+    "prerequisites": [],
+    "related": [
+      "kotlin"
+    ],
+    "topics": {
+      "fundamental": [
+        "Constants, variables and types",
+        "Optionals and unwrapping",
+        "Functions, closures and collections"
+      ],
+      "intermediate": [
+        "Structs vs classes and enums",
+        "Protocols and extensions",
+        "Error handling patterns"
+      ],
+      "advanced": [
+        "Async/await and actors",
+        "Generics and protocol-oriented design",
+        "ARC and memory management"
+      ]
+    },
+    "resources": [
+      {
+        "title": "The Swift Programming Language",
+        "url": "https://docs.swift.org/latest/documentation/the-swift-programming-language/",
+        "kind": "book",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "dart",
+    "name": "Dart",
+    "category": "language",
+    "aliases": [],
+    "description": "Client-optimized language used to build Flutter apps.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Variables, types and null safety",
+        "Functions and control flow",
+        "Lists, maps and sets"
+      ],
+      "intermediate": [
+        "Classes, mixins and constructors",
+        "Futures and async/await",
+        "Packages and pub tooling"
+      ],
+      "advanced": [
+        "Streams and isolates",
+        "Records, patterns and sealed classes",
+        "Code generation and extensions"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Dart language tour",
+        "url": "https://dart.dev/language",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "sql",
+    "name": "SQL",
+    "category": "language",
+    "aliases": [
+      "structured query language",
+      "ansi sql",
+      "t-sql",
+      "pl/sql",
+      "sql queries"
+    ],
+    "description": "Language for querying and changing data in relational databases.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "SELECT, WHERE and ORDER BY",
+        "INSERT, UPDATE and DELETE",
+        "Aggregates and GROUP BY"
+      ],
+      "intermediate": [
+        "Joins across tables",
+        "Subqueries and CTEs",
+        "Constraints and keys"
+      ],
+      "advanced": [
+        "Window functions",
+        "Transactions and isolation levels",
+        "Reading execution plans"
+      ]
+    },
+    "resources": [
+      {
+        "title": "PostgreSQL Tutorial: The SQL Language",
+        "url": "https://www.postgresql.org/docs/current/tutorial-sql.html",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "bash",
+    "name": "Bash / Shell Scripting",
+    "category": "language",
+    "aliases": [
+      "bash",
+      "shell",
+      "shell scripting",
+      "sh",
+      "zsh"
+    ],
+    "description": "Unix shell and scripting language for automating command-line work.",
+    "prerequisites": [
+      "linux"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Variables, quoting and command substitution",
+        "Pipes, redirection and exit codes",
+        "Conditionals and loops in scripts"
+      ],
+      "intermediate": [
+        "Functions and argument parsing",
+        "Text processing with grep, sed, awk",
+        "Error handling with set options"
+      ],
+      "advanced": [
+        "Robust, idempotent automation scripts",
+        "Script linting and testing",
+        "Scheduling jobs and log rotation"
+      ]
+    },
+    "resources": [
+      {
+        "title": "GNU Bash Reference Manual",
+        "url": "https://www.gnu.org/software/bash/manual/",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "react",
+    "name": "React",
+    "category": "framework",
+    "aliases": [
+      "react.js",
+      "reactjs",
+      "react hooks"
+    ],
+    "description": "Component-based JavaScript library for building user interfaces.",
+    "prerequisites": [
+      "javascript"
+    ],
+    "related": [
+      "vue",
+      "angular",
+      "react-native"
+    ],
+    "topics": {
+      "fundamental": [
+        "JSX and components",
+        "Props and rendering lists",
+        "Event handling and useState"
+      ],
+      "intermediate": [
+        "Effects and data fetching",
+        "Lifting state and context",
+        "Custom hooks",
+        "Forms and controlled inputs"
+      ],
+      "advanced": [
+        "Memoization and render performance",
+        "Suspense and concurrent features",
+        "Server Components model"
+      ]
+    },
+    "resources": [
+      {
+        "title": "React: Learn",
+        "url": "https://react.dev/learn",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "nextjs",
+    "name": "Next.js",
+    "category": "framework",
+    "aliases": [
+      "nextjs",
+      "next js",
+      "next"
+    ],
+    "description": "React framework for server rendering, routing and full-stack web apps.",
+    "prerequisites": [
+      "react"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "File-based App Router routing",
+        "Layouts, pages and links",
+        "Static assets and images"
+      ],
+      "intermediate": [
+        "Server vs client components",
+        "Data fetching and caching",
+        "Route handlers and server actions"
+      ],
+      "advanced": [
+        "Rendering strategies and streaming",
+        "Middleware and auth integration",
+        "Deployment and performance tuning"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Next.js Learn course",
+        "url": "https://nextjs.org/learn",
+        "kind": "course",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "angular",
+    "name": "Angular",
+    "category": "framework",
+    "aliases": [
+      "angular 2+",
+      "angular framework"
+    ],
+    "description": "Google's TypeScript-based framework for large single-page applications.",
+    "prerequisites": [
+      "typescript"
+    ],
+    "related": [
+      "vue"
+    ],
+    "topics": {
+      "fundamental": [
+        "Components and templates",
+        "Data binding and control flow",
+        "Angular CLI project setup"
+      ],
+      "intermediate": [
+        "Services and dependency injection",
+        "Routing and forms",
+        "HttpClient and RxJS basics"
+      ],
+      "advanced": [
+        "Signals and change detection",
+        "Lazy loading and standalone APIs",
+        "Testing and performance tuning"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Angular tutorials",
+        "url": "https://angular.dev/tutorials",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "vue",
+    "name": "Vue.js",
+    "category": "framework",
+    "aliases": [
+      "vue",
+      "vuejs",
+      "vue 3",
+      "nuxt"
+    ],
+    "description": "Progressive JavaScript framework for building user interfaces.",
+    "prerequisites": [
+      "javascript"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Template syntax and directives",
+        "Reactivity with ref and reactive",
+        "Single-file components"
+      ],
+      "intermediate": [
+        "Props, events and slots",
+        "Composition API and composables",
+        "Vue Router basics"
+      ],
+      "advanced": [
+        "Pinia store design",
+        "Rendering and reactivity performance",
+        "SSR with Nuxt concepts"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Vue.js Guide: Introduction",
+        "url": "https://vuejs.org/guide/introduction.html",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "tailwind",
+    "name": "Tailwind CSS",
+    "category": "framework",
+    "aliases": [
+      "tailwind",
+      "tailwindcss"
+    ],
+    "description": "Utility-first CSS framework for styling directly in markup.",
+    "prerequisites": [
+      "css"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Utility-first styling basics",
+        "Spacing, color and typography utilities",
+        "Responsive prefixes"
+      ],
+      "intermediate": [
+        "State variants like hover and focus",
+        "Theme customization and tokens",
+        "Dark mode setup"
+      ],
+      "advanced": [
+        "Reusable component patterns",
+        "Custom utilities and plugins",
+        "Design system integration"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Tailwind CSS: Installation with Vite",
+        "url": "https://tailwindcss.com/docs/installation/using-vite",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "frontend-build-tools",
+    "name": "Frontend Build Tools",
+    "category": "tool",
+    "aliases": [
+      "vite",
+      "webpack",
+      "bundler",
+      "esbuild",
+      "build tooling",
+      "npm scripts"
+    ],
+    "description": "Bundlers, dev servers and package scripts that build and ship frontend code.",
+    "prerequisites": [
+      "javascript"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Package managers and scripts",
+        "Dev server and hot reload",
+        "Bundling concept"
+      ],
+      "intermediate": [
+        "Vite configuration",
+        "Environment variables in builds",
+        "Linting and formatting setup"
+      ],
+      "advanced": [
+        "Bundle analysis and tree shaking",
+        "Monorepo tooling",
+        "Custom build plugins"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Vite: Getting Started",
+        "url": "https://vite.dev/guide/",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "nodejs",
+    "name": "Node.js",
+    "category": "framework",
+    "aliases": [
+      "node",
+      "nodejs",
+      "node.js runtime"
+    ],
+    "description": "JavaScript runtime for building servers, tools and APIs.",
+    "prerequisites": [
+      "javascript"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Runtime and module system",
+        "npm and package.json",
+        "File system and path APIs"
+      ],
+      "intermediate": [
+        "Event loop and async I/O",
+        "Building HTTP servers",
+        "Environment config and error handling"
+      ],
+      "advanced": [
+        "Streams and buffers",
+        "Worker threads and clustering",
+        "Profiling and memory diagnostics"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Introduction to Node.js",
+        "url": "https://nodejs.org/learn/getting-started/introduction-to-nodejs",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "express",
+    "name": "Express",
+    "category": "framework",
+    "aliases": [
+      "express.js",
+      "expressjs"
+    ],
+    "description": "Minimal web framework for building HTTP APIs on Node.js.",
+    "prerequisites": [
+      "nodejs"
+    ],
+    "related": [
+      "fastapi"
+    ],
+    "topics": {
+      "fundamental": [
+        "Creating an app and routes",
+        "Request and response objects",
+        "Serving JSON responses"
+      ],
+      "intermediate": [
+        "Middleware chain design",
+        "Routers and project structure",
+        "Input validation and error middleware"
+      ],
+      "advanced": [
+        "Security headers and rate limiting",
+        "Testing routes end to end",
+        "Production hardening and scaling"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Express: Getting started",
+        "url": "https://expressjs.com/en/starter/installing/",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "spring-boot",
+    "name": "Spring Boot",
+    "category": "framework",
+    "aliases": [
+      "spring",
+      "springboot",
+      "spring framework"
+    ],
+    "description": "Java framework for building production-ready services quickly.",
+    "prerequisites": [
+      "java"
+    ],
+    "related": [
+      "aspnet-core"
+    ],
+    "topics": {
+      "fundamental": [
+        "Project setup with Spring Initializr",
+        "Dependency injection and beans",
+        "REST controllers"
+      ],
+      "intermediate": [
+        "Spring Data JPA repositories",
+        "Configuration profiles and properties",
+        "Validation and exception handling"
+      ],
+      "advanced": [
+        "Spring Security integration",
+        "Actuator metrics and health",
+        "Testing slices and containers"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Spring Guide: Building an Application with Spring Boot",
+        "url": "https://spring.io/guides/gs/spring-boot/",
+        "kind": "guide",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "aspnet-core",
+    "name": "ASP.NET Core",
+    "category": "framework",
+    "aliases": [
+      "asp.net",
+      "asp.net core",
+      ".net core",
+      "asp.net mvc"
+    ],
+    "description": "Microsoft's cross-platform framework for web apps and APIs in C#.",
+    "prerequisites": [
+      "csharp"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Minimal APIs and controllers",
+        "Routing and model binding",
+        "Configuration and DI basics"
+      ],
+      "intermediate": [
+        "Entity Framework Core data access",
+        "Middleware pipeline",
+        "Authentication and authorization setup"
+      ],
+      "advanced": [
+        "Performance and caching options",
+        "Health checks and logging",
+        "Integration testing strategies"
+      ]
+    },
+    "resources": [
+      {
+        "title": "ASP.NET Core documentation",
+        "url": "https://learn.microsoft.com/en-us/aspnet/core/?view=aspnetcore-10.0",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "django",
+    "name": "Django",
+    "category": "framework",
+    "aliases": [
+      "django rest framework",
+      "drf"
+    ],
+    "description": "Batteries-included Python web framework.",
+    "prerequisites": [
+      "python"
+    ],
+    "related": [
+      "fastapi"
+    ],
+    "topics": {
+      "fundamental": [
+        "Projects, apps and settings",
+        "Models and migrations",
+        "Views, URLs and templates"
+      ],
+      "intermediate": [
+        "ORM queries and relationships",
+        "Forms and admin customization",
+        "Django REST Framework basics"
+      ],
+      "advanced": [
+        "Query optimization and caching",
+        "Async views and background tasks",
+        "Security settings and deployment"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Django tutorial part 1",
+        "url": "https://docs.djangoproject.com/en/6.1/intro/tutorial01/",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "fastapi",
+    "name": "FastAPI",
+    "category": "framework",
+    "aliases": [
+      "fast api"
+    ],
+    "description": "Modern Python framework for typed, async HTTP APIs.",
+    "prerequisites": [
+      "python"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Path and query parameters",
+        "Pydantic request models",
+        "Auto-generated API docs"
+      ],
+      "intermediate": [
+        "Dependency injection system",
+        "Database integration with ORM",
+        "Error handling and responses"
+      ],
+      "advanced": [
+        "Async performance patterns",
+        "OAuth2 and JWT security",
+        "Testing and production deployment"
+      ]
+    },
+    "resources": [
+      {
+        "title": "FastAPI Tutorial - User Guide",
+        "url": "https://fastapi.tiangolo.com/tutorial/",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "react-native",
+    "name": "React Native",
+    "category": "framework",
+    "aliases": [
+      "rn",
+      "expo"
+    ],
+    "description": "Framework for building native mobile apps with React.",
+    "prerequisites": [
+      "react"
+    ],
+    "related": [
+      "flutter"
+    ],
+    "topics": {
+      "fundamental": [
+        "Core components and styling",
+        "Flexbox layout on mobile",
+        "Expo project setup"
+      ],
+      "intermediate": [
+        "Navigation between screens",
+        "Lists, forms and networking",
+        "Platform-specific code"
+      ],
+      "advanced": [
+        "New architecture and native modules",
+        "Performance and animations",
+        "Builds and OTA updates"
+      ]
+    },
+    "resources": [
+      {
+        "title": "React Native: Get started",
+        "url": "https://reactnative.dev/docs/getting-started",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "flutter",
+    "name": "Flutter",
+    "category": "framework",
+    "aliases": [
+      "flutter sdk"
+    ],
+    "description": "Google's UI toolkit for cross-platform apps from one Dart codebase.",
+    "prerequisites": [
+      "dart"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Widgets and widget tree",
+        "Layout with rows, columns and stacks",
+        "Stateless vs stateful widgets"
+      ],
+      "intermediate": [
+        "Navigation and routing",
+        "State management approaches",
+        "HTTP calls and JSON parsing"
+      ],
+      "advanced": [
+        "Custom painting and animations",
+        "Platform channels and plugins",
+        "Performance profiling with DevTools"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Flutter learning pathway",
+        "url": "https://docs.flutter.dev/learn/pathway",
+        "kind": "course",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "jetpack-compose",
+    "name": "Jetpack Compose",
+    "category": "framework",
+    "aliases": [
+      "compose",
+      "android compose",
+      "android development"
+    ],
+    "description": "Android's modern declarative UI toolkit.",
+    "prerequisites": [
+      "kotlin"
+    ],
+    "related": [
+      "swiftui"
+    ],
+    "topics": {
+      "fundamental": [
+        "Composable functions and previews",
+        "Layouts with Row, Column and Box",
+        "Material components and theming"
+      ],
+      "intermediate": [
+        "State hoisting and remember",
+        "Lists with LazyColumn",
+        "Navigation and ViewModel integration"
+      ],
+      "advanced": [
+        "Side effects and lifecycle",
+        "Recomposition performance tuning",
+        "Custom layouts and animations"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Jetpack Compose tutorial",
+        "url": "https://developer.android.com/develop/ui/compose/tutorial",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "swiftui",
+    "name": "SwiftUI",
+    "category": "framework",
+    "aliases": [
+      "ios development",
+      "uikit"
+    ],
+    "description": "Apple's declarative UI framework for iOS and macOS apps.",
+    "prerequisites": [
+      "swift"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Views, modifiers and stacks",
+        "Previews and basic controls",
+        "Lists and navigation stacks"
+      ],
+      "intermediate": [
+        "State, binding and observable models",
+        "Data flow through the environment",
+        "Async data loading"
+      ],
+      "advanced": [
+        "Custom layouts and animations",
+        "UIKit interoperability",
+        "SwiftData persistence"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Apple SwiftUI Tutorials",
+        "url": "https://developer.apple.com/tutorials/swiftui",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "pandas",
+    "name": "pandas",
+    "category": "framework",
+    "aliases": [
+      "python pandas",
+      "dataframes"
+    ],
+    "description": "Python library for tabular data manipulation and analysis.",
+    "prerequisites": [
+      "python"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Series and DataFrame basics",
+        "Reading CSV, Excel and SQL data",
+        "Selecting and filtering rows"
+      ],
+      "intermediate": [
+        "Groupby aggregations",
+        "Merging and reshaping data",
+        "Handling missing values and dtypes",
+        "Time series indexing"
+      ],
+      "advanced": [
+        "Vectorized ops instead of loops",
+        "Memory-efficient dtypes and chunking",
+        "Method chaining for clean pipelines",
+        "Window and rolling calculations"
+      ]
+    },
+    "resources": [
+      {
+        "title": "10 Minutes to pandas",
+        "url": "https://pandas.pydata.org/docs/user_guide/10min.html",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "numpy",
+    "name": "NumPy",
+    "category": "framework",
+    "aliases": [
+      "numerical python"
+    ],
+    "description": "Python library for fast numerical arrays and linear algebra.",
+    "prerequisites": [
+      "python"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Creating arrays and shapes",
+        "Indexing and slicing",
+        "Element-wise arithmetic"
+      ],
+      "intermediate": [
+        "Broadcasting rules",
+        "Aggregations along axes",
+        "Random sampling utilities"
+      ],
+      "advanced": [
+        "Linear algebra routines",
+        "Memory layout and views vs copies",
+        "Vectorizing custom computations"
+      ]
+    },
+    "resources": [
+      {
+        "title": "NumPy: The Absolute Basics for Beginners",
+        "url": "https://numpy.org/doc/stable/user/absolute_beginners.html",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "scikit-learn",
+    "name": "scikit-learn",
+    "category": "framework",
+    "aliases": [
+      "sklearn",
+      "scikit learn"
+    ],
+    "description": "Python library for classical machine learning models and pipelines.",
+    "prerequisites": [
+      "numpy",
+      "pandas"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Estimator fit/predict API",
+        "Train/test split",
+        "Basic regression and classification models"
+      ],
+      "intermediate": [
+        "Preprocessing and pipelines",
+        "Cross-validation and metrics",
+        "Hyperparameter search",
+        "Column transformers for mixed data"
+      ],
+      "advanced": [
+        "Custom transformers and estimators",
+        "Handling class imbalance",
+        "Model inspection and feature importance",
+        "Persisting models for deployment"
+      ]
+    },
+    "resources": [
+      {
+        "title": "scikit-learn Getting Started",
+        "url": "https://scikit-learn.org/stable/getting_started.html",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "pytorch",
+    "name": "PyTorch",
+    "category": "framework",
+    "aliases": [
+      "torch"
+    ],
+    "description": "Deep learning framework with dynamic computation graphs.",
+    "prerequisites": [
+      "numpy"
+    ],
+    "related": [
+      "tensorflow"
+    ],
+    "topics": {
+      "fundamental": [
+        "Tensors and autograd",
+        "Datasets and DataLoaders",
+        "Building simple nn.Module models"
+      ],
+      "intermediate": [
+        "Writing training and eval loops",
+        "Optimizers and learning rate schedules",
+        "Using GPUs"
+      ],
+      "advanced": [
+        "Transfer learning with pretrained models",
+        "Mixed precision and performance tuning",
+        "Exporting models for serving"
+      ]
+    },
+    "resources": [
+      {
+        "title": "PyTorch: Learn the Basics",
+        "url": "https://docs.pytorch.org/tutorials/beginner/basics/intro.html",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "tensorflow",
+    "name": "TensorFlow",
+    "category": "framework",
+    "aliases": [
+      "tf",
+      "tf2",
+      "keras",
+      "tensorflow 2"
+    ],
+    "description": "Google's deep learning framework, with Keras as its high-level API.",
+    "prerequisites": [
+      "numpy"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Tensors and Keras Sequential API",
+        "Compiling and fitting models",
+        "Loading data with tf.data"
+      ],
+      "intermediate": [
+        "Functional API and callbacks",
+        "Regularization and early stopping",
+        "Monitoring with TensorBoard"
+      ],
+      "advanced": [
+        "Custom training loops",
+        "Transfer learning with pretrained models",
+        "Saving and serving models"
+      ]
+    },
+    "resources": [
+      {
+        "title": "TensorFlow Tutorials",
+        "url": "https://www.tensorflow.org/tutorials",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "spark",
+    "name": "Apache Spark",
+    "category": "framework",
+    "aliases": [
+      "spark",
+      "pyspark",
+      "databricks",
+      "spark sql"
+    ],
+    "description": "Distributed engine for large-scale batch and streaming data processing.",
+    "prerequisites": [
+      "sql",
+      "python"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Spark architecture: driver and executors",
+        "DataFrame API in PySpark",
+        "Reading and writing Parquet"
+      ],
+      "intermediate": [
+        "Transformations vs actions and lazy evaluation",
+        "Spark SQL and joins",
+        "Partitioning and shuffles"
+      ],
+      "advanced": [
+        "Handling skew and spill",
+        "Structured Streaming",
+        "Tuning with the Spark UI",
+        "Delta Lake table optimization"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Apache Spark Quick Start",
+        "url": "https://spark.apache.org/docs/latest/quick-start.html",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "airflow",
+    "name": "Apache Airflow",
+    "category": "tool",
+    "aliases": [
+      "airflow",
+      "dags",
+      "workflow orchestration"
+    ],
+    "description": "Platform for authoring, scheduling and monitoring data pipelines as code.",
+    "prerequisites": [
+      "python"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "DAGs, tasks and operators",
+        "Scheduling and the web UI",
+        "Task dependencies"
+      ],
+      "intermediate": [
+        "TaskFlow API and XComs",
+        "Retries, SLAs and backfills",
+        "Connections and hooks"
+      ],
+      "advanced": [
+        "Dynamic task mapping",
+        "Data-aware scheduling with assets",
+        "Deploying and scaling executors"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Airflow Tutorial: Fundamental Concepts",
+        "url": "https://airflow.apache.org/docs/apache-airflow/stable/tutorial/fundamentals.html",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "dbt",
+    "name": "dbt",
+    "category": "tool",
+    "aliases": [
+      "data build tool",
+      "dbt core",
+      "dbt cloud"
+    ],
+    "description": "SQL-first transformation tool for building tested warehouse models.",
+    "prerequisites": [
+      "sql"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Models as SELECT statements",
+        "ref and source functions",
+        "Running and building projects"
+      ],
+      "intermediate": [
+        "Data tests and documentation",
+        "Materializations and incremental models",
+        "Jinja and macros"
+      ],
+      "advanced": [
+        "Project structure for staging and marts",
+        "Snapshots for history",
+        "CI and slim builds",
+        "Semantic layer metrics"
+      ]
+    },
+    "resources": [
+      {
+        "title": "dbt Quickstart Guides",
+        "url": "https://docs.getdbt.com/guides",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "playwright",
+    "name": "Playwright",
+    "category": "framework",
+    "aliases": [
+      "playwright test"
+    ],
+    "description": "Microsoft's framework for reliable end-to-end browser testing.",
+    "prerequisites": [
+      "test-automation"
+    ],
+    "related": [
+      "selenium"
+    ],
+    "topics": {
+      "fundamental": [
+        "Installing and running first test",
+        "Locators and auto-waiting",
+        "Web-first assertions"
+      ],
+      "intermediate": [
+        "Fixtures and Page Object Model",
+        "API testing with request context",
+        "Network interception and mocking"
+      ],
+      "advanced": [
+        "Parallel sharding and projects",
+        "Traces and debugging failures",
+        "Visual and accessibility checks"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Playwright: Getting started",
+        "url": "https://playwright.dev/docs/intro",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "selenium",
+    "name": "Selenium",
+    "category": "framework",
+    "aliases": [
+      "selenium webdriver",
+      "webdriver",
+      "selenium grid"
+    ],
+    "description": "Browser automation framework based on the WebDriver standard.",
+    "prerequisites": [
+      "test-automation"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "WebDriver setup and browsers",
+        "Locating and interacting with elements",
+        "Basic assertions with a test runner"
+      ],
+      "intermediate": [
+        "Explicit waits and synchronization",
+        "Page Object Model design",
+        "Handling frames, windows and alerts"
+      ],
+      "advanced": [
+        "Selenium Grid and parallel runs",
+        "Cross-browser cloud execution",
+        "Reducing flakiness in large suites"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Selenium Documentation",
+        "url": "https://www.selenium.dev/documentation/",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "jest",
+    "name": "Jest",
+    "category": "framework",
+    "aliases": [
+      "vitest",
+      "javascript unit testing"
+    ],
+    "description": "JavaScript testing framework for unit and integration tests.",
+    "prerequisites": [
+      "javascript",
+      "software-testing"
+    ],
+    "related": [
+      "pytest",
+      "junit"
+    ],
+    "topics": {
+      "fundamental": [
+        "Writing tests with describe and it",
+        "Matchers and assertions",
+        "Running and filtering tests"
+      ],
+      "intermediate": [
+        "Mocks, spies and timers",
+        "Async test patterns",
+        "Setup and teardown hooks"
+      ],
+      "advanced": [
+        "Code coverage thresholds",
+        "Snapshot testing trade-offs",
+        "Configuring projects and transforms"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Jest: Getting Started",
+        "url": "https://jestjs.io/docs/getting-started",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "pytest",
+    "name": "pytest",
+    "category": "framework",
+    "aliases": [
+      "py.test",
+      "python unit testing"
+    ],
+    "description": "Python testing framework with fixtures and plugins.",
+    "prerequisites": [
+      "python",
+      "software-testing"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Test discovery and assert statements",
+        "Running and selecting tests",
+        "Reading failure output"
+      ],
+      "intermediate": [
+        "Fixtures and fixture scopes",
+        "Parametrized tests",
+        "Markers and configuration files"
+      ],
+      "advanced": [
+        "Writing plugins and hooks",
+        "Parallel runs with xdist",
+        "Coverage and reporting integration"
+      ]
+    },
+    "resources": [
+      {
+        "title": "pytest: Get Started",
+        "url": "https://docs.pytest.org/en/stable/getting-started.html",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "junit",
+    "name": "JUnit",
+    "category": "framework",
+    "aliases": [
+      "junit5",
+      "junit 5",
+      "testng",
+      "java unit testing"
+    ],
+    "description": "Standard unit testing framework for Java.",
+    "prerequisites": [
+      "java",
+      "software-testing"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Test classes and annotations",
+        "Assertions and failure messages",
+        "Running tests with Maven or Gradle"
+      ],
+      "intermediate": [
+        "Lifecycle hooks and nesting",
+        "Parameterized tests",
+        "Tagging and filtering tests"
+      ],
+      "advanced": [
+        "Extensions model",
+        "Parallel execution configuration",
+        "Integrating with mocking libraries"
+      ]
+    },
+    "resources": [
+      {
+        "title": "JUnit User Guide",
+        "url": "https://docs.junit.org/current/",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "aws",
+    "name": "AWS",
+    "category": "cloud",
+    "aliases": [
+      "amazon web services",
+      "ec2",
+      "s3",
+      "aws lambda"
+    ],
+    "description": "Amazon's cloud platform for compute, storage, data and managed services.",
+    "prerequisites": [
+      "networking"
+    ],
+    "related": [
+      "azure",
+      "gcp"
+    ],
+    "topics": {
+      "fundamental": [
+        "Regions, availability zones and billing",
+        "EC2, S3 and core services",
+        "IAM users, roles and policies"
+      ],
+      "intermediate": [
+        "VPC design and security groups",
+        "Managed databases and load balancing",
+        "CloudWatch metrics and logs"
+      ],
+      "advanced": [
+        "Highly available, fault-tolerant architectures",
+        "Cost optimization and governance",
+        "Multi-account setups and organizations"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Getting Started with AWS",
+        "url": "https://aws.amazon.com/getting-started/",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "azure",
+    "name": "Microsoft Azure",
+    "category": "cloud",
+    "aliases": [
+      "azure",
+      "ms azure",
+      "azure cloud"
+    ],
+    "description": "Microsoft's cloud platform for compute, data, identity and AI services.",
+    "prerequisites": [
+      "networking"
+    ],
+    "related": [
+      "gcp"
+    ],
+    "topics": {
+      "fundamental": [
+        "Subscriptions, resource groups and regions",
+        "Virtual machines and storage accounts",
+        "Entra ID identities and RBAC"
+      ],
+      "intermediate": [
+        "Virtual networks and NSGs",
+        "App Service, AKS and managed databases",
+        "Azure Monitor and Log Analytics"
+      ],
+      "advanced": [
+        "Landing zones and policy governance",
+        "Resilient multi-region architectures",
+        "Cost management and security posture"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Azure Fundamentals: Describe cloud concepts",
+        "url": "https://learn.microsoft.com/en-us/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/",
+        "kind": "course",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "gcp",
+    "name": "Google Cloud",
+    "category": "cloud",
+    "aliases": [
+      "gcp",
+      "google cloud platform",
+      "bigquery"
+    ],
+    "description": "Google's cloud platform for compute, data analytics and AI.",
+    "prerequisites": [
+      "networking"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Projects, billing and regions",
+        "Compute Engine and Cloud Storage",
+        "IAM roles and service accounts"
+      ],
+      "intermediate": [
+        "VPC networks and firewall rules",
+        "GKE, Cloud Run and Cloud SQL",
+        "Cloud Logging and Monitoring"
+      ],
+      "advanced": [
+        "Organization policies and folder hierarchy",
+        "Highly available service design",
+        "Cost controls and Security Command Center"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Google Cloud: Get started",
+        "url": "https://docs.cloud.google.com/docs/get-started",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "docker",
+    "name": "Docker",
+    "category": "tool",
+    "aliases": [
+      "containers",
+      "containerization",
+      "dockerfile",
+      "docker compose"
+    ],
+    "description": "Tool for packaging and running applications in containers.",
+    "prerequisites": [
+      "linux"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Images, containers and registries",
+        "Running and inspecting containers",
+        "Writing a basic Dockerfile"
+      ],
+      "intermediate": [
+        "Multi-stage builds and small images",
+        "Volumes, networks and Compose",
+        "Environment config and secrets handling"
+      ],
+      "advanced": [
+        "Image scanning and hardening",
+        "Build caching and BuildKit tuning",
+        "Debugging container runtime issues"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Docker Get Started",
+        "url": "https://docs.docker.com/get-started/",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "kubernetes",
+    "name": "Kubernetes",
+    "category": "tool",
+    "aliases": [
+      "k8s",
+      "kube",
+      "kubectl",
+      "eks",
+      "aks",
+      "gke",
+      "helm"
+    ],
+    "description": "Container orchestration platform for deploying and scaling services.",
+    "prerequisites": [
+      "docker"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Pods, deployments and services",
+        "kubectl basics and manifests",
+        "ConfigMaps and Secrets"
+      ],
+      "intermediate": [
+        "Ingress, Gateway API and DNS",
+        "Persistent volumes and storage classes",
+        "Helm and Kustomize packaging"
+      ],
+      "advanced": [
+        "RBAC and network policies",
+        "Autoscaling, scheduling and resource limits",
+        "Cluster troubleshooting and upgrades"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Learn Kubernetes Basics",
+        "url": "https://kubernetes.io/docs/tutorials/kubernetes-basics/",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "terraform",
+    "name": "Terraform",
+    "category": "tool",
+    "aliases": [
+      "hcl",
+      "infrastructure as code",
+      "iac",
+      "opentofu"
+    ],
+    "description": "Infrastructure-as-code tool for provisioning cloud resources declaratively.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Providers, resources and HCL syntax",
+        "Init, plan and apply workflow",
+        "Variables and outputs"
+      ],
+      "intermediate": [
+        "Remote state and state locking",
+        "Writing reusable modules",
+        "Workspaces and environment separation"
+      ],
+      "advanced": [
+        "Importing and refactoring existing infrastructure",
+        "Policy as code and drift detection",
+        "Testing modules and CI pipelines for IaC"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Terraform Tutorials",
+        "url": "https://developer.hashicorp.com/terraform/tutorials",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "git",
+    "name": "Git",
+    "category": "tool",
+    "aliases": [
+      "version control",
+      "github",
+      "gitlab",
+      "source control"
+    ],
+    "description": "Distributed version control system for tracking code changes.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Init, add, commit and log",
+        "Branching and merging",
+        "Remotes, push and pull"
+      ],
+      "intermediate": [
+        "Pull requests and code review",
+        "Resolving merge conflicts",
+        "Rebase, stash and cherry-pick"
+      ],
+      "advanced": [
+        "Branching strategies for teams",
+        "History rewriting safely",
+        "Bisect and reflog recovery"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Pro Git book",
+        "url": "https://git-scm.com/book/en/v2",
+        "kind": "book",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "github-actions",
+    "name": "GitHub Actions",
+    "category": "tool",
+    "aliases": [
+      "gha",
+      "github workflows"
+    ],
+    "description": "GitHub's built-in CI/CD and automation workflows.",
+    "prerequisites": [
+      "git",
+      "ci-cd"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Workflows, jobs and steps",
+        "Event triggers and runners",
+        "Using marketplace actions"
+      ],
+      "intermediate": [
+        "Matrix builds and caching",
+        "Secrets, variables and environments",
+        "Uploading artifacts and reports"
+      ],
+      "advanced": [
+        "Reusable workflows and composite actions",
+        "OIDC federation to cloud providers",
+        "Self-hosted runners and hardening"
+      ]
+    },
+    "resources": [
+      {
+        "title": "GitHub Actions Documentation",
+        "url": "https://docs.github.com/en/actions",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "linux",
+    "name": "Linux",
+    "category": "tool",
+    "aliases": [
+      "unix",
+      "ubuntu",
+      "rhel",
+      "linux administration",
+      "command line"
+    ],
+    "description": "Open-source operating system that runs most servers and cloud workloads.",
+    "prerequisites": [],
+    "related": [
+      "windows"
+    ],
+    "topics": {
+      "fundamental": [
+        "Shell navigation and file commands",
+        "File permissions, users and groups",
+        "Package managers and installing software"
+      ],
+      "intermediate": [
+        "Processes, signals and job control",
+        "systemd services and journal logs",
+        "SSH keys and remote administration"
+      ],
+      "advanced": [
+        "Performance troubleshooting with system tools",
+        "Filesystems, disks and storage management",
+        "Kernel tuning and hardening basics"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Introduction to Linux (LFS101)",
+        "url": "https://training.linuxfoundation.org/training/introduction-to-linux/",
+        "kind": "course",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "windows",
+    "name": "Windows & Active Directory",
+    "category": "tool",
+    "aliases": [
+      "windows server",
+      "active directory",
+      "ad ds",
+      "windows event logs",
+      "group policy",
+      "powershell"
+    ],
+    "description": "Windows administration, event logging and Active Directory identity.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Windows file system and processes",
+        "Users, groups and permissions",
+        "Event Viewer and core logs"
+      ],
+      "intermediate": [
+        "Active Directory structure and GPOs",
+        "Key security event IDs",
+        "PowerShell for investigation"
+      ],
+      "advanced": [
+        "Detecting credential and Kerberos attacks",
+        "Sysmon and advanced auditing",
+        "Hardening domain controllers"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Active Directory Domain Services Overview",
+        "url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview",
+        "kind": "docs",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "postgresql",
+    "name": "PostgreSQL",
+    "category": "tool",
+    "aliases": [
+      "postgres",
+      "psql",
+      "pg",
+      "pgvector"
+    ],
+    "description": "Open-source relational database known for reliability and extensibility.",
+    "prerequisites": [
+      "sql"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Creating databases and tables",
+        "Basic CRUD queries",
+        "Data types and constraints"
+      ],
+      "intermediate": [
+        "Indexes and query planning",
+        "Transactions and locking",
+        "JSONB and views"
+      ],
+      "advanced": [
+        "Partitioning and replication",
+        "Performance tuning and vacuum",
+        "Row-level security and roles"
+      ]
+    },
+    "resources": [
+      {
+        "title": "PostgreSQL Tutorial",
+        "url": "https://www.postgresql.org/docs/current/tutorial.html",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "mongodb",
+    "name": "MongoDB",
+    "category": "tool",
+    "aliases": [
+      "mongo",
+      "nosql",
+      "document database"
+    ],
+    "description": "Document-oriented NoSQL database.",
+    "prerequisites": [],
+    "related": [
+      "postgresql"
+    ],
+    "topics": {
+      "fundamental": [
+        "Documents and collections",
+        "CRUD operations",
+        "Query filters and projection"
+      ],
+      "intermediate": [
+        "Schema design and embedding",
+        "Indexes and explain",
+        "Aggregation pipeline"
+      ],
+      "advanced": [
+        "Transactions and consistency",
+        "Replica sets and sharding",
+        "Performance monitoring"
+      ]
+    },
+    "resources": [
+      {
+        "title": "MongoDB Manual",
+        "url": "https://www.mongodb.com/docs/manual/",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "redis",
+    "name": "Redis",
+    "category": "tool",
+    "aliases": [
+      "caching",
+      "in-memory cache"
+    ],
+    "description": "In-memory data store used for caching, queues and sessions.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Keys, strings and expiry",
+        "Lists, hashes and sets",
+        "Using Redis CLI"
+      ],
+      "intermediate": [
+        "Caching strategies and TTLs",
+        "Pub/sub and streams",
+        "Sorted sets for leaderboards"
+      ],
+      "advanced": [
+        "Persistence and eviction policies",
+        "Clustering and high availability",
+        "Distributed locks and rate limiting"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Redis documentation",
+        "url": "https://redis.io/docs/latest/",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "kafka",
+    "name": "Apache Kafka",
+    "category": "tool",
+    "aliases": [
+      "kafka",
+      "event streaming",
+      "message broker"
+    ],
+    "description": "Distributed event streaming platform for real-time data pipelines.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Topics, partitions and offsets",
+        "Producers and consumers",
+        "Running a local broker"
+      ],
+      "intermediate": [
+        "Consumer groups and rebalancing",
+        "Delivery semantics and retries",
+        "Schema management for events"
+      ],
+      "advanced": [
+        "Exactly-once and transactions",
+        "Stream processing patterns",
+        "Cluster sizing and monitoring"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Apache Kafka Quickstart",
+        "url": "https://kafka.apache.org/quickstart/",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "snowflake",
+    "name": "Snowflake",
+    "category": "tool",
+    "aliases": [
+      "snowflake data cloud"
+    ],
+    "description": "Cloud data warehouse with separate storage and compute.",
+    "prerequisites": [
+      "sql"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Warehouses, databases and schemas",
+        "Loading data with stages and COPY",
+        "Querying in Snowsight"
+      ],
+      "intermediate": [
+        "Virtual warehouse sizing and credits",
+        "Time travel and zero-copy cloning",
+        "Semi-structured data with VARIANT"
+      ],
+      "advanced": [
+        "Streams and tasks for pipelines",
+        "Role-based access and masking",
+        "Clustering and cost optimization"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Snowflake: Getting Started",
+        "url": "https://docs.snowflake.com/en/user-guide-getting-started",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "excel",
+    "name": "Microsoft Excel",
+    "category": "tool",
+    "aliases": [
+      "excel",
+      "ms excel",
+      "spreadsheets",
+      "pivot tables",
+      "vlookup"
+    ],
+    "description": "Spreadsheet tool for analysis, modelling and reporting.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Formulas, references and basic functions",
+        "Sorting, filtering and formatting",
+        "Basic charts"
+      ],
+      "intermediate": [
+        "Lookup functions like XLOOKUP",
+        "PivotTables and PivotCharts",
+        "Data cleaning and validation",
+        "Conditional logic functions"
+      ],
+      "advanced": [
+        "Power Query for data shaping",
+        "Data Model and Power Pivot",
+        "Dynamic array formulas",
+        "What-if analysis and forecasting"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Microsoft Excel Help & Learning",
+        "url": "https://support.microsoft.com/en-us/excel/",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "power-bi",
+    "name": "Power BI",
+    "category": "tool",
+    "aliases": [
+      "powerbi",
+      "pbi",
+      "dax",
+      "power query"
+    ],
+    "description": "Microsoft's business intelligence and dashboarding platform.",
+    "prerequisites": [
+      "data-visualization"
+    ],
+    "related": [
+      "tableau"
+    ],
+    "topics": {
+      "fundamental": [
+        "Connecting to data sources",
+        "Power Query cleaning steps",
+        "Building basic report visuals"
+      ],
+      "intermediate": [
+        "Star schema relationships and date tables",
+        "DAX measures and CALCULATE",
+        "Filters, slicers and drillthrough",
+        "Import vs DirectQuery modes"
+      ],
+      "advanced": [
+        "Time intelligence and calculation groups",
+        "Performance tuning with Performance Analyzer",
+        "Row-level security and workspaces",
+        "Scheduled refresh and gateways"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Microsoft Learn: Power BI Training",
+        "url": "https://learn.microsoft.com/en-us/training/powerplatform/power-bi",
+        "kind": "course",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "tableau",
+    "name": "Tableau",
+    "category": "tool",
+    "aliases": [
+      "tableau desktop",
+      "tableau cloud"
+    ],
+    "description": "Business intelligence tool for interactive dashboards.",
+    "prerequisites": [
+      "data-visualization"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Connecting data; dimensions vs measures",
+        "Building basic worksheets",
+        "Filters and sorting"
+      ],
+      "intermediate": [
+        "Calculated fields and table calculations",
+        "Interactive dashboards and actions",
+        "Joins, relationships and blends",
+        "Parameters for interactivity"
+      ],
+      "advanced": [
+        "Level of detail expressions",
+        "Extract performance optimization",
+        "Publishing and permissions on Tableau Cloud",
+        "Story points for presentations"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Tableau Desktop Get Started Tutorial",
+        "url": "https://help.tableau.com/current/guides/get-started-tutorial/en-us/get-started-tutorial-home.htm",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "figma",
+    "name": "Figma",
+    "category": "tool",
+    "aliases": [
+      "figjam"
+    ],
+    "description": "Collaborative interface design and prototyping tool.",
+    "prerequisites": [],
+    "related": [
+      "ux-design"
+    ],
+    "topics": {
+      "fundamental": [
+        "Navigating files and frames",
+        "Inspecting specs and measurements",
+        "Exporting assets"
+      ],
+      "intermediate": [
+        "Components and variants",
+        "Auto layout behavior",
+        "Dev Mode handoff"
+      ],
+      "advanced": [
+        "Design tokens and variables",
+        "Prototyping interactions",
+        "Design system collaboration"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Figma Help Center",
+        "url": "https://help.figma.com/hc/en-us",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "postman",
+    "name": "Postman",
+    "category": "tool",
+    "aliases": [
+      "api testing",
+      "newman"
+    ],
+    "description": "Platform for exploring, testing and documenting APIs.",
+    "prerequisites": [
+      "http"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Sending requests and reading responses",
+        "Collections and environments",
+        "Authorization settings"
+      ],
+      "intermediate": [
+        "Test scripts and assertions",
+        "Variables and request chaining",
+        "Data-driven runs"
+      ],
+      "advanced": [
+        "Running collections in CI with CLI",
+        "Mock servers and API contracts",
+        "Monitoring APIs on schedule"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Postman Docs: Overview",
+        "url": "https://learning.postman.com/docs/getting-started/overview/",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "prometheus",
+    "name": "Prometheus",
+    "category": "tool",
+    "aliases": [
+      "promql"
+    ],
+    "description": "Open-source metrics collection and alerting system.",
+    "prerequisites": [
+      "observability"
+    ],
+    "related": [
+      "grafana"
+    ],
+    "topics": {
+      "fundamental": [
+        "Pull-based metrics model",
+        "Metric types and labels",
+        "Basic PromQL queries"
+      ],
+      "intermediate": [
+        "Exporters and service discovery",
+        "Recording and alerting rules",
+        "Alertmanager routing and silences"
+      ],
+      "advanced": [
+        "Long-term storage and federation",
+        "Cardinality control and performance",
+        "Monitoring Kubernetes at scale"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Prometheus Overview",
+        "url": "https://prometheus.io/docs/introduction/overview/",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "grafana",
+    "name": "Grafana",
+    "category": "tool",
+    "aliases": [
+      "grafana dashboards"
+    ],
+    "description": "Dashboards and alerting for metrics, logs and traces.",
+    "prerequisites": [
+      "observability"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Connecting data sources",
+        "Building panels and dashboards",
+        "Time ranges and variables"
+      ],
+      "intermediate": [
+        "Template variables for reusable dashboards",
+        "Grafana alerting setup",
+        "Exploring logs and traces together"
+      ],
+      "advanced": [
+        "Dashboards as code and provisioning",
+        "Folder permissions and team access",
+        "Designing SLO and executive dashboards"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Grafana: Get started",
+        "url": "https://grafana.com/docs/grafana/latest/fundamentals/getting-started/",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "dsa",
+    "name": "Data Structures & Algorithms",
+    "category": "concept",
+    "aliases": [
+      "dsa",
+      "algorithms",
+      "data structures",
+      "leetcode"
+    ],
+    "description": "Core structures and algorithms for efficient problem solving.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Big-O time and space",
+        "Arrays, strings and hash maps",
+        "Stacks and queues"
+      ],
+      "intermediate": [
+        "Linked lists and trees",
+        "Sorting and binary search",
+        "Recursion and two pointers"
+      ],
+      "advanced": [
+        "Graphs, BFS and DFS",
+        "Dynamic programming",
+        "Heaps and greedy algorithms"
+      ]
+    },
+    "resources": [
+      {
+        "title": "MIT OCW 6.006 Introduction to Algorithms",
+        "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
+        "kind": "course",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "oop",
+    "name": "Object-Oriented Programming",
+    "category": "concept",
+    "aliases": [
+      "object oriented programming",
+      "object-oriented design",
+      "ood",
+      "solid principles"
+    ],
+    "description": "Designing software around objects, encapsulation and polymorphism.",
+    "prerequisites": [],
+    "related": [
+      "design-patterns"
+    ],
+    "topics": {
+      "fundamental": [
+        "Classes and objects",
+        "Encapsulation and access modifiers",
+        "Constructors and methods"
+      ],
+      "intermediate": [
+        "Inheritance and polymorphism",
+        "Interfaces and abstraction",
+        "Composition over inheritance"
+      ],
+      "advanced": [
+        "SOLID design principles",
+        "Domain modeling with objects",
+        "Refactoring class hierarchies"
+      ]
+    },
+    "resources": [
+      {
+        "title": "dev.java: Object-Oriented Programming Concepts",
+        "url": "https://dev.java/learn/oop/",
+        "kind": "tutorial",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "design-patterns",
+    "name": "Design Patterns",
+    "category": "concept",
+    "aliases": [
+      "gof patterns",
+      "software design patterns",
+      "clean code"
+    ],
+    "description": "Reusable solutions to recurring software design problems.",
+    "prerequisites": [
+      "oop"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Why patterns exist",
+        "Singleton and factory",
+        "Observer pattern"
+      ],
+      "intermediate": [
+        "Strategy and adapter",
+        "Decorator and facade",
+        "Dependency injection"
+      ],
+      "advanced": [
+        "Architectural patterns like MVC/MVVM",
+        "Anti-patterns and trade-offs",
+        "Patterns in distributed systems"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Refactoring.Guru: Design Patterns",
+        "url": "https://refactoring.guru/design-patterns",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "http",
+    "name": "HTTP & Web Fundamentals",
+    "category": "concept",
+    "aliases": [
+      "http",
+      "https",
+      "http/2",
+      "web protocols"
+    ],
+    "description": "How browsers, servers and APIs talk over HTTP.",
+    "prerequisites": [
+      "networking"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Request/response cycle",
+        "Methods and status codes",
+        "Headers and URLs"
+      ],
+      "intermediate": [
+        "Cookies and sessions",
+        "Caching headers and ETags",
+        "CORS and same-origin policy"
+      ],
+      "advanced": [
+        "HTTP/2 and HTTP/3 differences",
+        "TLS handshake basics",
+        "Connection reuse and latency tuning"
+      ]
+    },
+    "resources": [
+      {
+        "title": "MDN: Overview of HTTP",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "rest-api",
+    "name": "REST API Design",
+    "category": "concept",
+    "aliases": [
+      "rest",
+      "restful",
+      "restful apis",
+      "rest apis",
+      "openapi",
+      "swagger"
+    ],
+    "description": "Designing and consuming resource-oriented HTTP APIs.",
+    "prerequisites": [
+      "http"
+    ],
+    "related": [
+      "graphql"
+    ],
+    "topics": {
+      "fundamental": [
+        "Resources and endpoints",
+        "CRUD to HTTP verb mapping",
+        "JSON request and response shapes"
+      ],
+      "intermediate": [
+        "Pagination, filtering and sorting",
+        "Versioning and error formats",
+        "OpenAPI specifications"
+      ],
+      "advanced": [
+        "Idempotency and retries",
+        "Rate limiting and caching",
+        "Designing evolvable public APIs"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Azure Architecture: Web API design best practices",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "graphql",
+    "name": "GraphQL",
+    "category": "concept",
+    "aliases": [
+      "graph ql",
+      "apollo"
+    ],
+    "description": "Query language and runtime for flexible client-driven APIs.",
+    "prerequisites": [
+      "http"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Schema and types",
+        "Queries and fields",
+        "Mutations"
+      ],
+      "intermediate": [
+        "Resolvers and data sources",
+        "Client caching with Apollo or urql",
+        "Fragments and variables"
+      ],
+      "advanced": [
+        "N+1 and DataLoader batching",
+        "Subscriptions and federation",
+        "Query complexity limits"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Learn GraphQL",
+        "url": "https://graphql.org/learn/",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "system-design",
+    "name": "System Design",
+    "category": "concept",
+    "aliases": [
+      "system architecture",
+      "distributed systems",
+      "scalability",
+      "high-level design",
+      "software architecture"
+    ],
+    "description": "Designing scalable, reliable systems from components and trade-offs.",
+    "prerequisites": [
+      "rest-api"
+    ],
+    "related": [
+      "microservices"
+    ],
+    "topics": {
+      "fundamental": [
+        "Client-server and request flow",
+        "Vertical vs horizontal scaling",
+        "Load balancers and caching basics"
+      ],
+      "intermediate": [
+        "Database replication and sharding",
+        "Queues and async processing",
+        "CAP and consistency trade-offs"
+      ],
+      "advanced": [
+        "Designing for high availability",
+        "Capacity estimation",
+        "Multi-region architecture"
+      ]
+    },
+    "resources": [
+      {
+        "title": "The System Design Primer",
+        "url": "https://github.com/donnemartin/system-design-primer",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "microservices",
+    "name": "Microservices",
+    "category": "concept",
+    "aliases": [
+      "microservice architecture",
+      "service-oriented architecture",
+      "soa"
+    ],
+    "description": "Building systems as small, independently deployable services.",
+    "prerequisites": [
+      "rest-api",
+      "docker"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Monolith vs microservices",
+        "Service boundaries and ownership",
+        "Inter-service communication"
+      ],
+      "intermediate": [
+        "API gateway and service discovery",
+        "Database per service",
+        "Event-driven integration"
+      ],
+      "advanced": [
+        "Sagas and distributed transactions",
+        "Resilience: retries and circuit breakers",
+        "Decomposing a monolith"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Microservices.io patterns",
+        "url": "https://microservices.io/",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "data-modeling",
+    "name": "Data Modeling & Database Design",
+    "category": "concept",
+    "aliases": [
+      "database design",
+      "schema design",
+      "normalization",
+      "er modeling",
+      "dimensional modeling"
+    ],
+    "description": "Structuring data into entities, relationships and schemas.",
+    "prerequisites": [
+      "sql"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Entities, keys and relationships",
+        "Normalization basics",
+        "Facts vs dimensions"
+      ],
+      "intermediate": [
+        "Star and snowflake schemas",
+        "Grain definition",
+        "Slowly changing dimensions"
+      ],
+      "advanced": [
+        "Data vault and wide-table tradeoffs",
+        "Modeling for semantic layers",
+        "Designing for query performance"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Power BI Guidance: Understand Star Schema",
+        "url": "https://learn.microsoft.com/en-us/power-bi/guidance/star-schema",
+        "kind": "guide",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "web-accessibility",
+    "name": "Web Accessibility",
+    "category": "concept",
+    "aliases": [
+      "a11y",
+      "wcag",
+      "aria"
+    ],
+    "description": "Making web products usable by people with disabilities.",
+    "prerequisites": [
+      "html"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Semantic HTML for assistive tech",
+        "Alt text and labels",
+        "Color contrast rules"
+      ],
+      "intermediate": [
+        "Keyboard navigation and focus",
+        "ARIA roles and states",
+        "WCAG success criteria"
+      ],
+      "advanced": [
+        "Accessible custom widgets",
+        "Screen reader testing",
+        "Automated a11y checks in CI"
+      ]
+    },
+    "resources": [
+      {
+        "title": "W3C WAI: Introduction to Web Accessibility",
+        "url": "https://www.w3.org/WAI/fundamentals/accessibility-intro/",
+        "kind": "guide",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "web-performance",
+    "name": "Web Performance",
+    "category": "concept",
+    "aliases": [
+      "core web vitals",
+      "page speed",
+      "frontend performance"
+    ],
+    "description": "Making web pages load and respond fast.",
+    "prerequisites": [
+      "javascript"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Core Web Vitals overview",
+        "Image sizing and formats",
+        "Measuring with DevTools"
+      ],
+      "intermediate": [
+        "Code splitting and lazy loading",
+        "Caching and CDNs",
+        "Critical rendering path"
+      ],
+      "advanced": [
+        "Interaction latency optimization",
+        "Real-user monitoring",
+        "Performance budgets"
+      ]
+    },
+    "resources": [
+      {
+        "title": "web.dev: Learn Performance",
+        "url": "https://web.dev/learn/performance",
+        "kind": "course",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "responsive-design",
+    "name": "Responsive Design",
+    "category": "concept",
+    "aliases": [
+      "mobile-first design",
+      "responsive web design",
+      "media queries"
+    ],
+    "description": "Layouts that adapt to any screen size.",
+    "prerequisites": [
+      "css"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Viewport meta and fluid widths",
+        "Media queries",
+        "Mobile-first approach"
+      ],
+      "intermediate": [
+        "Flexible grids and images",
+        "Responsive typography",
+        "Breakpoint strategy"
+      ],
+      "advanced": [
+        "Container queries",
+        "Responsive images with srcset",
+        "Cross-device testing"
+      ]
+    },
+    "resources": [
+      {
+        "title": "web.dev: Learn Responsive Design",
+        "url": "https://web.dev/learn/design",
+        "kind": "course",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "state-management",
+    "name": "State Management",
+    "category": "concept",
+    "aliases": [
+      "redux",
+      "zustand",
+      "ngrx",
+      "pinia",
+      "client state"
+    ],
+    "description": "Managing application state across UI components.",
+    "prerequisites": [
+      "javascript"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Local vs shared state",
+        "Derived state and props",
+        "Unidirectional data flow"
+      ],
+      "intermediate": [
+        "Context or provider patterns",
+        "Store libraries like Redux or Zustand",
+        "Server state with query caching"
+      ],
+      "advanced": [
+        "Normalized state shapes",
+        "Optimistic updates",
+        "State machines for complex flows"
+      ]
+    },
+    "resources": [
+      {
+        "title": "React: Managing State",
+        "url": "https://react.dev/learn/managing-state",
+        "kind": "docs",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "auth",
+    "name": "Authentication & Authorization",
+    "category": "concept",
+    "aliases": [
+      "oauth",
+      "oauth2",
+      "jwt",
+      "sso",
+      "openid connect",
+      "oidc",
+      "authn",
+      "authz"
+    ],
+    "description": "Verifying users and controlling what they can access in applications.",
+    "prerequisites": [
+      "http"
+    ],
+    "related": [
+      "iam"
+    ],
+    "topics": {
+      "fundamental": [
+        "Authentication vs authorization",
+        "Password hashing basics",
+        "Sessions and cookies"
+      ],
+      "intermediate": [
+        "JWT access and refresh tokens",
+        "OAuth 2.0 and OpenID Connect",
+        "Role-based access control"
+      ],
+      "advanced": [
+        "MFA and passkeys",
+        "Token storage and revocation",
+        "Fine-grained permission models"
+      ]
+    },
+    "resources": [
+      {
+        "title": "OWASP Authentication Cheat Sheet",
+        "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "web-security",
+    "name": "Web Application Security",
+    "category": "concept",
+    "aliases": [
+      "owasp",
+      "owasp top 10",
+      "appsec",
+      "application security",
+      "secure coding"
+    ],
+    "description": "Preventing common vulnerabilities in web applications and APIs.",
+    "prerequisites": [
+      "http"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "HTTPS and secure cookies",
+        "Input validation",
+        "OWASP Top 10 overview"
+      ],
+      "intermediate": [
+        "XSS and CSRF defenses",
+        "SQL injection prevention",
+        "Content Security Policy"
+      ],
+      "advanced": [
+        "Secrets management",
+        "Dependency and supply-chain risk",
+        "Threat modeling"
+      ]
+    },
+    "resources": [
+      {
+        "title": "OWASP Top Ten",
+        "url": "https://owasp.org/projects/top-ten",
+        "kind": "guide",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "software-testing",
+    "name": "Software Testing Fundamentals",
+    "category": "concept",
+    "aliases": [
+      "testing",
+      "unit testing",
+      "tdd",
+      "qa",
+      "quality assurance",
+      "istqb"
+    ],
+    "description": "Principles and techniques for verifying software quality.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Testing principles and objectives",
+        "Test levels and test types",
+        "Writing clear test cases and bug reports"
+      ],
+      "intermediate": [
+        "Black-box design techniques",
+        "Risk-based test prioritization",
+        "Test pyramid and shift-left testing"
+      ],
+      "advanced": [
+        "Test strategy and planning",
+        "Quality metrics and release readiness",
+        "Contract and mutation testing concepts"
+      ]
+    },
+    "resources": [
+      {
+        "title": "ISTQB Certified Tester Foundation Level v4.0",
+        "url": "https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/",
+        "kind": "guide",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "test-automation",
+    "name": "Test Automation",
+    "category": "concept",
+    "aliases": [
+      "automation testing",
+      "automated testing",
+      "test frameworks",
+      "page object model"
+    ],
+    "description": "Designing maintainable automated test suites.",
+    "prerequisites": [
+      "software-testing"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "What to automate and why",
+        "Anatomy of an automated test",
+        "Assertions and test reports"
+      ],
+      "intermediate": [
+        "Page Object Model and fixtures",
+        "Test data management",
+        "Running tests in CI pipelines"
+      ],
+      "advanced": [
+        "Designing scalable test frameworks",
+        "Parallel runs and flaky test control",
+        "Mocking, contract and visual tests"
+      ]
+    },
+    "resources": [
+      {
+        "title": "The Practical Test Pyramid",
+        "url": "https://martinfowler.com/articles/practical-test-pyramid.html",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "performance-testing",
+    "name": "Performance & Load Testing",
+    "category": "concept",
+    "aliases": [
+      "load testing",
+      "stress testing",
+      "jmeter",
+      "k6",
+      "gatling"
+    ],
+    "description": "Measuring how systems behave under load.",
+    "prerequisites": [
+      "test-automation"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Load, stress, spike and soak tests",
+        "Key metrics like latency percentiles",
+        "Writing a simple load script"
+      ],
+      "intermediate": [
+        "Thresholds and pass/fail criteria",
+        "Realistic user scenarios and data",
+        "Running load tests in CI"
+      ],
+      "advanced": [
+        "Distributed load generation",
+        "Correlating results with observability data",
+        "Finding and reporting bottlenecks"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Grafana k6 Documentation",
+        "url": "https://grafana.com/docs/k6/latest/",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "ci-cd",
+    "name": "CI/CD",
+    "category": "concept",
+    "aliases": [
+      "ci/cd",
+      "cicd",
+      "continuous integration",
+      "continuous delivery",
+      "continuous deployment",
+      "jenkins"
+    ],
+    "description": "Automating build, test and deployment pipelines.",
+    "prerequisites": [
+      "git"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Continuous integration principles",
+        "Build, test and artifact stages",
+        "Triggering pipelines on commits"
+      ],
+      "intermediate": [
+        "Automated deploys across environments",
+        "Managing pipeline secrets safely",
+        "Quality gates and test reporting"
+      ],
+      "advanced": [
+        "Blue-green and canary releases",
+        "Rollbacks and progressive delivery",
+        "GitOps-driven continuous deployment"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Continuous Integration (Martin Fowler)",
+        "url": "https://martinfowler.com/articles/continuousIntegration.html",
+        "kind": "guide",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "networking",
+    "name": "Computer Networking",
+    "category": "concept",
+    "aliases": [
+      "tcp/ip",
+      "dns",
+      "network fundamentals",
+      "osi model",
+      "subnetting"
+    ],
+    "description": "How data moves between machines: addressing, routing and protocols.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "OSI and TCP/IP layers",
+        "IP addressing and subnetting",
+        "DNS, DHCP and common ports"
+      ],
+      "intermediate": [
+        "Routing, NAT and firewalls",
+        "Load balancers and proxies",
+        "TLS certificates and handshakes"
+      ],
+      "advanced": [
+        "Packet capture and traffic analysis",
+        "VPNs and cloud virtual networks",
+        "Diagnosing latency and connectivity faults"
+      ]
+    },
+    "resources": [
+      {
+        "title": "MDN: How does the Internet work?",
+        "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/How_does_the_Internet_work",
+        "kind": "guide",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "observability",
+    "name": "Observability & Monitoring",
+    "category": "concept",
+    "aliases": [
+      "monitoring",
+      "logging",
+      "opentelemetry",
+      "otel",
+      "tracing",
+      "apm"
+    ],
+    "description": "Understanding running systems through metrics, logs and traces.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Metrics, logs and traces explained",
+        "Why monitoring and alerting matter",
+        "Reading dashboards and log searches"
+      ],
+      "intermediate": [
+        "Instrumenting apps with OpenTelemetry",
+        "Centralized log collection pipelines",
+        "Designing actionable alerts"
+      ],
+      "advanced": [
+        "Distributed tracing across services",
+        "SLO-based alerting and error budgets",
+        "Managing telemetry cost and cardinality"
+      ]
+    },
+    "resources": [
+      {
+        "title": "OpenTelemetry Observability Primer",
+        "url": "https://opentelemetry.io/docs/concepts/observability-primer/",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "sre",
+    "name": "Site Reliability Engineering",
+    "category": "concept",
+    "aliases": [
+      "sre practices",
+      "slo",
+      "slos",
+      "error budgets",
+      "reliability engineering"
+    ],
+    "description": "Engineering practices for running reliable production services.",
+    "prerequisites": [
+      "observability"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Reliability and toil concepts",
+        "SLIs, SLOs and SLAs",
+        "On-call basics"
+      ],
+      "intermediate": [
+        "Error budgets and release policy",
+        "Incident management roles",
+        "Capacity planning fundamentals"
+      ],
+      "advanced": [
+        "Blameless postmortem culture",
+        "Chaos engineering experiments",
+        "Reducing toil through automation"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Google SRE Book",
+        "url": "https://sre.google/sre-book/table-of-contents/",
+        "kind": "book",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "iam",
+    "name": "Identity & Access Management",
+    "category": "concept",
+    "aliases": [
+      "iam",
+      "rbac",
+      "least privilege",
+      "entra id",
+      "identity management"
+    ],
+    "description": "Managing identities, roles and permissions across systems.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Authentication versus authorization",
+        "Users, groups and roles",
+        "Principle of least privilege"
+      ],
+      "intermediate": [
+        "MFA, SSO and federation",
+        "Role-based and attribute-based access",
+        "Service accounts and workload identities"
+      ],
+      "advanced": [
+        "Privileged access management",
+        "Access reviews and identity governance",
+        "Detecting identity-based attacks"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Microsoft Entra: Identity fundamental concepts",
+        "url": "https://learn.microsoft.com/en-us/entra/fundamentals/identity-fundamental-concepts",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "security-fundamentals",
+    "name": "Cybersecurity Fundamentals",
+    "category": "concept",
+    "aliases": [
+      "infosec",
+      "information security",
+      "cia triad",
+      "security+",
+      "nist csf"
+    ],
+    "description": "Core security concepts: threats, controls, risk and frameworks.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "CIA triad and core terminology",
+        "Threats, vulnerabilities and risk",
+        "Common attack types and malware"
+      ],
+      "intermediate": [
+        "Cryptography, hashing and PKI basics",
+        "Security controls and frameworks like NIST CSF",
+        "Secure configuration and hardening"
+      ],
+      "advanced": [
+        "Risk assessment and threat modeling",
+        "Zero trust architecture principles",
+        "Governance, compliance and audit readiness"
+      ]
+    },
+    "resources": [
+      {
+        "title": "NIST Cybersecurity Framework",
+        "url": "https://www.nist.gov/cyberframework",
+        "kind": "guide",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "network-security",
+    "name": "Network Security",
+    "category": "concept",
+    "aliases": [
+      "firewalls",
+      "ids/ips",
+      "network defense",
+      "packet analysis",
+      "wireshark"
+    ],
+    "description": "Protecting networks with segmentation, firewalls and traffic analysis.",
+    "prerequisites": [
+      "networking",
+      "security-fundamentals"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Firewalls and segmentation basics",
+        "IDS versus IPS",
+        "Secure protocols and ports"
+      ],
+      "intermediate": [
+        "Analyzing packet captures",
+        "Firewall rule review and policy",
+        "VPN and remote access security"
+      ],
+      "advanced": [
+        "Network detection signatures",
+        "Zero trust network design",
+        "Investigating lateral movement"
+      ]
+    },
+    "resources": [
+      {
+        "title": "NIST SP 800-41 Rev. 1: Guidelines on Firewalls and Firewall Policy",
+        "url": "https://csrc.nist.gov/pubs/sp/800/41/r1/final",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "siem",
+    "name": "SIEM & Security Monitoring",
+    "category": "tool",
+    "aliases": [
+      "siem",
+      "splunk",
+      "microsoft sentinel",
+      "kql",
+      "spl",
+      "log analysis",
+      "security monitoring"
+    ],
+    "description": "Collecting and querying security logs to detect threats.",
+    "prerequisites": [
+      "security-fundamentals"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Log collection and normalization",
+        "Common log sources and fields",
+        "Alerts and dashboards basics"
+      ],
+      "intermediate": [
+        "Writing queries in KQL or SPL",
+        "Alert triage and escalation",
+        "Correlation rules and enrichment"
+      ],
+      "advanced": [
+        "Detection engineering and tuning",
+        "Threat hunting with hypotheses",
+        "Automated response playbooks"
+      ]
+    },
+    "resources": [
+      {
+        "title": "What is Microsoft Sentinel?",
+        "url": "https://learn.microsoft.com/en-us/azure/sentinel/overview",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "incident-response",
+    "name": "Incident Response",
+    "category": "concept",
+    "aliases": [
+      "ir",
+      "dfir",
+      "incident handling",
+      "nist 800-61"
+    ],
+    "description": "Detecting, containing and recovering from security incidents.",
+    "prerequisites": [
+      "security-fundamentals"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Incident lifecycle phases",
+        "Recognizing indicators of compromise",
+        "Escalation and documentation"
+      ],
+      "intermediate": [
+        "Scoping and severity classification",
+        "Containment and eradication steps",
+        "Evidence handling and timelines"
+      ],
+      "advanced": [
+        "Leading major incident coordination",
+        "Root cause and lessons learned",
+        "Building and testing IR playbooks"
+      ]
+    },
+    "resources": [
+      {
+        "title": "NIST SP 800-61 Rev. 3: Incident Response Recommendations",
+        "url": "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "vulnerability-management",
+    "name": "Vulnerability Management",
+    "category": "concept",
+    "aliases": [
+      "vapt",
+      "vulnerability scanning",
+      "nessus",
+      "cve",
+      "cvss",
+      "patch management"
+    ],
+    "description": "Finding, prioritising and fixing security weaknesses.",
+    "prerequisites": [
+      "security-fundamentals"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "CVEs and severity scoring",
+        "Running vulnerability scans",
+        "Patch management basics"
+      ],
+      "intermediate": [
+        "Risk-based prioritization",
+        "Exploited-vulnerability catalogs",
+        "Tracking remediation and exceptions"
+      ],
+      "advanced": [
+        "Program metrics and reporting",
+        "Attack surface management",
+        "Coordinating fixes with owners"
+      ]
+    },
+    "resources": [
+      {
+        "title": "NIST SP 800-40 Rev. 4: Enterprise Patch Management Planning",
+        "url": "https://csrc.nist.gov/pubs/sp/800/40/r4/final",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "mitre-attack",
+    "name": "MITRE ATT&CK",
+    "category": "concept",
+    "aliases": [
+      "att&ck",
+      "mitre att&ck",
+      "ttps"
+    ],
+    "description": "Knowledge base of adversary tactics and techniques used for detection.",
+    "prerequisites": [
+      "security-fundamentals"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Tactics, techniques and procedures",
+        "Navigating the ATT&CK matrix",
+        "Mapping an alert to a technique"
+      ],
+      "intermediate": [
+        "Data sources and detections per technique",
+        "Using ATT&CK Navigator layers",
+        "Profiling threat groups"
+      ],
+      "advanced": [
+        "Detection coverage gap analysis",
+        "Adversary emulation planning",
+        "Integrating ATT&CK into threat hunts"
+      ]
+    },
+    "resources": [
+      {
+        "title": "MITRE ATT&CK: Getting Started",
+        "url": "https://attack.mitre.org/resources/getting-started/",
+        "kind": "guide",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "statistics",
+    "name": "Statistics & Probability",
+    "category": "concept",
+    "aliases": [
+      "stats",
+      "probability",
+      "inferential statistics",
+      "hypothesis testing",
+      "regression analysis"
+    ],
+    "description": "Describing data and drawing conclusions under uncertainty.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Descriptive measures of center and spread",
+        "Distributions and probability basics",
+        "Sampling and bias"
+      ],
+      "intermediate": [
+        "Confidence intervals",
+        "Hypothesis tests and p-values",
+        "Correlation and linear regression",
+        "Chi-square and t-tests"
+      ],
+      "advanced": [
+        "Multiple and logistic regression",
+        "Bayesian reasoning basics",
+        "Causal inference pitfalls and confounding",
+        "Power analysis and effect size"
+      ]
+    },
+    "resources": [
+      {
+        "title": "OpenStax Introductory Statistics 2e",
+        "url": "https://openstax.org/details/books/introductory-statistics-2e",
+        "kind": "book",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "ml-math",
+    "name": "Mathematics for ML",
+    "category": "concept",
+    "aliases": [
+      "linear algebra",
+      "calculus",
+      "math for machine learning"
+    ],
+    "description": "Linear algebra, calculus and probability behind machine learning.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Vectors, matrices and operations",
+        "Derivatives and partial derivatives",
+        "Probability rules and distributions"
+      ],
+      "intermediate": [
+        "Matrix decomposition and eigenvectors",
+        "Gradient descent intuition",
+        "Maximum likelihood estimation"
+      ],
+      "advanced": [
+        "Convex optimization basics",
+        "PCA and dimensionality reduction math",
+        "Information theory and loss functions"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Mathematics for Machine Learning (free book)",
+        "url": "https://mml-book.github.io/",
+        "kind": "book",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "machine-learning",
+    "name": "Machine Learning",
+    "category": "concept",
+    "aliases": [
+      "ml",
+      "predictive modeling",
+      "supervised learning",
+      "unsupervised learning"
+    ],
+    "description": "Training models that learn patterns from data to make predictions.",
+    "prerequisites": [
+      "statistics",
+      "python"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Supervised vs unsupervised learning",
+        "Linear and logistic regression",
+        "Overfitting and generalization"
+      ],
+      "intermediate": [
+        "Decision trees and ensembles",
+        "Clustering and dimensionality reduction",
+        "Evaluation metrics per problem type",
+        "Feature engineering"
+      ],
+      "advanced": [
+        "Detecting data leakage",
+        "Model interpretability methods",
+        "Time series forecasting approaches",
+        "Bias, fairness and drift"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Google Machine Learning Crash Course",
+        "url": "https://developers.google.com/machine-learning/crash-course",
+        "kind": "course",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "deep-learning",
+    "name": "Deep Learning",
+    "category": "concept",
+    "aliases": [
+      "dl",
+      "neural networks",
+      "cnn",
+      "transformers"
+    ],
+    "description": "Neural-network methods for vision, language and other complex data.",
+    "prerequisites": [
+      "machine-learning",
+      "ml-math"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Neurons, layers and activations",
+        "Backpropagation intuition",
+        "Loss functions and optimizers",
+        "Training a simple MLP"
+      ],
+      "intermediate": [
+        "Convolutional networks for vision",
+        "Sequence models and attention",
+        "Regularization: dropout, batch norm",
+        "Fine-tuning pretrained models"
+      ],
+      "advanced": [
+        "Transformer architecture in depth",
+        "Efficient training at scale",
+        "Parameter-efficient fine-tuning (LoRA)",
+        "Model compression and quantization"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Dive into Deep Learning (d2l.ai)",
+        "url": "https://d2l.ai/",
+        "kind": "book",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "nlp",
+    "name": "Natural Language Processing",
+    "category": "concept",
+    "aliases": [
+      "nlp",
+      "text mining",
+      "text analytics",
+      "hugging face"
+    ],
+    "description": "Teaching computers to process and understand human language.",
+    "prerequisites": [
+      "machine-learning"
+    ],
+    "related": [
+      "llm-engineering"
+    ],
+    "topics": {
+      "fundamental": [
+        "Text cleaning and tokenization",
+        "Bag-of-words and TF-IDF",
+        "Basic text classification"
+      ],
+      "intermediate": [
+        "Word embeddings",
+        "Using pretrained transformer pipelines",
+        "Named entity recognition and sentiment"
+      ],
+      "advanced": [
+        "Fine-tuning language models",
+        "Retrieval-augmented generation basics",
+        "Evaluating LLM outputs"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Hugging Face LLM Course",
+        "url": "https://huggingface.co/learn/llm-course/chapter1/1",
+        "kind": "course",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "mlops",
+    "name": "MLOps",
+    "category": "concept",
+    "aliases": [
+      "ml ops",
+      "model deployment",
+      "ml pipelines",
+      "mlflow",
+      "model serving"
+    ],
+    "description": "Deploying, monitoring and maintaining ML models in production.",
+    "prerequisites": [
+      "machine-learning",
+      "docker"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "ML lifecycle overview",
+        "Experiment tracking",
+        "Data and model versioning",
+        "Reproducible environments"
+      ],
+      "intermediate": [
+        "Training pipelines and orchestration",
+        "Model registry and promotion",
+        "Batch vs online serving",
+        "CI/CD for ML code"
+      ],
+      "advanced": [
+        "Monitoring drift and performance",
+        "Automated retraining triggers",
+        "Feature stores",
+        "Scaling serving and cost control"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Google Cloud: MLOps continuous delivery and automation pipelines",
+        "url": "https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning",
+        "kind": "guide",
+        "tier": "advanced"
+      },
+      {
+        "title": "MLflow Documentation",
+        "url": "https://mlflow.org/docs/latest/ml/",
+        "kind": "docs",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "llm-engineering",
+    "name": "LLM Application Development",
+    "category": "concept",
+    "aliases": [
+      "llm",
+      "llms",
+      "large language models",
+      "prompt engineering",
+      "generative ai",
+      "genai",
+      "openai api"
+    ],
+    "description": "Building applications on top of large language model APIs.",
+    "prerequisites": [
+      "python",
+      "rest-api"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "How LLMs, tokens and context work",
+        "Calling model APIs",
+        "Prompt design basics",
+        "Model choice: cost, speed, quality"
+      ],
+      "intermediate": [
+        "Structured outputs and JSON schemas",
+        "Function and tool calling",
+        "Streaming and conversation state",
+        "Prompt caching and token budgeting"
+      ],
+      "advanced": [
+        "Fine-tuning vs prompting trade-offs",
+        "Serving open-weight models",
+        "Guardrails and fallback models",
+        "Latency and cost optimization"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Claude Prompt Engineering Overview",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview",
+        "kind": "guide",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "rag",
+    "name": "Retrieval-Augmented Generation",
+    "category": "concept",
+    "aliases": [
+      "rag",
+      "vector search",
+      "embeddings",
+      "vector databases",
+      "semantic search"
+    ],
+    "description": "Grounding LLM answers in retrieved documents.",
+    "prerequisites": [
+      "llm-engineering"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Why retrieval grounds answers",
+        "Embeddings and similarity search",
+        "Document chunking strategies",
+        "Basic retrieve-then-generate flow"
+      ],
+      "intermediate": [
+        "Vector databases and pgvector",
+        "Hybrid keyword plus vector search",
+        "Metadata filtering",
+        "Citations in generated answers"
+      ],
+      "advanced": [
+        "Reranking and query rewriting",
+        "Measuring retrieval quality",
+        "Agentic and multi-hop retrieval",
+        "Index freshness and scaling"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Hugging Face Cookbook: Advanced RAG",
+        "url": "https://huggingface.co/learn/cookbook/advanced_rag",
+        "kind": "tutorial",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "ai-agents",
+    "name": "AI Agents & Tool Use",
+    "category": "concept",
+    "aliases": [
+      "agents",
+      "agentic ai",
+      "tool calling",
+      "function calling",
+      "mcp",
+      "langgraph",
+      "langchain"
+    ],
+    "description": "LLM systems that plan and call tools to complete tasks.",
+    "prerequisites": [
+      "llm-engineering"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Augmented LLM: tools and memory",
+        "Prompt chaining workflows",
+        "Routing inputs to handlers",
+        "Designing clear tool interfaces"
+      ],
+      "intermediate": [
+        "Parallel and orchestrator-worker patterns",
+        "Agent loops with stop conditions",
+        "Exposing tools via MCP",
+        "Agent frameworks vs direct API"
+      ],
+      "advanced": [
+        "Human-in-the-loop approvals",
+        "Sandboxing and permission scoping",
+        "Multi-agent coordination",
+        "Debugging and tracing agent runs"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Anthropic: Building Effective Agents",
+        "url": "https://www.anthropic.com/research/building-effective-agents",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "llm-evaluation",
+    "name": "LLM Evaluation",
+    "category": "concept",
+    "aliases": [
+      "evals",
+      "llm evals",
+      "llm-as-judge",
+      "ragas",
+      "promptfoo"
+    ],
+    "description": "Measuring and regression-testing the quality of LLM outputs.",
+    "prerequisites": [
+      "llm-engineering"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Defining success criteria",
+        "Building a golden test set",
+        "Exact-match and code-based checks",
+        "Manual review of outputs"
+      ],
+      "intermediate": [
+        "LLM-as-judge grading",
+        "RAG faithfulness and relevance",
+        "Regression evals in CI",
+        "Eval tools like promptfoo or Ragas"
+      ],
+      "advanced": [
+        "Agent task-completion evals",
+        "Safety and red-team testing",
+        "Online evals from production traces",
+        "Statistical rigor in comparisons"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Claude Docs: Define success criteria and build evaluations",
+        "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "data-visualization",
+    "name": "Data Visualization",
+    "category": "concept",
+    "aliases": [
+      "data viz",
+      "dataviz",
+      "dashboards",
+      "matplotlib",
+      "seaborn",
+      "charts"
+    ],
+    "description": "Turning data into clear charts and dashboards.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Choosing the right chart type",
+        "Axes, labels and scales",
+        "Avoiding misleading visuals"
+      ],
+      "intermediate": [
+        "Color, contrast and accessibility",
+        "Dashboard layout principles",
+        "Plotting with matplotlib or seaborn"
+      ],
+      "advanced": [
+        "Data storytelling and narrative flow",
+        "Visualizing uncertainty",
+        "Designing KPI dashboards for executives"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Fundamentals of Data Visualization (Claus Wilke)",
+        "url": "https://clauswilke.com/dataviz/",
+        "kind": "book",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "data-warehousing",
+    "name": "Data Warehousing",
+    "category": "concept",
+    "aliases": [
+      "data warehouse",
+      "star schema",
+      "kimball",
+      "lakehouse",
+      "data lake"
+    ],
+    "description": "Designing analytical stores for reporting at scale.",
+    "prerequisites": [
+      "data-modeling"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "OLTP vs OLAP systems",
+        "Warehouse vs data lake vs lakehouse",
+        "Columnar storage basics"
+      ],
+      "intermediate": [
+        "Layered architecture (raw, staging, marts)",
+        "Partitioning and clustering",
+        "Loading and refresh strategies"
+      ],
+      "advanced": [
+        "Cost and performance optimization",
+        "Access control and governance",
+        "Open table formats like Delta and Iceberg"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Kimball Dimensional Modeling Techniques",
+        "url": "https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "etl",
+    "name": "ETL / ELT Pipelines",
+    "category": "concept",
+    "aliases": [
+      "etl",
+      "elt",
+      "data pipelines",
+      "data integration",
+      "data ingestion"
+    ],
+    "description": "Moving and transforming data between systems reliably.",
+    "prerequisites": [
+      "sql"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Extract, transform, load stages",
+        "ETL vs ELT",
+        "Batch file and API ingestion"
+      ],
+      "intermediate": [
+        "Incremental and change data capture loads",
+        "Idempotent pipeline design",
+        "Handling late and duplicate records"
+      ],
+      "advanced": [
+        "Backfills and reprocessing",
+        "Schema evolution handling",
+        "Pipeline observability and SLAs"
+      ]
+    },
+    "resources": [
+      {
+        "title": "AWS: What is ETL?",
+        "url": "https://aws.amazon.com/what-is/etl/",
+        "kind": "guide",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "data-quality",
+    "name": "Data Quality",
+    "category": "concept",
+    "aliases": [
+      "data validation",
+      "data observability",
+      "great expectations",
+      "data testing"
+    ],
+    "description": "Testing and monitoring data so downstream users can trust it.",
+    "prerequisites": [
+      "sql"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Quality dimensions: completeness, validity, uniqueness",
+        "Profiling datasets",
+        "Spotting nulls and outliers"
+      ],
+      "intermediate": [
+        "Automated tests on tables",
+        "Validation in pipelines",
+        "Documenting data definitions"
+      ],
+      "advanced": [
+        "Data contracts with producers",
+        "Anomaly detection and alerting",
+        "Lineage and root-cause analysis"
+      ]
+    },
+    "resources": [
+      {
+        "title": "dbt Docs: Data Tests",
+        "url": "https://docs.getdbt.com/docs/build/data-tests",
+        "kind": "docs",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "ab-testing",
+    "name": "A/B Testing & Experimentation",
+    "category": "concept",
+    "aliases": [
+      "a/b testing",
+      "ab testing",
+      "experimentation",
+      "split testing",
+      "online experiments"
+    ],
+    "description": "Designing and analysing controlled experiments on products.",
+    "prerequisites": [
+      "statistics"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Control vs treatment design",
+        "Choosing success metrics",
+        "Randomization units"
+      ],
+      "intermediate": [
+        "Sample size and power calculation",
+        "Significance testing of results",
+        "Guardrail metrics"
+      ],
+      "advanced": [
+        "Peeking and multiple-testing issues",
+        "Variance reduction techniques",
+        "Network effects and novelty bias"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Statsig Docs: Experiments Overview",
+        "url": "https://docs.statsig.com/experiments/overview",
+        "kind": "docs",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "product-analytics",
+    "name": "Product Analytics",
+    "category": "concept",
+    "aliases": [
+      "funnel analysis",
+      "cohort analysis",
+      "kpis",
+      "amplitude",
+      "mixpanel",
+      "posthog"
+    ],
+    "description": "Measuring how users behave in a product to guide decisions.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Event tracking basics",
+        "Key product metrics and KPIs",
+        "Funnels and conversion"
+      ],
+      "intermediate": [
+        "Cohort and retention analysis",
+        "User segmentation",
+        "North-star metric frameworks"
+      ],
+      "advanced": [
+        "Instrumentation planning and tracking plans",
+        "Attribution and impact sizing",
+        "Linking analytics to experiments"
+      ]
+    },
+    "resources": [
+      {
+        "title": "PostHog Product Analytics Docs",
+        "url": "https://posthog.com/docs/product-analytics",
+        "kind": "docs",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "agile",
+    "name": "Agile & Scrum",
+    "category": "concept",
+    "aliases": [
+      "scrum",
+      "kanban",
+      "agile methodologies",
+      "sprints"
+    ],
+    "description": "Iterative ways of planning and delivering work in teams.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Agile values and principles",
+        "Scrum roles and events",
+        "User stories and acceptance criteria"
+      ],
+      "intermediate": [
+        "Sprint planning and estimation",
+        "Kanban flow and WIP limits",
+        "Definition of done and quality"
+      ],
+      "advanced": [
+        "Running effective retrospectives",
+        "Scaling agile across teams",
+        "Continuous improvement with metrics"
+      ]
+    },
+    "resources": [
+      {
+        "title": "The Scrum Guide",
+        "url": "https://scrumguides.org/scrum-guide.html",
+        "kind": "guide",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "mobile-architecture",
+    "name": "Mobile App Architecture",
+    "category": "concept",
+    "aliases": [
+      "mvvm",
+      "clean architecture",
+      "mobile architecture",
+      "offline-first"
+    ],
+    "description": "Structuring mobile apps for testability, state and offline use.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "App lifecycle and screens",
+        "Separation of UI and logic",
+        "Layered app structure"
+      ],
+      "intermediate": [
+        "MVVM with repositories",
+        "Dependency injection on mobile",
+        "Local storage and caching"
+      ],
+      "advanced": [
+        "Offline-first sync",
+        "Modularization at scale",
+        "Performance and battery profiling"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Android: Guide to app architecture",
+        "url": "https://developer.android.com/topic/architecture",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "mobile-release",
+    "name": "App Store & Play Store Publishing",
+    "category": "domain",
+    "aliases": [
+      "app store release",
+      "google play console",
+      "app store connect",
+      "testflight",
+      "fastlane",
+      "app signing"
+    ],
+    "description": "Signing, testing and releasing apps through the app stores.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "App signing and certificates",
+        "Build variants and versions",
+        "Store listing basics"
+      ],
+      "intermediate": [
+        "Beta testing tracks",
+        "Store review guidelines",
+        "Release notes and staged rollout"
+      ],
+      "advanced": [
+        "Automated releases with Fastlane",
+        "Crash-rate gating",
+        "Feature flags and remote config"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Play Console Help: Prepare and roll out a release",
+        "url": "https://support.google.com/googleplay/android-developer/answer/9859348",
+        "kind": "guide",
+        "tier": "intermediate"
+      },
+      {
+        "title": "Apple: Submitting apps to the App Store",
+        "url": "https://developer.apple.com/app-store/submitting/",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "ux-design",
+    "name": "UX Design Fundamentals",
+    "category": "concept",
+    "aliases": [
+      "ux",
+      "user experience",
+      "wireframing",
+      "prototyping",
+      "usability"
+    ],
+    "description": "Designing products around user needs and usability.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "User-centered design basics",
+        "Usability heuristics",
+        "User flows and journeys",
+        "Wireframing concepts"
+      ],
+      "intermediate": [
+        "Usability testing methods",
+        "Information architecture",
+        "Accessibility essentials",
+        "Design critique"
+      ],
+      "advanced": [
+        "Design systems thinking",
+        "Designing for AI uncertainty",
+        "Measuring UX quality",
+        "Research-driven iteration"
+      ]
+    },
+    "resources": [
+      {
+        "title": "NN/g: 10 Usability Heuristics for UI Design",
+        "url": "https://www.nngroup.com/articles/ten-usability-heuristics/",
+        "kind": "guide",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "requirements-writing",
+    "name": "Product Requirements (PRDs)",
+    "category": "concept",
+    "aliases": [
+      "prd",
+      "prds",
+      "user stories",
+      "acceptance criteria",
+      "product requirements"
+    ],
+    "description": "Writing clear problem statements, specs and acceptance criteria.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Problem statements",
+        "User stories format",
+        "Acceptance criteria",
+        "Defining what's out of scope"
+      ],
+      "intermediate": [
+        "Writing a full PRD",
+        "Success metrics in specs",
+        "Edge cases and non-functional needs",
+        "Collaborating on specs with engineers"
+      ],
+      "advanced": [
+        "Specs for AI/LLM features",
+        "Living docs that evolve",
+        "Requirements traceability",
+        "Lightweight specs for fast teams"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Atlassian: Product Requirements Documents",
+        "url": "https://www.atlassian.com/agile/product-management/requirements",
+        "kind": "guide",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "product-discovery",
+    "name": "Product Discovery",
+    "category": "concept",
+    "aliases": [
+      "customer discovery",
+      "user research",
+      "jobs to be done",
+      "jtbd",
+      "customer interviews"
+    ],
+    "description": "Finding problems worth solving and testing solutions early.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Customer interview basics",
+        "Jobs-to-be-done framing",
+        "Problem vs solution space",
+        "Value, usability, feasibility, viability risks"
+      ],
+      "intermediate": [
+        "Opportunity solution trees",
+        "Assumption mapping and testing",
+        "Prototype experiments",
+        "Synthesizing research insights"
+      ],
+      "advanced": [
+        "Continuous weekly discovery",
+        "Evidence-based bets",
+        "Discovery for AI products and trust",
+        "Scaling discovery across teams"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Product Talk: Opportunity Solution Trees",
+        "url": "https://www.producttalk.org/opportunity-solution-trees/",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "prioritization",
+    "name": "Prioritization Frameworks",
+    "category": "concept",
+    "aliases": [
+      "rice",
+      "moscow",
+      "kano",
+      "backlog prioritization"
+    ],
+    "description": "Deciding what to build next using explicit trade-offs.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Impact vs effort thinking",
+        "MoSCoW categorization",
+        "Backlog ordering",
+        "Saying no politely"
+      ],
+      "intermediate": [
+        "RICE scoring",
+        "Kano model",
+        "Cost of delay",
+        "Making trade-offs explicit"
+      ],
+      "advanced": [
+        "Portfolio-level investment balance",
+        "Prioritizing under uncertainty",
+        "Factoring model and infra costs",
+        "Defending priorities to leadership"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Intercom: RICE Prioritization",
+        "url": "https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "product-strategy",
+    "name": "Product Strategy & Roadmapping",
+    "category": "concept",
+    "aliases": [
+      "product vision",
+      "product roadmap",
+      "roadmapping",
+      "okrs",
+      "product strategy"
+    ],
+    "description": "Setting vision, goals and roadmaps that connect to business outcomes.",
+    "prerequisites": [
+      "product-discovery"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Vision vs strategy vs roadmap",
+        "Market and competitor scans",
+        "Target customer segments",
+        "Outcome-based goals"
+      ],
+      "intermediate": [
+        "Outcome roadmaps",
+        "OKRs for product teams",
+        "Positioning and differentiation",
+        "Business models and pricing basics"
+      ],
+      "advanced": [
+        "Multi-year strategic bets",
+        "Build, buy or partner decisions",
+        "AI strategy and economics",
+        "Go-to-market alignment"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Atlassian: Product Strategy",
+        "url": "https://www.atlassian.com/agile/product-management/product-strategy",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  },
+  {
+    "slug": "communication",
+    "name": "Technical Communication",
+    "category": "soft",
+    "aliases": [
+      "technical writing",
+      "documentation",
+      "presentation skills",
+      "communication skills",
+      "storytelling with data"
+    ],
+    "description": "Explaining technical work clearly in writing and in person.",
+    "prerequisites": [],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Understanding stakeholder questions",
+        "Writing clear summaries",
+        "Explaining charts simply"
+      ],
+      "intermediate": [
+        "Structuring insights as a story",
+        "Presenting to non-technical audiences",
+        "Documenting analyses and assumptions"
+      ],
+      "advanced": [
+        "Influencing decisions with data",
+        "Managing requirements and scope",
+        "Communicating uncertainty and trade-offs"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Google Technical Writing One",
+        "url": "https://developers.google.com/tech-writing/one",
+        "kind": "course",
+        "tier": "fundamental"
+      }
+    ]
+  },
+  {
+    "slug": "stakeholder-management",
+    "name": "Stakeholder Management",
+    "category": "soft",
+    "aliases": [
+      "stakeholder communication",
+      "cross-functional collaboration",
+      "managing stakeholders"
+    ],
+    "description": "Aligning people with different goals around shared decisions.",
+    "prerequisites": [
+      "communication"
+    ],
+    "related": [],
+    "topics": {
+      "fundamental": [
+        "Identifying stakeholders",
+        "Understanding goals and concerns",
+        "Regular status updates",
+        "Setting expectations"
+      ],
+      "intermediate": [
+        "Stakeholder mapping by influence",
+        "Communication plans per audience",
+        "Negotiating trade-offs",
+        "Managing scope requests"
+      ],
+      "advanced": [
+        "Aligning leadership on strategy",
+        "Building cross-org buy-in",
+        "Navigating competing priorities",
+        "Saying no constructively"
+      ]
+    },
+    "resources": [
+      {
+        "title": "Atlassian Team Playbook: Stakeholder Communications Plan",
+        "url": "https://www.atlassian.com/team-playbook/plays/stakeholder-communications-plan",
+        "kind": "guide",
+        "tier": "intermediate"
+      }
+    ]
+  }
+]
