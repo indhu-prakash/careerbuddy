@@ -21,6 +21,8 @@ CareerBuddy is for students looking for a first role and professionals changing 
 9. [Security and privacy](#9-security-and-privacy)
 10. [Scripts](#10-scripts)
 11. [Documentation](#11-documentation)
+12. [Contributing](#12-contributing)
+13. [License](#13-license)
 
 ---
 
@@ -294,3 +296,15 @@ Free-tier notes:
 | [docs/HLD.html](docs/HLD.html) / [docs/LLD.html](docs/LLD.html) | High- and low-level design (open in a browser) |
 | [docs/PLAN.md](docs/PLAN.md) | Original project plan |
 | [docs/feature-plan/](docs/feature-plan/README.md) | Per-module specs (F1–F7) and implementation status |
+
+---
+
+## 12. Contributing
+
+Contributions are welcome! Read [CONTRIBUTING.md](CONTRIBUTING.md) for setup and the pull request process, and the [Code of Conduct](CODE_OF_CONDUCT.md). Report security issues privately as described in [SECURITY.md](SECURITY.md).
+
+---
+
+## 13. License
+
+[MIT](LICENSE) © 2026 Indhu Prakash K V

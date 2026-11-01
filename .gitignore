@@ -51,5 +51,7 @@ next-env.d.ts
 .vercel
 .env*
 
-# Local AI-assistant session notes
+# Local AI-assistant state (personal session notes, vendored third-party skills; reinstall from skills-lock.json)
 .handoff/
+.agents/skills/
+.claude/skills/
